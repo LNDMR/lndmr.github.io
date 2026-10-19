@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 750" role="img" aria-label="Black and white silhouette portrait placeholder">
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#d5d5d5"/><stop offset="1" stop-color="#8a8a8a"/></linearGradient><linearGradient id="face" x2="1"><stop stop-color="#bebebe"/><stop offset="1" stop-color="#ededed"/></linearGradient></defs>
+<rect width="500" height="750" fill="url(#bg)"/>
+<path d="M10 750 C35 615 90 568 200 548 L292 534 C370 543 444 610 510 750Z" fill="#282828"/>
+<path d="M194 519 Q204 469 193 424 Q148 380 148 303 Q149 211 212 169 Q278 127 336 177 Q391 216 373 325 Q366 371 327 400 Q308 448 314 518 L348 562 Q293 604 229 566Z" fill="url(#face)"/>
+<path d="M145 302 Q114 218 172 144 Q212 100 280 117 Q325 130 354 160 Q398 147 414 181 Q431 224 397 259 Q393 292 365 324 Q356 285 335 260 Q295 251 273 221 Q241 267 188 277 L167 337Z" fill="#222"/>
+<path d="M342 176 Q423 134 435 228 Q440 278 405 302 Q384 312 371 280" fill="none" stroke="#252525" stroke-width="45" stroke-linecap="round"/>
+<path d="M350 290 Q398 310 420 361 Q428 418 388 450" stroke="#303030" stroke-width="29" fill="none" stroke-linecap="round"/>
+<path d="M328 327 Q352 320 367 339 L350 355" fill="#bcbcbc"/><path d="M292 376 Q321 383 340 369" stroke="#7d7d7d" stroke-width="5" fill="none"/>
+<rect x="0" y="0" width="500" height="750" fill="#111" opacity=".08"/>
+</svg>
