@@ -99,4 +99,42 @@
 
     update();
   }
+
+  // ----------------------------------------
+  // SECTION NAVIGATION VISIBILITY
+  // ----------------------------------------
+
+  const sectionHeadings = [
+    {
+      heading: document.querySelector('#projects .section-top h2'),
+      navigation: document.querySelector('#projects .section-links')
+    },
+    {
+      heading: document.querySelector('#about #about-title'),
+      navigation: document.querySelector('#about .section-links')
+    }
+  ];
+
+  function updateSectionNavigation() {
+    sectionHeadings.forEach(({ heading, navigation }) => {
+      if (!heading || !navigation) return;
+
+      const rect = heading.getBoundingClientRect();
+
+      const isVisible =
+        rect.top >= 0 &&
+        rect.bottom <= window.innerHeight;
+
+      navigation.classList.toggle('is-visible', isVisible);
+    });
+  }
+
+  window.addEventListener('scroll', updateSectionNavigation, {
+    passive: true
+  });
+
+  window.addEventListener('resize', updateSectionNavigation);
+
+  updateSectionNavigation();
+
 })();

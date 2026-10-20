@@ -859,3 +859,100 @@ a:focus-visible,button:focus-visible {
     font-size:clamp(52px,11vw,78px)
   }
 }
+
+
+/* ----------------------------------------
+   SECTION NAVIGATION
+   ---------------------------------------- */
+
+
+#projects {
+  padding-top: 0;
+  padding-bottom: clamp(48px, 5vw, 80px);
+}
+
+#projects .section-top {
+  margin-top: clamp(64px, 7vw, 100px);
+}
+
+/* Shared navigation layout */
+.section-links {
+  position: relative;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 32px;
+
+  padding: 20px 0;
+  background: var(--bg);
+}
+
+/* The navigation links */
+.section-links a {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+
+  padding-bottom: 5px;
+  border-bottom: 2px solid transparent;
+}
+
+.section-links a:hover,
+.section-links a.is-active {
+  color: var(--violet);
+}
+
+.section-links a.is-active {
+  font-weight: 700;
+  border-bottom-color: currentColor;
+}
+
+/* Dark About navigation */
+.section-links-dark {
+  background: #222126;
+  padding-left: clamp(20px, 5vw, 88px);
+  padding-right: clamp(20px, 5vw, 88px);
+}
+
+.section-links-dark a {
+  color: #c5beca;
+}
+
+.section-links-dark a:hover,
+.section-links-dark a.is-active {
+  color: #bca8df;
+}
+
+/* Responsive adjustments */
+@media (max-width: 650px) {
+  .section-links {
+    gap: 22px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+}
+
+/* Hide section navigation unless its heading is visible */
+.section-links {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.section-links.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-links {
+    transition: none;
+  }
+}
+
+
+

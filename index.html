@@ -16,7 +16,7 @@
 </head>
 
 <body>
-  <div class="container" id="top">
+  <div class="container" id="home">
 
     <!-- HEADER & NAVIGATION -->
     <header class="topbar">
@@ -52,7 +52,7 @@
           >IOS DEVELOPMENT / DESIGN / IDEAS</div>
 
           <h1>
-            <span data-en="Less noise." data-de="Weniger Lärm.">Less noise.</span>
+            <span data-en="Less noise." data-de="Weniger Reize.">Less noise.</span>
             <br>
             <span class="accent" data-en="More intent." data-de="Mehr Absicht.">More intent.</span>
           </h1>
@@ -68,9 +68,9 @@
         <div class="hero-links">
           <a
             class="arrow-link"
-            href="#work"
+            href="#projects"
             data-en="Explore work ↘"
-            data-de="Arbeiten ansehen ↘"
+            data-de="Projekte ansehen ↘"
           >Explore work ↘</a>
 
           <a
@@ -85,19 +85,27 @@
       </section>
 
       <!-- SELECTED WORK -->
-      <section id="work" class="section">
+      <section id="projects" class="section">
+
+        <nav class="section-links" aria-label="Page sections">
+          <a href="#home" data-en="Home" data-de="Start">Home</a>
+
+          <a
+            href="#projects"
+            class="is-active"
+            aria-current="location"
+            data-en="Projects"
+            data-de="Projekte"
+          >Work</a>
+
+          <a href="#about" data-en="About" data-de="Über mich">About</a>
+        </nav>
 
         <div class="section-top">
           <div>
-            <span
-              class="eyebrow"
-              data-en="01 / PROJECTS"
-              data-de="01 / PROJEKTE"
-            >01 / PROJECTS</span>
-
             <h2
               data-en="Selected work."
-              data-de="Ausgewählte Arbeiten."
+              data-de="Ausgewählte Projekte."
             >Selected work.</h2>
           </div>
 
@@ -196,12 +204,23 @@
 
       <!-- ABOUT ME -->
       <section id="about" class="about-editorial" aria-labelledby="about-title">
+        <nav class="section-links section-links-dark" aria-label="Page sections">
+          <a href="#home" data-en="Home" data-de="Start">Home</a>
+
+          <a href="#projects" data-en="Projects" data-de="Projekte">Projects</a>
+
+          <a
+            href="#about"
+            class="is-active"
+            aria-current="location"
+            data-en="About"
+            data-de="Über mich"
+          >About</a>
+        </nav>
         <div class="about-inner">
 
           <!-- ABOUT TEXT -->
           <div class="about-copy">
-            <span class="eyebrow about-index">02 / ABOUT</span>
-
             <h2 id="about-title">
               <span data-en="About" data-de="Über">About</span>
               <br>
@@ -288,11 +307,6 @@
     <!-- FOOTER -->
     <footer class="footer">
       <span>© <span id="year">2026</span> LINDA KÖTTER</span>
-      <a 
-      href="#top" 
-      data-en="Back to top ↑" 
-      data-de="Nach oben ↑"
-      >Back to top ↑</a>
     </footer>
 
   </div>
