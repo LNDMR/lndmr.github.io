@@ -198,6 +198,17 @@ a:focus-visible,button:focus-visible {
   font-weight:700
 }
 
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px 48px;
+}
+
+.hero-links .arrow-link {
+  white-space: nowrap;
+}
+
 .section {
   padding:clamp(66px,8vw,122px) 0
 }
@@ -371,6 +382,13 @@ a:focus-visible,button:focus-visible {
   color:var(--muted)
 }
 
+.footer a {
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: var(--violet);
+}
 
 /* Case study */.case-hero {
   padding:clamp(75px,9vw,140px) 0 65px
