@@ -1,3 +1,7 @@
+/* Shared stylesheet — global design, homepage, and reusable case-study rules.
+   Migraine-specific rules live in projects/migraine-tracker.css.
+   Tokens and shared layouts are defined here; page-specific exceptions stay local. */
+
 :root {
   color-scheme:light;
   --bg:#f4f2ef;
@@ -9,7 +13,13 @@
   --panel:#eae6e4;
   --inverse:#242129;
   --inverse-ink:#f4f2ef;
-  --focus:#8269bb
+  --focus:#8269bb;
+  --page-max-width:1460px;
+  --page-gutter:clamp(20px,5vw,88px);
+  --case-section-space:clamp(60px,7.5vw,112px);
+  --case-column-gap: clamp(24px, 3vw, 48px);
+  --case-left-column: 35fr;
+  --case-right-column: 65fr;
 }
 
 :root[data-theme=dark] {
@@ -66,7 +76,7 @@ a:focus-visible,button:focus-visible {
 }
 
 .container {
-  width:min(100% - 2*clamp(20px,5vw,88px),1460px);
+  width:min(calc(100% - 2 * var(--page-gutter)),var(--page-max-width));
   margin:auto
 }
 
@@ -166,7 +176,6 @@ a:focus-visible,button:focus-visible {
 }
 
 .hero h1 {
-  font-size:clamp(62px,9.5vw,152px);
   line-height:.9;
   letter-spacing:-.082em;
   font-weight:800;
@@ -326,7 +335,12 @@ a:focus-visible,button:focus-visible {
 }
 
 .card-info .arrow {
-  font-size:24px
+  position: sticky;
+  right: 0;
+  flex-shrink: 0;
+  align-self: flex-start;
+  z-index: 1;
+  font-size: 24px;
 }
 
 .about {
@@ -390,7 +404,10 @@ a:focus-visible,button:focus-visible {
   color: var(--violet);
 }
 
-/* Case study */.case-hero {
+/* =========================================
+   CASE STUDY — Shared project-page layout
+   ========================================= */
+.case-hero {
   padding:clamp(75px,9vw,140px) 0 65px
 }
 
@@ -475,10 +492,10 @@ a:focus-visible,button:focus-visible {
 
 .case-section {
   border-top:1px solid var(--line);
-  padding:clamp(60px,7.5vw,112px) 0;
+  padding:var(--case-section-space) 0;
   display:grid;
-  grid-template-columns:minmax(180px,.38fr) minmax(0,1fr);
-  gap:clamp(30px,6vw,110px)
+  grid-template-columns:minmax(0,var(--case-left-column)) minmax(0,var(--case-right-column));
+  gap:var(--case-column-gap)
 }
 
 .case-section .section-title {
@@ -655,7 +672,9 @@ a:focus-visible,button:focus-visible {
 }
 
 
-/* Portfolio v3: reference-led dark editorial about */
+/* =========================================
+   HOMEPAGE — Editorial About
+   ========================================= */
 .hero h1 {
   font-size:clamp(58px,8.4vw,138px);
   line-height:.99;
@@ -673,7 +692,7 @@ a:focus-visible,button:focus-visible {
 }
 
 .about-inner {
-  width:min(100% - 2*clamp(20px,5vw,88px),1460px);
+  width:min(calc(100% - 2 * var(--page-gutter)),var(--page-max-width));
   margin:0 auto;
   min-height:600px;
   padding:clamp(64px,8vw,115px) 0;
@@ -766,23 +785,25 @@ a:focus-visible,button:focus-visible {
   color:#aaa2af
 }
 
+
+/* ABOUT — BACKGROUND & INTERESTS */
+
 .about-side {
-  display:flex;
-  flex-direction:column;
-  gap:17px;
-  align-self:center;
-  font-size:12px;
-  color:#d3cdd8;
-  line-height:1.35;
-  white-space:normal
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-self: center;
+  color: #d3cdd8;
+  min-width: 0;
 }
 
 .about-side h3 {
   margin: 0;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
+  line-height: 1.5;
   color: #bca8df;
 }
 
@@ -792,11 +813,15 @@ a:focus-visible,button:focus-visible {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 17px;
+  gap: 22px;
 }
 
 .about-side li {
   margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
 }
 
 @media(max-width:1000px) {
@@ -862,7 +887,7 @@ a:focus-visible,button:focus-visible {
 
 
 /* ----------------------------------------
-   SECTION NAVIGATION
+   HOMEPAGE — SECTION NAVIGATION
    ---------------------------------------- */
 
 
@@ -953,6 +978,3 @@ a:focus-visible,button:focus-visible {
     transition: none;
   }
 }
-
-
-

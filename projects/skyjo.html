@@ -1,0 +1,1007 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta
+    name="description"
+    content="Skyjo — a terminal-based card game simulation built in Kotlin. A personal project by Linda Kötter."
+  >
+  <meta name="page-title-en" content="Skyjo — Linda Kötter">
+  <meta name="page-title-de" content="Skyjo — Linda Kötter">
+
+  <title>Skyjo — Linda Kötter</title>
+
+  <link rel="stylesheet" href="../styles.css">
+  <script defer src="../main.js"></script>
+
+  <style>
+    /* =========================================
+       SKYJO CASE STUDY
+       Project-specific visual design
+       ========================================= */
+
+    .skyjo-page {
+      --sky-terminal: #202023;
+      --sky-terminal-deep: #171719;
+      --sky-terminal-line: #404045;
+      --sky-console-text: #B9BAC0;
+      --sky-blue: #46A2E8;
+      --sky-green: #69BC83;
+      --sky-white: #F2F0EE;
+    }
+
+    .skyjo-page .sky-accent {
+      color: var(--sky-blue);
+    }
+
+    .skyjo-page .pullquote {
+      border-left-color: var(--sky-blue);
+    }
+
+    .skyjo-page .back-link:hover {
+      color: var(--sky-blue);
+    }
+
+    /* Shared showcase rules */
+
+    .skyjo-page .sky-showcase {
+      width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+      overflow: hidden;
+      margin: clamp(40px, 6vw, 90px) 0;
+    }
+
+    .skyjo-page .sky-showcase figure {
+      margin: 0;
+      min-width: 0;
+    }
+
+    .skyjo-page .sky-showcase img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .skyjo-page .sky-kicker {
+      font-size: 11px;
+      line-height: 1.5;
+      font-weight: 650;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+
+    /* =========================================
+       HERO — TERMINAL
+       ========================================= */
+
+    .skyjo-page .sky-hero {
+      background: var(--sky-terminal);
+      color: var(--sky-white);
+      padding: clamp(22px, 4.5vw, 64px);
+      margin-top: 0;
+    }
+
+    .skyjo-page .sky-hero-bar {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+      margin-bottom: clamp(34px, 5vw, 72px);
+      color: var(--sky-console-text);
+    }
+
+    .skyjo-page .sky-hero-bar span:last-child {
+      color: var(--sky-green);
+    }
+
+    .skyjo-page .sky-hero-title {
+      color: var(--sky-white);
+      margin: 0 0 12px;
+      font-size: clamp(54px, 9vw, 138px);
+      font-weight: 700;
+      line-height: .95;
+      letter-spacing: -.075em;
+    }
+
+    .skyjo-page .sky-hero-subtitle {
+      margin: 0 0 clamp(32px, 5vw, 70px);
+      color: var(--sky-console-text);
+      font-size: clamp(15px, 1.8vw, 21px);
+      line-height: 1.5;
+    }
+
+    .skyjo-page .sky-terminal-window {
+      background: var(--sky-terminal-deep);
+      border: 1px solid var(--sky-terminal-line);
+      padding: clamp(14px, 2.5vw, 32px);
+      overflow: hidden;
+    }
+
+    .skyjo-page .sky-window-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+      color: #898A90;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 11px;
+    }
+
+    .skyjo-page .sky-window-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .skyjo-page .sky-window-dots span {
+      display: block;
+      width: 8px;
+      height: 8px;
+      border: 1px solid #6B6B72;
+      border-radius: 50%;
+    }
+
+    .skyjo-page .sky-terminal-window img {
+      width: 100%;
+      height: auto;
+    }
+
+    /* =========================================
+       PHYSICAL GAME — IMAGE COMPOSITION
+       ========================================= */
+
+    .skyjo-page .sky-physical {
+      display: grid;
+      grid-template-columns: 1.1fr .8fr;
+      gap: clamp(14px, 2vw, 28px);
+      align-items: stretch;
+    }
+
+    .skyjo-page .sky-photo {
+      background: #E6E3DF;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .skyjo-page .sky-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .skyjo-page .sky-photo:first-child {
+      aspect-ratio: 1.05;
+    }
+
+    .skyjo-page .sky-photo:last-child {
+      aspect-ratio: .76;
+    }
+
+    /* =========================================
+       TERMINAL WALKTHROUGH
+       ========================================= */
+
+    .skyjo-page .sky-walkthrough {
+      background: var(--sky-terminal);
+      padding: clamp(24px, 4.5vw, 64px);
+      color: var(--sky-white);
+    }
+
+    .skyjo-page .sky-walkthrough-heading {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: baseline;
+      padding-bottom: 24px;
+      margin-bottom: clamp(30px, 5vw, 62px);
+      border-bottom: 1px solid var(--sky-terminal-line);
+    }
+
+    .skyjo-page .sky-walkthrough-heading span:last-child {
+      color: var(--sky-green);
+    }
+
+    .skyjo-page .sky-stage {
+      display: grid;
+      grid-template-columns: minmax(150px, .42fr) minmax(0, 1fr);
+      gap: clamp(24px, 4vw, 60px);
+      padding: clamp(30px, 5vw, 64px) 0;
+      border-bottom: 1px solid var(--sky-terminal-line);
+      align-items: start;
+    }
+
+    .skyjo-page .sky-stage:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .skyjo-page .sky-stage:first-of-type {
+      padding-top: 0;
+    }
+
+    .skyjo-page .sky-stage-copy {
+      min-width: 0;
+    }
+
+    .skyjo-page .sky-stage-number {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      color: var(--sky-green);
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+
+    .skyjo-page .sky-stage h3 {
+      font-size: clamp(23px, 2.6vw, 35px);
+      font-weight: 650;
+      letter-spacing: -.035em;
+      color: var(--sky-white);
+      line-height: 1.15;
+      margin: 0 0 16px;
+    }
+
+    .skyjo-page .sky-stage p {
+      color: var(--sky-console-text);
+      line-height: 1.6;
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .skyjo-page .sky-stage-media {
+      display: grid;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .skyjo-page .sky-screen {
+      background: var(--sky-terminal-deep);
+      padding: clamp(12px, 1.8vw, 24px);
+      border: 1px solid var(--sky-terminal-line);
+      min-width: 0;
+    }
+
+    .skyjo-page .sky-screen img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .skyjo-page .sky-screen-caption {
+      font-size: 11px;
+      line-height: 1.5;
+      color: #9899A1;
+      margin-top: 10px;
+    }
+
+    /* =========================================
+       ARCHITECTURE
+       ========================================= */
+
+    .skyjo-page .sky-architecture {
+      background: var(--sky-terminal);
+      color: var(--sky-white);
+      padding: clamp(24px, 4.5vw, 64px);
+    }
+
+    .skyjo-page .sky-architecture-header {
+      margin-bottom: 32px;
+      color: var(--sky-green);
+    }
+
+    .skyjo-page .sky-architecture-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .skyjo-page .sky-class {
+      border: 1px solid #48494E;
+      background: #28282C;
+      padding: clamp(18px, 2.5vw, 30px);
+      min-width: 0;
+    }
+
+    .skyjo-page .sky-class code {
+      display: block;
+      margin-bottom: 14px;
+      color: var(--sky-blue);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: clamp(13px, 1.35vw, 17px);
+      overflow-wrap: anywhere;
+    }
+
+    .skyjo-page .sky-class p {
+      color: var(--sky-console-text);
+      line-height: 1.6;
+      font-size: 13px;
+      margin: 0;
+    }
+
+    .skyjo-page .sky-inheritance {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 32px 0 4px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 13px;
+    }
+
+    .skyjo-page .sky-inheritance code {
+      color: var(--sky-white);
+      border: 1px solid #48494E;
+      padding: 14px 20px;
+      background: #28282C;
+    }
+
+    .skyjo-page .sky-inheritance span {
+      color: var(--sky-green);
+    }
+
+    /* =========================================
+       OPTIONAL MEDIA PLACEHOLDERS
+       ========================================= */
+
+    .skyjo-page .sky-future-media {
+      border: 1px dashed var(--sky-terminal-line);
+      padding: 28px;
+      color: #94959D;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    /* =========================================
+       RESPONSIVE
+       ========================================= */
+
+    @media (max-width: 800px) {
+
+      .skyjo-page .sky-stage {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .skyjo-page .sky-stage-copy {
+        max-width: 560px;
+      }
+
+      .skyjo-page .sky-architecture-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+
+      .skyjo-page .sky-hero {
+        padding: 22px 16px;
+      }
+
+      .skyjo-page .sky-hero-title {
+        font-size: clamp(52px, 14vw, 78px);
+      }
+
+      .skyjo-page .sky-physical {
+        grid-template-columns: 1fr;
+      }
+
+      .skyjo-page .sky-photo:first-child,
+      .skyjo-page .sky-photo:last-child {
+        aspect-ratio: auto;
+      }
+
+      .skyjo-page .sky-photo img {
+        height: auto;
+      }
+
+      .skyjo-page .sky-walkthrough,
+      .skyjo-page .sky-architecture {
+        padding: 26px 18px;
+      }
+
+      .skyjo-page .sky-architecture-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skyjo-page .sky-inheritance {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .skyjo-page .sky-stage h3 {
+        font-size: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body class="skyjo-page">
+  <div class="container">
+
+    <!-- HEADER -->
+
+    <header class="topbar">
+      <a class="brand" href="../index.html">LINDA KÖTTER</a>
+
+      <nav class="navigation" aria-label="Main navigation">
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#about">About</a>
+
+        <a class="nav-mobile" href="../index.html#projects">
+          ← Projects
+        </a>
+
+        <div class="tools">
+          <div class="langs">
+            <button type="button" data-lang="en" aria-pressed="true">EN</button>
+            <span>/</span>
+            <button type="button" data-lang="de" aria-pressed="false">DE</button>
+          </div>
+
+          <button
+            class="theme-button"
+            type="button"
+            data-theme-toggle
+            aria-label="Switch theme"
+          >☾</button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+
+      <!-- PROJECT INTRODUCTION -->
+
+      <section class="case-hero">
+        <div class="eyebrow">
+          CASE STUDY · KOTLIN · 2022 · COMPLETED
+        </div>
+
+        <h1>Skyjo<span class="sky-accent">.</span></h1>
+
+        <p class="case-dek">
+          Building a card game from scratch — in the terminal.
+        </p>
+
+        <div class="case-meta">
+          <span>ROLE / SOLE DEVELOPER</span>
+          <span>TOOLS / KOTLIN · INTELLIJ IDEA</span>
+          <span>DURATION / 4 WEEKS</span>
+        </div>
+      </section>
+
+      <!-- HERO TERMINAL SHOWCASE -->
+
+      <div class="sky-showcase sky-hero">
+        <div class="sky-hero-bar sky-kicker">
+          <span>KOTLIN / TERMINAL GAME</span>
+          <span>2022</span>
+        </div>
+
+        <h2 class="sky-hero-title">
+          SKYJO<span class="sky-accent">.</span>
+        </h2>
+
+        <p class="sky-hero-subtitle">
+          A human player. A CPU opponent. One terminal.
+        </p>
+
+        <div class="sky-terminal-window">
+          <div class="sky-window-bar">
+            <div class="sky-window-dots" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <span>skyjo / kotlin</span>
+          </div>
+
+          <img
+            src="../assets/skyjo/Skyjo_Start3.png"
+            alt="Skyjo terminal interface showing the human and CPU playing fields"
+          >
+        </div>
+      </div>
+
+      <!-- PROJECT OVERVIEW -->
+
+      <section class="case-section">
+        <div>
+          <h2 class="section-title">Overview</h2>
+        </div>
+
+        <div class="case-copy">
+          <p class="lead">
+            Skyjo is a terminal-based card game simulation
+            written in Kotlin.
+          </p>
+
+          <p>
+            A human player competes against a CPU opponent through
+            a full game loop — drawing cards, making decisions,
+            managing a playing field, and tracking scores across rounds.
+          </p>
+
+          <p>
+            Built entirely without AI assistance as the final
+            submission of a programming fundamentals course at
+            Syntax Institut.
+          </p>
+        </div>
+      </section>
+
+      <!-- THE DECISION -->
+
+      <section class="case-section">
+        <div>
+          <h2 class="section-title">The decision</h2>
+        </div>
+
+        <div class="case-copy">
+          <p class="lead">
+            Follow a predefined RPG structure, or build something
+            entirely my own.
+          </p>
+
+          <p>
+            The final project gave two options: build a provided RPG
+            combat system with a predefined structure, or design and
+            build something entirely of my own choosing — as long as
+            it demonstrated branching logic, loops, classes and
+            objects, inheritance, constructors, and functions.
+          </p>
+
+          <p>
+            I chose the second option — partly because I love card
+            and board games and wanted to find out if I could translate
+            one into a program, and partly because the RPG felt like
+            filling in a template. It didn't excite me.
+          </p>
+
+          <p>
+            Skyjo meant starting from nothing. I had to study and
+            document the actual rules of a real card game, decide how
+            to translate those rules into data structures and logic,
+            figure out what concepts deserved their own class and
+            how many there should be, and find a way to represent
+            a 2D playing field in a terminal environment.
+          </p>
+
+          <div class="pullquote">
+            The problem was genuinely open — and that was exactly
+            the kind of challenge I wanted.
+          </div>
+        </div>
+      </section>
+
+      <!-- THE PHYSICAL GAME -->
+
+      <section class="case-section">
+        <div>
+          <h2 class="section-title">The game</h2>
+        </div>
+
+        <div class="case-copy">
+          <p class="lead">
+            From a physical card game to a playable terminal simulation.
+          </p>
+
+          <p>
+            The goal of Skyjo is simple: end the game with as few
+            points as possible. Each player has 12 cards arranged
+            face-down in a 3×4 grid. You can only see the cards
+            you've chosen to reveal — everything else is hidden,
+            including from yourself.
+          </p>
+        </div>
+      </section>
+
+      <div class="sky-showcase sky-physical">
+        <figure class="sky-photo">
+          <img
+            src="../assets/skyjo/Skyjo_02.jpeg"
+            alt="Skyjo cards arranged on a wooden table"
+            loading="lazy"
+          >
+        </figure>
+
+        <figure class="sky-photo">
+          <img
+            src="../assets/skyjo/Skyjo_01.png"
+            alt="Physical Skyjo card game box"
+            loading="lazy"
+          >
+        </figure>
+      </div>
+
+      <!-- WALKTHROUGH INTRODUCTION -->
+
+      <section class="case-section">
+        <div>
+          <h2 class="section-title">Playing in the terminal</h2>
+        </div>
+
+        <div class="case-copy">
+          <p>
+            The game opens by asking for your name. Each player
+            then flips two cards of their choice to start.
+          </p>
+
+          <p>
+            Whoever has the higher visible score goes first — if
+            it's a tie, a coin toss decides.
+          </p>
+
+          <p>
+            On each turn you choose to draw from the draw pile or
+            pick up the top card of the discard pile. You then decide:
+            swap it with any card on your playing field — face-up
+            or face-down — or discard it and flip a hidden card instead.
+          </p>
+
+          <p>
+            Every decision is a trade-off between what you know
+            and what you're willing to risk.
+          </p>
+        </div>
+      </section>
+
+      <!-- TERMINAL WALKTHROUGH -->
+
+      <div class="sky-showcase sky-walkthrough">
+
+        <div class="sky-walkthrough-heading">
+          <span class="sky-kicker">GAME FLOW</span>
+          <span class="sky-kicker">HUMAN VS CPU</span>
+        </div>
+
+        <!-- STAGE 1 -->
+
+        <section class="sky-stage">
+          <div class="sky-stage-copy">
+            <div class="sky-stage-number">01 / START</div>
+            <h3>Enter the game.</h3>
+            <p>
+              Name your player and reveal the first two cards.
+              The terminal guides the setup one decision at a time.
+            </p>
+          </div>
+
+          <div class="sky-stage-media">
+            <figure class="sky-screen">
+              <img
+                src="../assets/skyjo/Skyjo_Start.png"
+                alt="Terminal asking the player for their name and first cards"
+                loading="lazy"
+              >
+              <figcaption class="sky-screen-caption">
+                Player setup
+              </figcaption>
+            </figure>
+
+            <figure class="sky-screen">
+              <img
+                src="../assets/skyjo/Skyjo_Start2.png"
+                alt="Starting cards being revealed by the players"
+                loading="lazy"
+              >
+              <figcaption class="sky-screen-caption">
+                Revealing the starting cards
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <!-- STAGE 2 -->
+
+        <section class="sky-stage">
+          <div class="sky-stage-copy">
+            <div class="sky-stage-number">02 / PLAYING FIELD</div>
+            <h3>Twelve cards. Two opponents.</h3>
+            <p>
+              Both 3×4 playing fields are rendered as labelled
+              terminal grids. Hidden cards appear as X; revealed
+              values appear in blue.
+            </p>
+          </div>
+
+          <div class="sky-stage-media">
+            <figure class="sky-screen">
+              <img
+                src="../assets/skyjo/Skyjo_Start3.png"
+                alt="Human and CPU playing fields with card values in blue"
+                loading="lazy"
+              >
+              <figcaption class="sky-screen-caption">
+                Playing field and draw/discard piles
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <!-- STAGE 3 -->
+
+        <section class="sky-stage">
+          <div class="sky-stage-copy">
+            <div class="sky-stage-number">03 / DECISIONS</div>
+            <h3>Draw. Swap. Reveal.</h3>
+            <p>
+              The player chooses a pile, decides whether to keep
+              or discard the card, and selects a position.
+              The terminal prompts for each decision.
+            </p>
+          </div>
+
+          <div class="sky-stage-media">
+            <figure class="sky-screen">
+              <img
+                src="../assets/skyjo/Skyjo_Next.png"
+                alt="Prompt to draw from the draw or discard pile"
+                loading="lazy"
+              >
+              <figcaption class="sky-screen-caption">
+                Choosing a card
+              </figcaption>
+            </figure>
+
+            <figure class="sky-screen">
+              <img
+                src="../assets/skyjo/Skyjo_Next2.png"
+                alt="Terminal prompt to keep or dismiss a drawn card"
+                loading="lazy"
+              >
+              <figcaption class="sky-screen-caption">
+                Keep or dismiss?
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <!-- STAGE 4 -->
+
+        <section class="sky-stage">
+          <div class="sky-stage-copy">
+            <div class="sky-stage-number">04 / CPU OPPONENT</div>
+            <h3>The computer takes its turn.</h3>
+            <p>
+              The CPU makes its own choices and narrates
+              its decisions, making the automated turn
+              understandable to the human player.
+            </p>
+          </div>
+
+          <div class="sky-stage-media">
+            <figure class="sky-screen">
+              <img
+                src="../assets/skyjo/Skyjo_Next3.png"
+                alt="CPU decisions printed in the terminal"
+                loading="lazy"
+              >
+              <figcaption class="sky-screen-caption">
+                CPU turn narration
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- ADDITIONAL GAME RULES -->
+
+      <section class="case-section">
+        <div>
+          <h2 class="section-title">Rounds & scoring</h2>
+        </div>
+
+        <div class="case-copy">
+          <p>
+            If three identical face-up cards line up in a column,
+            that column is eliminated and the cards go to the
+            discard pile — reducing the playing field from
+            12 cards to 9, 6, or 3.
+          </p>
+
+          <p>
+            A round ends when a player has revealed all their cards,
+            or when a player chooses to close the round. After that,
+            the other player gets one final turn. All remaining
+            face-down cards are then revealed and counted.
+          </p>
+
+          <p>
+            Scores are tracked on a running scoreboard displayed
+            after each round in yellow. The game ends after the
+            set number of rounds. The winner is announced with
+            their name in green — the loser in red.
+          </p>
+
+          <p>
+            The intended round-closing behaviour is not yet fully
+            implemented, as described in the known limitations below.
+          </p>
+        </div>
+      </section>
+
+      <!-- THE CODE -->
+
+      <section class="case-section">
+        <div>
+          <h2 class="section-title">The code</h2>
+        </div>
+
+        <div class="case-copy">
+          <p class="lead">
+            Before writing code, I mapped out the rules and the
+            concepts the program needed to represent.
+          </p>
+
+          <p>
+            The game rules were documented in full, and the class
+            architecture was sketched out — what concepts existed,
+            what data they held, and what they could do.
+          </p>
+
+          <p>
+            I then scaffolded the classes with constructors,
+            fields and method signatures before implementing
+            and testing the game function by function
+            in the terminal.
+          </p>
+        </div>
+      </section>
+
+      <!-- ARCHITECTURE SHOWCASE -->
+
+      <div class="sky-showcase sky-architecture">
+        <div class="sky-architecture-header sky-kicker">
+          THE CLASS STRUCTURE
+        </div>
+
+        <div class="sky-architecture-grid">
+          <div class="sky-class">
+            <code>Card</code>
+            <p>Holds a value and knows how to reveal itself.</p>
+          </div>
+
+          <div class="sky-class">
+            <code>PlayingField</code>
+            <p>Manages the 3×4 grid, column elimination, and rendering.</p>
+          </div>
+
+          <div class="sky-class">
+            <code>Player</code>
+            <p>Prompts the human, validates input, and manages decisions.</p>
+          </div>
+
+          <div class="sky-class">
+            <code>ArtificialPlayer</code>
+            <p>Overrides player actions using random choice logic.</p>
+          </div>
+
+          <div class="sky-class">
+            <code>Game</code>
+            <p>Orchestrates the game session, turns, deck, and scoring.</p>
+          </div>
+
+          <div class="sky-class">
+            <code>ScoreBoard</code>
+            <p>Accumulates and displays scores across rounds.</p>
+          </div>
+        </div>
+
+        <div class="sky-inheritance">
+          <code>Player</code>
+          <span>← extends ←</span>
+          <code>ArtificialPlayer</code>
+        </div>
+      </div>
+
+      <!-- INHERITANCE -->
+
+      <section class="case-section">
+        <div>
+          <h2 class="section-title">Inheritance as a solution</h2>
+        </div>
+
+        <div class="case-copy">
+          <p class="lead">
+            The game can treat a human and the CPU as players
+            without needing separate turn logic.
+          </p>
+
+          <p>
+            <code>ArtificialPlayer</code> extends
+            <code>Player</code> and overrides every action method.
+            The human version prompts the terminal and validates
+            input. The CPU version makes a random choice.
+          </p>
+
+          <p>
+            Because of this, <code>Game</code> never has to ask
+            who is playing — it just calls the method and the
+            appropriate behaviour happens automatically.
+          </p>
+        </div>
+      </section>
+
+      <!-- KNOWN LIMITATIONS -->
+
+      <section class="case-section">
+        <div>
+          <h2 class="section-title">Known limitations</h2>
+        </div>
+
+        <div class="case-copy">
+          <p>
+            Two features have bugs that weren't resolved within
+            the four-week scope.
+          </p>
+
+          <p>
+            When a column is eliminated, the index recalculation
+            makes it hard to address the correct card, and the
+            playing field borders don't adjust to the new size
+            correctly. The mechanism exists, but the position
+            mapping becomes inaccurate once the list shrinks.
+          </p>
+
+          <p>
+            Voluntary round closing also exists as an interaction,
+            but its consequence is incomplete: remaining face-down
+            cards should be flipped and counted in the final
+            score, but currently only face-up cards are summed.
+          </p>
+
+          <p>
+            The CPU plays randomly throughout. There are commented
+            TODOs in the code marking where more sophisticated
+            decision-making logic could be implemented.
+          </p>
+        </div>
+      </section>
+
+      <!-- LOOKING BACK -->
+
+      <section class="case-section">
+        <div>
+          <h2 class="section-title">Looking back</h2>
+        </div>
+
+        <div class="case-copy">
+          <p>
+            The code has rough edges, and the project hasn't been
+            touched since. But the architecture held, and that's
+            what mattered at the time.
+          </p>
+
+          <div class="pullquote">
+            No AI. Four weeks. A card game that runs.
+          </div>
+        </div>
+      </section>
+
+      <!-- BACK TO PROJECTS -->
+
+      <div class="case-ending">
+        <h2>Back to selected work.</h2>
+
+        <a class="back-link" href="../index.html#projects">
+          ← All projects
+        </a>
+      </div>
+
+    </main>
+
+    <footer class="footer">
+      <span>© 2026 LINDA KÖTTER</span>
+      <span>iOS · UX · UI</span>
+    </footer>
+
+  </div>
+</body>
+</html>

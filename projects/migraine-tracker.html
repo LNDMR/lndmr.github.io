@@ -1,323 +1,688 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <meta name="description" content="Migraine Tracker — an iOS app built around one-tap migraine logging. Case study by Linda Kötter."/>
-  <meta name="page-title-en" content="Migraine Tracker — Linda Kötter"/>
-  <meta name="page-title-de" content="Migraine Tracker — Linda Kötter"/>
-
-  <title>Migraine Tracker — Linda Kötter</title>
-
-  <link href="../styles.css" rel="stylesheet"/>
-  <script defer src="../main.js"></script>
-</head>
-
-<body>
-  <div class="container">
-
-    <!-- HEADER & NAVIGATION -->
-    <header class="topbar">
-      <a class="brand" href="../index.html">LINDA KÖTTER</a>
-
-      <nav aria-label="Main navigation" class="navigation">
-        <a data-de="Arbeiten" data-en="Work" href="../index.html#work">Work</a>
-        <a data-de="Über mich" data-en="About" href="../index.html#about">About</a>
-        <a
-          class="nav-mobile"
-          data-de="← Arbeiten"
-          data-en="← Work"
-          href="../index.html#work"
-        >← Work</a>
-
-        <div class="tools">
-          <div class="langs">
-            <button aria-pressed="true" data-lang="en" type="button">EN</button>
-            <span>/</span>
-            <button aria-pressed="false" data-lang="de" type="button">DE</button>
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="Migraine Tracker &mdash; an iOS app built around one-tap migraine logging. Case study by Linda K&ouml;tter." name="description"/>
+    <meta content="Migraine Tracker &mdash; Linda K&ouml;tter" name="page-title-en"/>
+    <meta content="Migraine Tracker &mdash; Linda K&ouml;tter" name="page-title-de"/>
+    <title>
+      Migraine Tracker &mdash; Linda K&ouml;tter
+    </title>
+    <link href="../styles.css" rel="stylesheet"/>
+    <script defer="" src="../main.js">
+    </script>
+    <link rel="stylesheet" href="migraine-tracker.css">
+    <script src="migraine-video-controls.js" defer></script>
+  </head>
+  <body class="migraine-page">
+    <div class="container">
+      <!-- Shared site header -->
+      <header class="topbar">
+        <a class="brand" href="../index.html">
+        LINDA K&Ouml;TTER
+        </a>
+        <nav aria-label="Main navigation" class="navigation">
+          <a data-de="Projekte" data-en="Projects" href="../index.html#projects">
+          Projects
+          </a>
+          <a data-de="&Uuml;ber mich" data-en="About" href="../index.html#about">
+          About
+          </a>
+          <a class="nav-mobile" data-de="&larr; Projekte" data-en="&larr; Projects" href="../index.html#projects">
+          &larr; Projects
+          </a>
+          <div class="tools">
+            <div class="langs">
+              <button aria-pressed="true" data-lang="en" type="button">
+                EN
+              </button>
+              <span>
+              /
+              </span>
+              <button aria-pressed="false" data-lang="de" type="button">
+                DE
+              </button>
+            </div>
+            <button aria-label="Switch theme" class="theme-button" data-theme-toggle="" type="button">
+              ☾
+            </button>
           </div>
-
-          <button
-            aria-label="Switch theme"
-            class="theme-button"
-            data-theme-toggle=""
-            type="button"
-          >☾</button>
+        </nav>
+      </header>
+      <main>
+        <!-- CASE STUDY INTRODUCTION -->
+        <section class="case-hero">
+          <div class="eyebrow" data-de="CASE STUDY &middot; EIGENPROJEKT iOS-APP &middot; 2026 &middot; IN ARBEIT" data-en="CASE STUDY &middot; PERSONAL iOS APP &middot; 2026 &middot; IN PROGRESS">
+            CASE STUDY &middot; PERSONAL iOS APP &middot; 2026 &middot; IN PROGRESS
+          </div>
+          <h1>
+            Migraine
+            <br/>
+            Tracker
+            <span class="mt-accent">
+            .
+            </span>
+          </h1>
+          <p class="case-dek" data-de="Migr&auml;ne erfassen, gerade dann, wenn es am schwersten f&auml;llt." data-en="Designing migraine tracking for moments when tracking is hardest.">
+            Designing migraine tracking for moments when tracking is hardest.
+          </p>
+          <div class="case-meta">
+            <span data-de="ROLLE / PRODUKTDESIGN &middot; UX/UI DESIGN &middot; iOS ENTWICKLUNG" data-en="ROLE / PRODUCT DESIGN &middot; UX/UI DESIGN &middot; iOS DEVELOPMENT">
+            ROLE / PRODUCT DESIGN &middot; UX/UI DESIGN &middot; iOS DEVELOPMENT
+            </span>
+            <span>
+            TOOLS / SWIFT &middot; SWIFTUI &middot; XCODE &middot; NOTION &middot; CURSOR &middot; CHATGPT
+            </span>
+            <span data-de="STATUS / IN ARBEIT" data-en="STATUS / IN PROGRESS">
+            STATUS / IN PROGRESS
+            </span>
+          </div>
+        </section>
+        <!-- QUICK LOG VIDEO HERO -->
+        <div class="mt-video-hero">
+          <div class="mt-video-intro">
+            <span class="mt-video-eyebrow" data-de="DIE ZENTRALE INTERAKTION" data-en="THE CORE INTERACTION">
+            THE CORE INTERACTION
+            </span>
+            <h2 data-de="Einmal tippen. Fertig." data-en="One tap. Done.">
+              One tap. Done.
+            </h2>
+            <p data-de="Einmal tippen und die Migräne ist notiert. Ohne weitere Fragen oder zusätzliche Schritte." data-en="A migraine logged in a single tap. No forms, no extra decisions.">
+              A migraine logged in a single tap. No forms, no extra decisions.
+            </p>
+          </div>
+          <div class="mt-video-unit mt-video-unit-hero">
+            <div class="mt-phone">
+              <div class="mt-phone-screen">
+                <video aria-label="Demonstration of one-tap migraine logging" autoplay="" loop="" muted="" playsinline="" poster="../assets/migraine/QuickLog_poster.jpg" preload="metadata">
+                  <source src="../assets/migraine/QuickLog_DetailsOFF_OneTap.mp4" type="video/mp4"/>
+                </video>
+              </div>
+              <img alt="" aria-hidden="true" class="mt-phone-frame" src="../assets/migraine/iPhone17_frame.png"/>
+            </div>
+            <div class="mt-video-controls" role="group" aria-label="Video playback controls">
+              <button class="mt-video-control mt-toggle-play" type="button" aria-label="Pause video"><svg class="mt-control-icon mt-control-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="3" width="5.5" height="18" rx="1"/><rect x="14" y="3" width="5.5" height="18" rx="1"/></svg><svg class="mt-control-icon mt-control-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.8c0-1.3 1.4-2.1 2.5-1.4l12.1 7.9c1.2.8 1.2 2.5 0 3.3L8.5 21.5C7.4 22.2 6 21.4 6 20.1Z"/></svg><span class="mt-video-control-label" data-en="Pause" data-de="Pause">Pause</span></button>
+              <button class="mt-video-control mt-replay" type="button" aria-label="Replay video"><svg class="mt-control-icon mt-control-replay" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.8 10a8.3 8.3 0 1 1 1.8 7.9"/><path d="M3.8 4.5V10h5.5"/></svg><span class="mt-video-control-label" data-en="Replay" data-de="Neustart">Replay</span></button>
+            </div>
+          </div>
         </div>
-      </nav>
-    </header>
+        <!-- PRODUCT STORY — THE SITUATION -->
+        <section class="case-section mt-situation">
+          <div>
+            <h2 class="section-title" data-de="Die Ausgangslage" data-en="The situation">
+              The situation
+            </h2>
+          </div>
+          <div class="case-copy">
+            <p class="lead" data-de="Es gibt viele Apps, um Migr&auml;ne zu dokumentieren. Trotzdem habe ich keine davon genutzt." data-en="There are plenty of ways to track migraines. I just wasn't using them.">
+              There are plenty of ways to track migraines.
+              I just wasn't using them.
+            </p>
+            <p data-de="Ich wollte meine Migr&auml;netage zuverl&auml;ssig f&uuml;r Arzttermine dokumentieren, hatte aber Schwierigkeiten, dranzubleiben. Visuell &uuml;berladene Apps machten es f&uuml;r mich noch unattraktiver. Teilweise so sehr, dass ich sie gar nicht erst &ouml;ffnete." data-en="I wanted to keep a reliable record of my migraine days for medical appointments, but struggled to keep up with it. Visually overwhelming apps made it even less appealing, sometimes to the point where I avoided opening them altogether.">
+              I wanted to keep a reliable record of my migraine days
+              for medical appointments, but struggled to keep up with it.
+              Visually overwhelming apps made it even less appealing,
+              sometimes to the point where I avoided opening them altogether.
+            </p>
+            <p data-de="W&auml;hrend einer Migr&auml;ne k&ouml;nnen Schmerzen, Lichtempfindlichkeit und Konzentrationsprobleme die Nutzung eines Bildschirms besonders anstrengend machen. Je l&auml;nger man die Dokumentation aufschiebt, desto schwieriger wird es, nachzuvollziehen, wann und wie h&auml;ufig Migr&auml;neattacken aufgetreten sind." data-en="During a migraine, pain, sensitivity to light, and difficulty concentrating can make interacting with a screen particularly demanding. And the longer tracking is put off, the harder it becomes to reconstruct when and how often migraines occurred.">
+              During a migraine, pain, sensitivity to light, and
+              difficulty concentrating can make interacting with
+              a screen particularly demanding. And the longer tracking
+              is put off, the harder it becomes to reconstruct when
+              and how often migraines occurred.
+            </p>
+            <blockquote class="pullquote" data-de="Was ist die kleinste Aktion, die einen Mehrwert schafft?" data-en="What is the smallest realistic action that still creates value?">
+              What is the smallest realistic action
+              that still creates value?
+            </blockquote>
+          </div>
+        </section>
 
-    <main>
+        <!-- START WITH THE MINIMUM -->
+        <section class="case-section">
+          <div>
+            <h2
+            class="section-title"
+            data-en="Start with the minimum"
+            data-de="Erst mal nur das Nötigste"
+            >
+            Start with the minimum
+          </h2>
+        </div>
 
-      <!-- PROJECT INTRODUCTION -->
-      <section class="case-hero">
-        <div
-          class="eyebrow"
-          data-de="CASE STUDY · EIGENE iOS-APP · 2026 · IN ARBEIT"
-          data-en="CASE STUDY · PERSONAL iOS APP · 2026 · IN PROGRESS"
-        >CASE STUDY · PERSONAL iOS APP · 2026 · IN PROGRESS</div>
-
-        <h1>
-          Migraine<br/>Tracker<span style="color:var(--violet)">.</span>
-        </h1>
+        <div class="case-copy">
+          <p
+          class="lead"
+          data-en="The first decision was to separate recording a migraine from describing it."
+          data-de="Als Erstes wollte ich das Festhalten einer Migräne von den zusätzlichen Details zu trennen."
+          >
+          The first decision was to separate recording a migraine from describing it.
+        </p>
 
         <p
-          class="case-dek"
-          data-de="Migräne-Tracking für die Momente gestalten, in denen das Festhalten am schwersten fällt."
-          data-en="Designing migraine tracking for moments when tracking is hardest."
-        >Designing migraine tracking for moments when tracking is hardest.</p>
+        data-en="The app opens directly to one clear action. A single tap records the occurrence and gives immediate feedback. No forms, no additional information required. In its simplest mode, that's the entire experience."
+        data-de="Beim Öffnen der App steht eine einzige Aktion im Mittelpunkt. Ein Tippen genügt, um eine Migräne festzuhalten. Die App bestätigt den Eintrag sofort. Weitere Angaben sind nicht nötig. Wer möchte, kann es genau dabei belassen."
+        >
+        The app opens directly to one clear action. A single tap records
+        the occurrence and gives immediate feedback. No forms, no
+        additional information required. In its simplest mode,
+        that's the entire experience.
+      </p>
+    </div>
+  </section>
 
-        <div class="case-meta">
-          <span>ROLE / PRODUCT · UX · UI · iOS DEVELOPMENT</span>
-          <span>TOOLS / SWIFT · SWIFTUI · XCODE · NOTION · CURSOR · CHATGPT</span>
-          <span
-            data-de="STATUS / IN ARBEIT"
-            data-en="STATUS / IN PROGRESS"
-          >STATUS / IN PROGRESS</span>
-        </div>
-      </section>
+  <!-- ==========================================
+  HISTORY — A CLEARER PICTURE OVER TIME
+  ========================================== -->
 
-      <!-- HERO MEDIA PLACEHOLDER -->
-      <div class="media-placeholder">
-        <span class="media-tag">HERO / REPLACE WITH QUICK LOG GIF</span>
+  <section class="case-section mt-history-section">
+    <div class="mt-history-chapter">
+      <div class="mt-history-content">
 
-        <div class="placeholder-inner">
-          <strong>ONE TAP.<br/>NO EXTRA STEPS.</strong>
-          <span
-            data-de="Hier kommt deine echte App-Aufnahme hin"
-            data-en="Your real app recording goes here"
-          >Your real app recording goes here</span>
-        </div>
+        <!-- Left: explanation and two calendar action dialogs -->
+        <div class="mt-history-copy">
+          <h2
+          class="mt-history-statement"
+          data-en="A clearer picture over time."
+          data-de="Mit der Zeit ein klareres Bild."
+          >
+          A clearer picture over time.
+        </h2>
+
+        <div class="mt-history-text">
+          <p
+          data-en="Even a date on its own can be useful. Each logged migraine adds to a monthly overview, making it easier to see when and how often attacks occurred."
+          data-de="Schon ein einzelnes Datum kann hilfreich sein. Jede erfasste Migräne ergänzt die Monatsübersicht und macht sichtbar, wann und wie häufig Attacken aufgetreten sind."
+          >
+          Even a date on its own can be useful.
+          Each logged migraine adds to a monthly overview,
+          making it easier to see when and how often
+          attacks occurred.
+        </p>
       </div>
 
-      <!-- THE SITUATION -->
-      <section class="case-section">
-        <div>
-          <h2
-            class="section-title"
-            data-de="Die Ausgangslage"
-            data-en="The situation"
-          >The situation</h2>
-        </div>
+      <!-- Supporting calendar interactions -->
+      <div class="mt-history-actions">
+        <p
+        class="mt-history-actions-label"
+        data-en="Directly from the calendar"
+        data-de="Direkt aus dem Kalender"
+        >
+        Directly from the calendar
+      </p>
 
-        <div class="case-copy">
-          <p
-            class="lead"
-            data-de="Viele Tracking-Apps verlangen detaillierte Eingaben genau im falschen Moment."
-            data-en="Many tracking tools ask for detailed input at exactly the wrong moment."
-          >Many tracking tools ask for detailed input at exactly the wrong moment.</p>
-
-          <p
-            data-de="Während einer Migräne können Schmerz, Erschöpfung und Konzentrationsprobleme selbst einfache Dokumentation mühsam machen. Dieser Aufwand kann dazu führen, dass gar nichts festgehalten wird."
-            data-en="During a migraine, pain, fatigue or brain fog can make even simple documentation feel like effort. That effort can become the reason nothing gets recorded at all."
-          >During a migraine, pain, fatigue or brain fog can make even simple documentation feel like effort. That effort can become the reason nothing gets recorded at all.</p>
-
-          <p
-            data-de="Das Projekt entstand aus einem praktischen Bedarf: Migränetage zuverlässig für spätere Arzttermine festzuhalten. Nach einer Attacke erinnerte ich mich mitunter zu spät, um das genaue Datum noch rekonstruieren zu können."
-            data-en="The project began with a practical need: keeping a reliable record of migraine frequency for future appointments. Once an attack had passed, I sometimes remembered it too late to reconstruct the exact date."
-          >The project began with a practical need: keeping a reliable record of migraine frequency for future appointments. Once an attack had passed, I sometimes remembered it too late to reconstruct the exact date.</p>
-
-          <div
-            class="pullquote"
-            data-de="Was ist die kleinste realistische Handlung, die trotzdem einen Nutzen schafft?"
-            data-en="What is the smallest realistic action that still creates value?"
-          >What is the smallest realistic action that still creates value?</div>
-        </div>
-      </section>
-
-      <!-- ONE TAP IS ENOUGH -->
-      <section class="case-section">
-        <div>
-          <h2
-            class="section-title"
-            data-de="Ein Tippen reicht"
-            data-en="One tap is enough"
-          >One tap is enough</h2>
-        </div>
-
-        <div class="case-copy">
-          <p
-            class="lead"
-            data-de="Festzuhalten, dass eine Migräne stattgefunden hat, ist getrennt davon, sie zu beschreiben."
-            data-en="Recording that a migraine happened is separate from describing it."
-          >Recording that a migraine happened is separate from describing it.</p>
-
-          <p
-            data-de="Die wichtigste Aktion ist direkt beim Öffnen der App verfügbar. Ein einzelnes Tippen speichert den Eintrag. Stärke, Symptome, Medikamente und weitere Details sind nie Pflicht."
-            data-en="The main action is available immediately when the app opens. A single tap saves the event. Severity, symptoms, medication and other details are never required for a valid entry."
-          >The main action is available immediately when the app opens. A single tap saves the event. Severity, symptoms, medication and other details are never required for a valid entry.</p>
-
-          <div class="media-placeholder alt">
-            <span class="media-tag">QUICK LOG / GIF PLACEHOLDER</span>
-
-            <div class="placeholder-inner">
-              <strong>TAP → LOGGED</strong>
-              <span>Replace with quickLog recording</span>
-            </div>
+      <div class="mt-history-interactions">
+        <figure>
+          <div class="mt-history-interaction-crop">
+            <img
+            src="../assets/migraine/History_QuickLog_DetailsModeOff_FreeDayInteraction_crop.png"
+            alt="Dialog for adding a migraine to an empty calendar date"
+            loading="lazy"
+            >
           </div>
+          <figcaption
+          data-en="Add a missed migraine"
+          data-de="Vergessene Migräne nachtragen"
+          >
+          Add a missed migraine
+        </figcaption>
+      </figure>
 
-          <p
-            data-de="Selbst die kürzeste Interaktion hält das Wesentliche fest: An diesem Tag gab es eine Migräne. Alles Weitere ist optional."
-            data-en="The shortest interaction still captures the essential fact: a migraine happened that day. Anything more is additive."
-          >The shortest interaction still captures the essential fact: a migraine happened that day. Anything more is additive.</p>
+      <figure>
+        <div class="mt-history-interaction-crop">
+          <img
+          src="../assets/migraine/History_QuickLog_DetailsModeOff_MigraineDayInteraction_crop.png"
+          alt="Dialog offering to keep or delete a recorded migraine"
+          loading="lazy"
+          >
         </div>
-      </section>
-
-      <!-- A SIMPLE RECORD -->
-      <section class="case-section">
-        <div>
-          <h2
-            class="section-title"
-            data-de="Ein einfacher Verlauf"
-            data-en="A simple record"
-          >A simple record</h2>
-        </div>
-
-        <div class="case-copy">
-          <p
-            data-de="Jeder Eintrag erscheint im Kalender. Migränetage werden direkt in der Monatsansicht markiert, ergänzt durch einen zurückhaltenden Zähler. Vergangene Tage lassen sich nachtragen."
-            data-en="Each entry appears in a calendar. Recorded days are marked directly in the month view, alongside a quiet count of migraine days. Past dates can also be logged retroactively."
-          >Each entry appears in a calendar. Recorded days are marked directly in the month view, alongside a quiet count of migraine days. Past dates can also be logged retroactively.</p>
-
-          <div class="media-placeholder">
-            <span class="media-tag">CALENDAR / IMAGE PLACEHOLDER</span>
-
-            <div class="placeholder-inner">
-              <strong>HISTORY.</strong>
-              <span>Replace with calendar screenshot or GIF</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- MAKING ROOM FOR DETAIL -->
-      <section class="case-section">
-        <div>
-          <h2
-            class="section-title"
-            data-de="Platz für Details"
-            data-en="Making room for detail"
-          >Making room for detail</h2>
-        </div>
-
-        <div class="case-copy">
-          <p
-            class="lead"
-            data-de="Mehr Informationen bedeuten mehr Entscheidungen – genau das, was die Kerninteraktion vermeiden soll."
-            data-en="Adding more information creates more choices — exactly what the core interaction tries to remove."
-          >Adding more information creates more choices — exactly what the core interaction tries to remove.</p>
-
-          <p
-            data-de="Der Detailmodus bleibt deshalb optional. Wer mehr erfassen möchte, kann Stärke, Symptome, Medikamente, Dauer und Notizen schrittweise ergänzen; der ursprüngliche Eintrag ist bereits vollständig. Personalisierung reduziert spätere Entscheidungen, indem nur relevante Symptome und Medikamente angezeigt werden."
-            data-en="Detail Mode therefore stays optional. People who want richer records can add severity, symptoms, medication, duration and notes in a step-based flow; the initial log is already complete. Personalization reduces later decisions by showing only relevant symptoms and medications."
-          >Detail Mode therefore stays optional. People who want richer records can add severity, symptoms, medication, duration and notes in a step-based flow; the initial log is already complete. Personalization reduces later decisions by showing only relevant symptoms and medications.</p>
-
-          <div class="media-placeholder alt">
-            <span class="media-tag">DETAIL MODE / VIDEO PLACEHOLDER</span>
-
-            <div class="placeholder-inner">
-              <strong>DETAILS,<br/>IF NEEDED.</strong>
-              <span>Replace with detail flow recording</span>
-            </div>
-          </div>
-
-          <p
-            data-de="Eine Frage ist offen: Wie kann der Detailmodus auffindbar sein, ohne den Einstieg durch zusätzliche Schritte oder visuelle Unruhe zu belasten?"
-            data-en="An unresolved question remains: how can people discover Detail Mode without adding friction or visual clutter to the first-use experience?"
-          >An unresolved question remains: how can people discover Detail Mode without adding friction or visual clutter to the first-use experience?</p>
-        </div>
-      </section>
-
-      <!-- LESS VISUAL LOAD -->
-      <section class="case-section">
-        <div>
-          <h2
-            class="section-title"
-            data-de="Weniger visuelle Belastung"
-            data-en="Less visual load"
-          >Less visual load</h2>
-        </div>
-
-        <div class="case-copy">
-          <p
-            data-de="Die zurückhaltende Palette aus Off-White, Grautönen und gedämpftem Salbeigrün berücksichtigt Momente mit wenig Energie. Die stärkste visuelle Betonung bleibt der wichtigsten Aktion vorbehalten. In den Einstellungen kommen vertraute iOS-Muster zum Einsatz, während die Hauptansichten ihre eigene ruhige Gestaltung erhalten."
-            data-en="The restrained off-white, grayscale and muted sage palette was chosen with low-capacity moments in mind. Stronger visual emphasis is reserved for the most important action. Settings use familiar iOS conventions, while the primary screens have their own quieter visual language."
-          >The restrained off-white, grayscale and muted sage palette was chosen with low-capacity moments in mind. Stronger visual emphasis is reserved for the most important action. Settings use familiar iOS conventions, while the primary screens have their own quieter visual language.</p>
-        </div>
-      </section>
-
-      <!-- DESIGNING IN CODE, WITH AI -->
-      <section class="case-section">
-        <div>
-          <h2
-            class="section-title"
-            data-de="Gestaltung im Code, mit KI"
-            data-en="Designing in code, with AI"
-          >Designing in code, with AI</h2>
-        </div>
-
-        <div class="case-copy">
-          <p
-            data-de="Statt mit klassischen Wireframes zu beginnen, habe ich das Konzept direkt in SwiftUI entwickelt. Cursor hat einen großen Teil des Codes generiert; ChatGPT hat mich im Prozess unterstützt."
-            data-en="Rather than following a traditional wireframe-first process, I shaped the concept directly in SwiftUI, using Cursor for much of the code generation and ChatGPT to support the process."
-          >Rather than following a traditional wireframe-first process, I shaped the concept directly in SwiftUI, using Cursor for much of the code generation and ChatGPT to support the process.</p>
-
-          <p
-            data-de="Ich habe Produktanforderungen definiert, die Umsetzung durch Prompts gesteuert, Benennung und Architekturfragen abgewogen, ausgewählte Codestellen überprüft und Oberfläche und Interaktionen beim Testen weiterentwickelt. Ein Großteil der ersten Implementierung war KI-generiert; mein Schwerpunkt lag auf Konzept, Gestaltungsentscheidungen, Bewertung und Iteration."
-            data-en="I defined the product requirements, directed implementation through prompts, considered naming and architectural decisions, reviewed selected code, and refined the interface and interactions as I tested the app. Much of the initial implementation was AI-generated; the concept, design direction, evaluation, and iteration were my focus."
-          >I defined the product requirements, directed implementation through prompts, considered naming and architectural decisions, reviewed selected code, and refined the interface and interactions as I tested the app. Much of the initial implementation was AI-generated; the concept, design direction, evaluation, and iteration were my focus.</p>
-        </div>
-      </section>
-
-      <!-- WHERE IT STANDS -->
-      <section class="case-section">
-        <div>
-          <h2
-            class="section-title"
-            data-de="Aktueller Stand"
-            data-en="Where it stands"
-          >Where it stands</h2>
-        </div>
-
-        <div class="case-copy">
-          <p
-            data-de="Die Ein-Tipp-Interaktion steht. Die Auffindbarkeit des Detailmodus, unvollständige Detaileinträge und die anfängliche Personalisierung müssen noch getestet werden. Ein PDF-Export für Arzttermine ist geplant; sein genaues Format steht noch nicht fest."
-            data-en="The core one-tap interaction is in place. Detail Mode discoverability, sparse entries and the default customization experience still need testing. A doctor-friendly PDF export is planned; its exact format is not finalized."
-          >The core one-tap interaction is in place. Detail Mode discoverability, sparse entries and the default customization experience still need testing. A doctor-friendly PDF export is planned; its exact format is not finalized.</p>
-
-          <p
-            data-de="Meine bisher wichtigste Erkenntnis: Das Projekt wurde besser, wenn ich Anforderungen reduzierte, Eingaben vereinfachte und die Kerninteraktion vor unnötiger Komplexität schützte."
-            data-en="The central lesson so far: the project improved whenever I reduced requirements, simplified inputs and protected the core interaction from unnecessary complexity."
-          >The central lesson so far: the project improved whenever I reduced requirements, simplified inputs and protected the core interaction from unnecessary complexity.</p>
-        </div>
-      </section>
-
-      <!-- BACK TO SELECTED WORK -->
-      <div class="case-ending">
-        <h2
-          data-de="Zurück zu den Projekten."
-          data-en="Back to selected work."
-        >Back to selected work.</h2>
-
-        <a
-          class="back-link"
-          data-de="← Alle Projekte"
-          data-en="← All projects"
-          href="../index.html#work"
-        >← All projects</a>
-      </div>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-      <span>© 2026 LINDA KÖTTER</span>
-      <span>iOS · UX · UI</span>
-    </footer>
-
+        <figcaption
+        data-en="Manage an existing entry"
+        data-de="Vorhandenen Eintrag verwalten"
+        >
+        Manage an existing entry
+      </figcaption>
+    </figure>
   </div>
-</body>
+</div>
+</div>
 
+<!-- Right: primary monthly calendar (pre-cropped screenshot) -->
+<figure class="mt-history-calendar">
+  <div class="mt-history-calendar-crop">
+    <img
+    src="../assets/migraine/History_QuickLog_DetailsModeOff_crop.png"
+    alt="History calendar showing recorded migraine days and monthly count"
+    loading="lazy"
+    >
+  </div>
+</figure>
+
+</div>
+</div>
+</section>
+
+<!-- THE COMPLEXITY DILEMMA -->
+<section class="case-section mt-dilemma">
+
+  <div class="mt-dilemma-heading">
+    <h2
+    class="section-title"
+    data-en="The complexity dilemma"
+    data-de="Das Dilemma mit den Details"
+    >
+    The complexity dilemma
+  </h2>
+</div>
+
+<div class="case-copy mt-dilemma-copy">
+  <p
+  class="lead"
+  data-en="The original idea was simple: record migraine days, nothing more."
+  data-de="Die ursprüngliche Idee war einfach: Migränetage festhalten, sonst nichts."
+  >
+  The original idea was simple: record migraine days, nothing more.
+</p>
+
+<p
+data-en="I kept coming back to the value of additional information. Severity, symptoms, medication, and duration could be useful for medical appointments. But adding those options risked bringing back exactly the complexity I wanted to avoid."
+data-de="Gleichzeitig sah ich den möglichen Nutzen zusätzlicher Angaben. Schmerzstärke, Symptome, Medikamente und Dauer könnten bei Arztterminen hilfreich sein. Doch mit diesen Optionen riskierte ich, genau die Komplexität zurückzubringen, die ich vermeiden wollte."
+>
+I kept coming back to the value of additional information.
+Severity, symptoms, medication, and duration could be useful
+for medical appointments. But adding those options risked
+bringing back exactly the complexity I wanted to avoid.
+</p>
+
+<p
+data-en="My current approach is an optional Detail Mode, enabled through Settings. The one-tap entry stays the same, while additional questions become available for anyone who wants to record more."
+data-de="Mein aktueller Ansatz ist ein optionaler Detailmodus, der sich in den Einstellungen aktivieren lässt. Das Erfassen mit einem Tippen bleibt unverändert. Wer mehr dokumentieren möchte, kann zusätzliche Fragen beantworten."
+>
+My current approach is an optional Detail Mode, enabled through
+Settings. The one-tap entry stays the same, while additional
+questions become available for anyone who wants to record more.
+</p>
+
+<!-- Supporting UI for the optional Detail Mode -->
+<figure class="mt-dilemma-visual">
+  <img
+  src="../assets/migraine/Preferences_DetailMode_Context.png"
+  alt="Track Details enabled under Quick Log Behavior in Settings"
+  loading="lazy"
+  >
+</figure>
+
+<p
+class="mt-dilemma-ending"
+data-en="That separation comes with a trade-off: keeping Detail Mode out of the way also makes it easier to overlook. I'm still exploring how best to introduce it."
+data-de="Diese Lösung hat allerdings einen Nachteil: Wenn der Detailmodus im Hintergrund bleibt, wird er möglicherweise gar nicht entdeckt. Ich überlege deshalb noch, wie ich am besten auf ihn aufmerksam machen kann."
+>
+That separation comes with a trade-off: keeping Detail Mode
+out of the way also makes it easier to overlook.
+I'm still exploring how best to introduce it.
+</p>
+</div>
+
+</section>
+
+<!-- MORE DETAIL, NEVER REQUIRED -->
+<section class="case-section mt-detail-section">
+  <div class="mt-detail-heading">
+    <h2 class="section-title" data-en="More detail, never required" data-de="Mehr Details, ohne Pflicht">More detail, never required</h2>
+  </div>
+
+  <!-- Left: the actual step-by-step recording, calibrated to the hero phone frame. -->
+  <div class="mt-detail-device">
+    <div class="mt-detail-phone">
+      <div class="mt-detail-phone-screen">
+        <video aria-label="Demonstration of optional step-by-step migraine details" autoplay muted loop playsinline preload="metadata" poster="../assets/migraine/DetailsFlow_poster.jpg">
+          <source src="../assets/migraine/DetailsFlow_Demo.mp4" type="video/mp4">
+        </video>
+      </div>
+      <img class="mt-detail-phone-frame" src="../assets/migraine/iPhone17_frame.png" alt="" aria-hidden="true">
+    </div>
+    <div class="mt-video-controls" role="group" aria-label="Video playback controls">
+      <button class="mt-video-control mt-toggle-play" type="button" aria-label="Pause video"><svg class="mt-control-icon mt-control-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="3" width="5.5" height="18" rx="1"/><rect x="14" y="3" width="5.5" height="18" rx="1"/></svg><svg class="mt-control-icon mt-control-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.8c0-1.3 1.4-2.1 2.5-1.4l12.1 7.9c1.2.8 1.2 2.5 0 3.3L8.5 21.5C7.4 22.2 6 21.4 6 20.1Z"/></svg><span class="mt-video-control-label" data-en="Pause" data-de="Pause">Pause</span></button>
+      <button class="mt-video-control mt-replay" type="button" aria-label="Replay video"><svg class="mt-control-icon mt-control-replay" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.8 10a8.3 8.3 0 1 1 1.8 7.9"/><path d="M3.8 4.5V10h5.5"/></svg><span class="mt-video-control-label" data-en="Replay" data-de="Neustart">Replay</span></button>
+    </div>
+  </div>
+
+  <!-- Right: explanation and a quiet, transparent severity progression. -->
+  <div class="case-copy mt-detail-copy">
+    <p class="lead" data-en="Detail Mode adds a step-by-step flow after a migraine has already been saved." data-de="Der Detailmodus ergänzt einen schrittweisen Ablauf, nachdem eine Migräne bereits gespeichert wurde.">Detail Mode adds a step-by-step flow after a migraine has already been saved.</p>
+    <p
+    data-en="Onset, severity, duration, symptoms, medication and notes can be added or skipped. I wanted people to feel free to add more, without feeling they had to."
+    data-de="Beginn, Stärke, Dauer, Symptome, Medikamente und Notizen können ergänzt oder übersprungen werden. Die zusätzlichen Angaben sollten sich wie ein Angebot anfühlen, nicht wie eine Pflicht."
+    >
+    Onset, severity, duration, symptoms, medication and notes
+    can be added or skipped. I wanted people to feel free to add more, without feeling they had to.
+  </p>
+  <div class="mt-detail-severity" aria-label="Severity levels">
+    <p class="mt-detail-severity-intro"
+    data-en="Severity is described through its impact on everyday activities, rather than numbers alone."
+    data-de="Statt nur Zahlen zu verwenden, beschreibe ich die Stärke der Migräne auch anhand ihrer Auswirkungen auf den Alltag.">Severity is described through its impact on everyday activities, rather than numbers alone.</p>
+  <div class="mt-detail-severity-list">
+    <figure>
+      <img src="../assets/migraine/Severity_Illustration_1.png" alt="" loading="lazy">
+      <figcaption><strong data-en="Mild" data-de="Leicht">Mild</strong><span data-en="I can go about my day" data-de="Ich kann meinen Alltag fortsetzen">I can go about my day</span></figcaption>
+    </figure>
+    <figure>
+      <img src="../assets/migraine/Severity_Illustration_2.png" alt="" loading="lazy">
+      <figcaption><strong data-en="Moderate" data-de="Mittel">Moderate</strong><span data-en="I'm limited in what I can do" data-de="Ich bin im Alltag eingeschränkt">I'm limited in what I can do</span></figcaption>
+    </figure>
+    <figure>
+      <img src="../assets/migraine/Severity_Illustration_3.png" alt="" loading="lazy">
+      <figcaption><strong data-en="Severe" data-de="Stark">Severe</strong><span data-en="I'm completely out of action" data-de="Ich bin vollständig außer Gefecht">I'm completely out of action</span></figcaption>
+    </figure>
+  </div>
+</div>
+</div>
+</section>
+<!-- PERSONALIZATION AS REDUCTION -->
+<section class="case-section mt-personalization">
+  <div>
+    <h2 class="section-title" data-en="Personalization as reduction" data-de="Auswahl statt Überfluss">Personalization as reduction</h2>
+  </div>
+  <div class="case-copy">
+    <p class="lead"
+    data-en="A long list of every possible symptom or medication would bring the visual overload straight back."
+    data-de="Eine lange Liste aller möglichen Symptome oder Medikamente würde die visuelle Überforderung wieder zurückbringen.">A long list of every possible symptom or medication would bring the visual overload straight back.</p>
+  <p
+  data-en="Instead, people can choose which options are relevant to them. Future entries show that smaller selection, rather than asking them to scan the full list each time."
+  data-de="Deshalb lässt sich festlegen, welche Optionen relevant sind. Bei späteren Einträgen erscheint nur diese kleinere Auswahl, statt jedes Mal die gesamte Liste durchsuchen zu müssen.">Instead, people can choose which options are relevant to them. Future entries show that smaller selection, rather than asking them to scan the full list each time.</p>
+</div>
+
+<!-- Two entry points to the same customization controls -->
+<div class="mt-custom-stage">
+  <div class="mt-custom-pair">
+    <article class="mt-custom-example">
+      <div class="mt-custom-explanation">
+        <h3 data-en="Set up in advance" data-de="Im Voraus einrichten">Set up in advance</h3>
+        <p data-en="Choose relevant symptoms and medications, and add your own options in Settings."
+        data-de="In den Einstellungen Symptome und Medikamente auswählen oder eigene hinzufügen.">Choose relevant symptoms and medications, and add your own options in Settings.</p>
+    </div>
+    <div class="mt-custom-device">
+      <div class="mt-custom-phone">
+        <div class="mt-custom-phone-screen">
+          <video autoplay muted loop playsinline preload="metadata" poster="../assets/migraine/Customization_Settings_Symptoms_poster.jpg" aria-label="Customizing symptoms in Settings, including adding a personal symptom">
+            <source src="../assets/migraine/Customization_Settings_Symptoms.mp4" type="video/mp4">
+          </video>
+        </div>
+        <img class="mt-custom-phone-frame" src="../assets/migraine/iPhone17_frame.png" alt="" aria-hidden="true">
+      </div>
+      <div class="mt-video-controls" role="group" aria-label="Video playback controls">
+        <button class="mt-video-control mt-toggle-play" type="button" aria-label="Pause video"><svg class="mt-control-icon mt-control-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="3" width="5.5" height="18" rx="1"/><rect x="14" y="3" width="5.5" height="18" rx="1"/></svg><svg class="mt-control-icon mt-control-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.8c0-1.3 1.4-2.1 2.5-1.4l12.1 7.9c1.2.8 1.2 2.5 0 3.3L8.5 21.5C7.4 22.2 6 21.4 6 20.1Z"/></svg><span class="mt-video-control-label" data-en="Pause" data-de="Pause">Pause</span></button>
+        <button class="mt-video-control mt-replay" type="button" aria-label="Replay video"><svg class="mt-control-icon mt-control-replay" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.8 10a8.3 8.3 0 1 1 1.8 7.9"/><path d="M3.8 4.5V10h5.5"/></svg><span class="mt-video-control-label" data-en="Replay" data-de="Neustart">Replay</span></button>
+      </div>
+    </div>
+  </article>
+  <article class="mt-custom-example">
+    <div class="mt-custom-explanation">
+      <h3 data-en="Adjust while logging" data-de="Beim Eintragen anpassen">Adjust while logging</h3>
+      <p data-en="Customize your selections directly within the Detail Flow, without leaving your entry."
+      data-de="Die Auswahl im Detailmodus anpassen, ohne den Eintrag zu verlassen.">Customize your selections directly within the Detail Flow, without leaving your entry.</p>
+  </div>
+  <div class="mt-custom-device">
+    <div class="mt-custom-phone">
+      <div class="mt-custom-phone-screen">
+        <video autoplay muted loop playsinline preload="metadata" poster="../assets/migraine/Customization_DetailFlow_Medications_poster.jpg" aria-label="Using a personalized symptom list, adjusting medications in Detail Flow, and recording whether medication helped">
+          <source src="../assets/migraine/Customization_DetailFlow_Medications.mp4" type="video/mp4">
+        </video>
+      </div>
+      <img class="mt-custom-phone-frame" src="../assets/migraine/iPhone17_frame.png" alt="" aria-hidden="true">
+    </div>
+    <div class="mt-video-controls" role="group" aria-label="Video playback controls">
+      <button class="mt-video-control mt-toggle-play" type="button" aria-label="Pause video"><svg class="mt-control-icon mt-control-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="3" width="5.5" height="18" rx="1"/><rect x="14" y="3" width="5.5" height="18" rx="1"/></svg><svg class="mt-control-icon mt-control-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.8c0-1.3 1.4-2.1 2.5-1.4l12.1 7.9c1.2.8 1.2 2.5 0 3.3L8.5 21.5C7.4 22.2 6 21.4 6 20.1Z"/></svg><span class="mt-video-control-label" data-en="Pause" data-de="Pause">Pause</span></button>
+      <button class="mt-video-control mt-replay" type="button" aria-label="Replay video"><svg class="mt-control-icon mt-control-replay" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.8 10a8.3 8.3 0 1 1 1.8 7.9"/><path d="M3.8 4.5V10h5.5"/></svg><span class="mt-video-control-label" data-en="Replay" data-de="Neustart">Replay</span></button>
+    </div>
+  </div>
+</article>
+</div>
+
+<p
+class="mt-custom-reflection"
+data-en="Setup takes effort. I still need to test whether the reduced effort during future entries justifies that initial step, and which options should be available by default."
+data-de="Die Einrichtung kostet zunächst Zeit. Ob sich das bei späteren Einträgen auszahlt und welche Optionen von Anfang an verfügbar sein sollten, muss ich noch testen."
+>
+Setup takes effort. I still need to test whether the reduced effort
+during future entries justifies that initial step, and which options
+should be available by default.
+</p>
+</div>
+
+</section>
+
+
+<!-- ONLY SHOW WHAT WAS RECORDED -->
+<section class="case-section mt-entry-section">
+
+  <!-- Left: section heading -->
+  <div>
+    <h2
+      class="section-title"
+      data-en="Only show what was recorded"
+      data-de="Nur zeigen, was erfasst wurde"
+    >
+      Only show what was recorded
+    </h2>
+  </div>
+
+  <!-- Right: explanation -->
+  <div class="case-copy">
+    <p
+      class="lead"
+      data-en="Not every migraine entry needs the same amount of detail."
+      data-de="Nicht jeder Migräneeintrag braucht gleich viele Details."
+    >
+      Not every migraine entry needs the same amount of detail.
+    </p>
+
+    <p
+      data-en="The detail view adapts to what was actually recorded. Whether someone adds one detail or several, only the available information appears. No empty fields, no reminders of what was skipped."
+      data-de="Die Detailansicht zeigt nur, was tatsächlich erfasst wurde, egal ob eine oder mehrere Angaben ergänzt wurden. Keine leeren Felder und keine Hinweise auf ausgelassene Fragen."
+    >
+      The detail view adapts to what was actually recorded.
+      Whether someone adds one detail or several, only the
+      available information appears. No empty fields, no
+      reminders of what was skipped.
+    </p>
+
+    <p
+      data-en="I wanted a sparse entry to feel just as complete as a detailed one."
+      data-de="Ein Eintrag mit wenigen Angaben sollte sich genauso vollständig anfühlen wie ein ausführlicher."
+    >
+      I wanted a sparse entry to feel just as complete as a detailed one.
+    </p>
+  </div>
+
+  <!-- Right: labeled comparison of three recorded entries -->
+  <div class="mt-entry-showcase">
+    <p
+      class="mt-entry-label"
+      data-en="Different amounts of detail"
+      data-de="Unterschiedlich viele Details"
+    >
+      Different amounts of detail
+    </p>
+
+    <div
+      class="mt-entry-comparison"
+      aria-label="Comparison of three migraine entries with different amounts of recorded information"
+    >
+      <figure class="mt-entry-example">
+        <img
+          src="../assets/migraine/History_DetailsModeOn_DetailEntry_little.png"
+          alt="Migraine detail view showing only a recorded pain level, with unused space below"
+          loading="lazy"
+        >
+      </figure>
+
+      <figure class="mt-entry-example">
+        <img
+          src="../assets/migraine/History_DetailsModeOn_DetailEntry_medium.png"
+          alt="Migraine detail view showing onset, duration, pain level, and one symptom"
+          loading="lazy"
+        >
+      </figure>
+
+      <figure class="mt-entry-example">
+        <img
+          src="../assets/migraine/History_DetailsModeOn_DetailEntry_full.png"
+          alt="Migraine detail view showing onset, duration, pain level, symptoms, medication, and notes"
+          loading="lazy"
+        >
+      </figure>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- FROM LOGGING TO THE DOCTOR -->
+<section class="case-section mt-export-section">
+  <div>
+    <h2
+    class="section-title"
+    data-en="From logging to the doctor"
+    data-de="Von der App zum Arzttermin"
+    >
+    From logging to the doctor
+  </h2>
+</div>
+
+<div class="case-copy">
+  <p
+  class="lead"
+  data-en="Recording a migraine is only half the challenge."
+  data-de="Eine Migräne zu dokumentieren ist nur die halbe Herausforderung."
+  >
+  Recording a migraine is only half the challenge.
+</p>
+
+<p
+data-en="I've brought my own migraine records to appointments before, only to have them barely looked at."
+data-de="Ich habe schon selbst erstellte Migräneaufzeichnungen zu Arztterminen mitgebracht, die dann kaum angeschaut wurden."
+>
+I've brought my own migraine records to appointments before,
+only to have them barely looked at.
+</p>
+
+<p
+data-en="The next challenge is making that information easy to review during a consultation. I've experimented with transferring recorded data onto an existing headache calendar, but I'm still considering whether a familiar format or a more focused, custom summary would work better."
+data-de="Ich habe bereits ausprobiert, meine Einträge in eine gängige PDF-Vorlage für Kopfschmerzkalender zu übertragen. Noch ist offen, ob sich ein solches Standardformat oder eine eigene, übersichtlichere Zusammenfassung besser für Arztgespräche eignet."
+>
+The next challenge is making that information easy to review
+during a consultation. I've experimented with transferring
+recorded data onto an existing headache calendar, but I'm
+still considering whether a familiar format or a more
+focused, custom summary would work better.
+</p>
+</div>
+</section>
+
+<!-- DESIGNING WHILE BUILDING -->
+<section class="case-section">
+  <div>
+    <h2
+    class="section-title"
+    data-en="Designing while building"
+    data-de="Design direkt im Code"
+    >
+    Designing while building
+  </h2>
+</div>
+
+<div class="case-copy">
+  <p
+  class="lead"
+  data-en="I started directly in SwiftUI, shaping the design and implementation together."
+  data-de="Ich habe direkt in SwiftUI angefangen und Gestaltung und Umsetzung parallel entwickelt."
+  >
+  I started building directly in SwiftUI, exploring the concept,
+  designing the interface and refining interactions as the app
+  took shape.
+</p>
+
+<p
+data-en="Although I have a background in iOS development, I wanted to use this project to spend more time on product and design decisions. I used Cursor for code generation and ChatGPT to explore technical approaches, review solutions and troubleshoot issues."
+data-de="Obwohl ich bereits Erfahrung in der iOS-Entwicklung habe, wollte ich mich bei diesem Projekt stärker auf Produkt- und Designentscheidungen konzentrieren. Ich habe Cursor zur Codegenerierung genutzt und ChatGPT, um verschiedene technische Ansätze zu besprechen, Lösungen zu überprüfen und Probleme zu lösen."
+>
+Although I have a background in iOS development, I wanted to use
+this project to spend more time on product and design decisions.
+I used Cursor for code generation and ChatGPT to explore technical
+approaches, review solutions and troubleshoot issues.
+</p>
+</div>
+</section>
+
+<!-- Still to figure out -->
+<section class="case-section mt-next-steps">
+  <div>
+    <h2
+    class="section-title"
+    data-de="Was noch offen ist"
+    data-en="Still to figure out"
+    >
+    Still to figure out
+  </h2>
+</div>
+
+<div class="case-copy">
+  <p
+  class="lead"
+  data-de="Der Prototyp funktioniert bereits, aber der Einstieg in die App muss noch verbessert werden."
+  data-en="The prototype is functional, but the first-use experience still needs work."
+  >
+  The prototype is functional, but the first-use experience still needs work.
+</p>
+
+<p
+data-de="Noch ist offen, ob der Detailmodus für neue Nutzerinnen und Nutzer standardmäßig aktiviert sein sollte und wie ich ihn vorstellen kann, ohne den Einstieg komplizierter zu machen. Ein kurzes Onboarding könnte helfen. Ob es wirklich nötig ist, muss ich noch testen."
+data-en="I haven't settled whether Detail Mode should be on or off for new users, or how to introduce it without adding another hurdle. A short onboarding flow might help, but I still need to explore whether it's necessary."
+>
+I haven't settled whether Detail Mode should be on or off for new users,
+or how to introduce it without adding another hurdle. A short onboarding
+flow might help, but I still need to explore whether it's necessary.
+</p>
+
+<p
+data-de="Außerdem möchte ich testen, wie verständlich die erste Einrichtung der Symptome und Medikamente ist und ob knappe Einträge auch für andere Menschen vollständig wirken."
+data-en="I also want to test the initial symptom and medication setup, and whether sparse entries feel as complete to other people as they do to me."
+>
+I also want to test the initial symptom and medication setup, and whether
+sparse entries feel as complete to other people as they do to me.
+</p>
+
+<p
+data-de="Meine wichtigste Erkenntnis bisher: Einfachheit entsteht nicht nur dadurch, Funktionen wegzulassen, sondern bewusst zu entscheiden, wann sie sichtbar werden."
+data-en="So far, the clearest lesson has been that making something simple is less about removing features than being deliberate about when people encounter them."
+>
+So far, the clearest lesson has been that making something simple is less
+about removing features than being deliberate about when people encounter
+them.
+</p>
+</div>
+</section>
+<!-- BACK TO PROJECTS -->
+<div class="case-ending">
+  <h2 data-de="Zur&uuml;ck zu den Projekten." data-en="Back to selected work.">
+    Back to selected work.
+  </h2>
+  <a class="back-link" data-de="&larr; Alle Projekte" data-en="&larr; All projects" href="../index.html#projects">
+  &larr; All projects
+  </a>
+</div>
+</main>
+<!-- FOOTER -->
+<footer class="footer">
+  <span>
+  &copy; 2026 LINDA K&Ouml;TTER
+  </span>
+  <span>
+  iOS &middot; UX &middot; UI
+  </span>
+</footer>
+</div>
+</body>
 </html>

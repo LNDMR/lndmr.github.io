@@ -1,0 +1,1044 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta
+    name="description"
+    content="Pattern Patrol — an Android prototype exploring cognitive distortions, self-reflection, and optional AI assistance."
+  >
+  <meta name="page-title-en" content="Pattern Patrol — Linda Kötter">
+  <meta name="page-title-de" content="Pattern Patrol — Linda Kötter">
+
+  <title>Pattern Patrol — Linda Kötter</title>
+
+  <link rel="stylesheet" href="../styles.css">
+  <script defer src="../main.js"></script>
+
+  <style>
+    /* =========================================
+       PATTERN PATROL — CASE STUDY
+       ========================================= */
+
+    .pattern-page {
+      --pp-accent: #8D79AD;
+      --pp-accent-soft: #D8CEE7;
+      --pp-ink: #292630;
+      --pp-muted: #797481;
+      --pp-panel: #EAE5F0;
+      --pp-paper: #F4F1F5;
+      --pp-dark: #28252F;
+      --pp-dark-line: #514C5A;
+    }
+
+    .pattern-page .pp-accent {
+      color: var(--pp-accent);
+    }
+
+    .pattern-page .pullquote {
+      border-left-color: var(--pp-accent);
+    }
+
+    .pattern-page .back-link:hover {
+      color: var(--pp-accent);
+    }
+
+    /* Shared showcase elements */
+
+    .pattern-page .pp-showcase {
+      width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+      overflow: hidden;
+      margin: clamp(36px, 6vw, 88px) 0;
+    }
+
+    .pattern-page .pp-kicker {
+      font-size: 11px;
+      font-weight: 650;
+      letter-spacing: .12em;
+      line-height: 1.5;
+      text-transform: uppercase;
+    }
+
+    .pattern-page .pp-showcase-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+      margin-bottom: clamp(24px, 4vw, 48px);
+    }
+
+    /* =========================================
+       HERO
+       ========================================= */
+
+    .pattern-page .pp-hero {
+      background: var(--pp-panel);
+      color: var(--pp-ink);
+      padding: clamp(26px, 5vw, 72px);
+      margin-top: 0;
+    }
+
+    .pattern-page .pp-hero-headline {
+      font-size: clamp(37px, 6vw, 86px);
+      font-weight: 650;
+      letter-spacing: -.055em;
+      line-height: 1.07;
+      max-width: 930px;
+      margin: 0 0 clamp(32px, 5vw, 70px);
+      color: var(--pp-ink);
+    }
+
+    .pattern-page .pp-hero-headline em {
+      font-style: normal;
+      color: var(--pp-accent);
+    }
+
+    .pattern-page .pp-flow {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(10px, 2vw, 24px);
+    }
+
+    .pattern-page .pp-flow-step {
+      padding: clamp(18px, 3vw, 36px);
+      border: 1px solid #BEB2CD;
+      background: rgba(255, 255, 255, .42);
+      min-width: 0;
+    }
+
+    .pattern-page .pp-flow-number {
+      display: block;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+      color: var(--pp-accent);
+      margin-bottom: 36px;
+    }
+
+    .pattern-page .pp-flow-step h3 {
+      font-size: clamp(20px, 2.3vw, 32px);
+      line-height: 1.15;
+      letter-spacing: -.035em;
+      margin: 0 0 14px;
+      color: var(--pp-ink);
+    }
+
+    .pattern-page .pp-flow-step p {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--pp-muted);
+      margin: 0;
+    }
+
+    /* =========================================
+       SCREENSHOT PLACEHOLDERS
+       ========================================= */
+
+    .pattern-page .pp-screens {
+      background: var(--pp-paper);
+      padding: clamp(24px, 5vw, 64px);
+    }
+
+    .pattern-page .pp-screens-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(14px, 3vw, 48px);
+      max-width: 1080px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    .pattern-page .pp-screen-item {
+      min-width: 0;
+      margin: 0;
+    }
+
+    .pattern-page .pp-screen-placeholder {
+      aspect-ratio: 9 / 18.5;
+      border: 1px dashed #B7ADC1;
+      background: #E4DDEB;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding: 16px;
+      text-align: center;
+      color: var(--pp-ink);
+      box-sizing: border-box;
+    }
+
+    .pattern-page .pp-screen-placeholder span {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 10px;
+      letter-spacing: .1em;
+      color: var(--pp-muted);
+    }
+
+    .pattern-page .pp-screen-placeholder strong {
+      font-size: clamp(17px, 2vw, 25px);
+      line-height: 1.2;
+      font-weight: 600;
+      letter-spacing: -.03em;
+    }
+
+    .pattern-page .pp-screen-item figcaption {
+      padding-top: 18px;
+      font-size: 13px;
+      color: var(--pp-muted);
+      line-height: 1.5;
+    }
+
+    /* =========================================
+       OPTIONAL AI INTERACTION
+       ========================================= */
+
+    .pattern-page .pp-ai-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(24px, 5vw, 76px);
+      align-items: center;
+
+      background: var(--pp-dark);
+      color: #F2EFF5;
+      padding: clamp(30px, 6vw, 86px);
+    }
+
+    .pattern-page .pp-ai-copy h3 {
+      font-size: clamp(32px, 4.5vw, 62px);
+      letter-spacing: -.05em;
+      line-height: 1.1;
+      color: #F2EFF5;
+      margin: 0 0 26px;
+    }
+
+    .pattern-page .pp-ai-copy p {
+      color: #C9C2D0;
+      line-height: 1.7;
+      font-size: clamp(14px, 1.15vw, 17px);
+      margin: 0 0 18px;
+    }
+
+    .pattern-page .pp-ai-copy .pp-kicker {
+      color: #C4B0E0;
+      margin-bottom: 26px;
+      display: block;
+    }
+
+    .pattern-page .pp-ai-placeholder {
+      background: #34303C;
+      border: 1px dashed #777080;
+      padding: clamp(28px, 4vw, 52px);
+      min-height: 310px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+      box-sizing: border-box;
+    }
+
+    .pattern-page .pp-ai-placeholder strong {
+      font-size: clamp(22px, 2.4vw, 32px);
+      line-height: 1.15;
+      letter-spacing: -.03em;
+      color: #F2EFF5;
+    }
+
+    .pattern-page .pp-ai-placeholder span {
+      color: #ADA4B6;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    /* =========================================
+       CODE ARCHITECTURE
+       ========================================= */
+
+    .pattern-page .pp-architecture {
+      background: var(--pp-dark);
+      color: #F2EFF5;
+      padding: clamp(28px, 5vw, 72px);
+    }
+
+    .pattern-page .pp-architecture .pp-kicker {
+      color: #C4B0E0;
+    }
+
+    .pattern-page .pp-architecture-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .pattern-page .pp-layer {
+      background: #34303C;
+      border: 1px solid var(--pp-dark-line);
+      padding: clamp(17px, 2vw, 28px);
+      min-width: 0;
+    }
+
+    .pattern-page .pp-layer-index {
+      display: block;
+      font-size: 11px;
+      color: #BCA7D6;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      margin-bottom: 24px;
+    }
+
+    .pattern-page .pp-layer h3 {
+      color: #F2EFF5;
+      font-size: clamp(16px, 1.7vw, 24px);
+      letter-spacing: -.025em;
+      margin: 0 0 12px;
+    }
+
+    .pattern-page .pp-layer p {
+      color: #BCB5C4;
+      font-size: 12px;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .pattern-page .pp-architecture-note {
+      color: #BCB5C4;
+      font-size: 12px;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* =========================================
+       RESPONSIVE
+       ========================================= */
+
+    @media (max-width: 850px) {
+      .pattern-page .pp-architecture-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .pattern-page .pp-ai-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .pattern-page .pp-ai-placeholder {
+        min-height: 240px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .pattern-page .pp-hero,
+      .pattern-page .pp-screens,
+      .pattern-page .pp-architecture,
+      .pattern-page .pp-ai-panel {
+        padding: 24px 18px;
+      }
+
+      .pattern-page .pp-flow {
+        grid-template-columns: 1fr;
+      }
+
+      .pattern-page .pp-flow-number {
+        margin-bottom: 18px;
+      }
+
+      .pattern-page .pp-screens-grid {
+        grid-template-columns: 1fr;
+        max-width: 300px;
+        gap: 36px;
+      }
+
+      .pattern-page .pp-architecture-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body class="pattern-page">
+  <div class="container">
+
+    <!-- HEADER -->
+
+    <header class="topbar">
+      <a class="brand" href="../index.html">LINDA KÖTTER</a>
+
+      <nav class="navigation" aria-label="Main navigation">
+        <a
+          href="../index.html#projects"
+          data-en="Projects"
+          data-de="Projekte"
+        >Projects</a>
+
+        <a
+          href="../index.html#about"
+          data-en="About"
+          data-de="Über mich"
+        >About</a>
+
+        <a
+          class="nav-mobile"
+          href="../index.html#projects"
+          data-en="← Projects"
+          data-de="← Projekte"
+        >← Projects</a>
+
+        <div class="tools">
+          <div class="langs">
+            <button type="button" data-lang="en" aria-pressed="true">EN</button>
+            <span>/</span>
+            <button type="button" data-lang="de" aria-pressed="false">DE</button>
+          </div>
+
+          <button
+            class="theme-button"
+            type="button"
+            data-theme-toggle
+            aria-label="Switch theme"
+          >☾</button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+
+      <!-- PROJECT INTRODUCTION -->
+
+      <section class="case-hero">
+        <div class="eyebrow">
+          CASE STUDY · ANDROID · 2023 · PROTOTYPE
+        </div>
+
+        <h1>
+          Pattern<br>Patrol<span class="pp-accent">.</span>
+        </h1>
+
+        <p class="case-dek">
+          Exploring the gap between recognizing a thinking
+          pattern and changing it.
+        </p>
+
+        <div class="case-meta">
+          <span>ROLE / SOLE DEVELOPER &amp; DESIGNER</span>
+          <span>TOOLS / KOTLIN · ANDROID STUDIO · FIGMA · OPENAI API</span>
+          <span>DURATION / ~6–8 WEEKS</span>
+          <span>STATUS / INCOMPLETE PROTOTYPE · API BROKEN</span>
+        </div>
+      </section>
+
+      <!-- HERO — CONCEPTUAL FLOW -->
+
+      <div class="pp-showcase pp-hero">
+        <div class="pp-showcase-heading">
+          <span class="pp-kicker">THE CORE IDEA</span>
+          <span class="pp-kicker">REFLECTION THROUGH PRACTICE</span>
+        </div>
+
+        <h2 class="pp-hero-headline">
+          Notice.<br>
+          Name.<br>
+          <em>Reframe.</em>
+        </h2>
+
+        <div class="pp-flow">
+          <div class="pp-flow-step">
+            <span class="pp-flow-number">01</span>
+            <h3>Notice</h3>
+            <p>Capture a thought that is bothering you.</p>
+          </div>
+
+          <div class="pp-flow-step">
+            <span class="pp-flow-number">02</span>
+            <h3>Name</h3>
+            <p>Explore which cognitive distortion patterns might be present.</p>
+          </div>
+
+          <div class="pp-flow-step">
+            <span class="pp-flow-number">03</span>
+            <h3>Reframe</h3>
+            <p>Practice rewriting the thought in a more balanced way.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- OVERVIEW -->
+
+      <section class="case-section">
+        <div>
+          <h2 class="section-title">Overview</h2>
+        </div>
+
+        <div class="case-copy">
+          <p class="lead">
+            Pattern Patrol is an Android app for recognizing
+            and reframing cognitive distortions.
+          </p>
+
+          <p>
+            You write down a thought that is bothering you,
+            work through a reference table of twelve distortion
+            patterns to figure out what might be happening in
+            your thinking, and then actively practice rewriting
+            that thought in a healthier way.
+          </p>
+
+          <p>
+            An OpenAI integration offered AI-assisted analysis
+            on demand — not to do the work for you, but as
+            a nudge when you were stuck on naming what
+            was going on.
+          </p>
+
+          <p>
+            The project was built within a three-month Android
+            development module at Syntax Institut. It remained
+            an incomplete prototype.
+          </p>
+        </div>
+      </section>
+
+      <!-- THE PROBLEM -->
+
+      <section class="case-section">
+        <div>
+          <h2 class="section-title">The problem</h2>
+        </div>
+
+        <div class="case-copy">
+          <p class="lead">
+            Understanding a pattern is not the same as
+            catching yourself in it.
+          </p>
+
+          <p>
+            Cognitive distortions are thinking patterns that
+            can feel completely true in the moment, even when
+            they misrepresent what is happening.
+            All-or-nothing thinking. Catastrophising.
+            Personalisation. Overgeneralisation.
+          </p>
+
+          <p>
+            They were described systematically by Aaron Beck
+            in the 1960s and became a central part of
+            Cognitive Behavioural Therapy.
+          </p>
+
+          <p>
+            I had been through a difficult period in my own
+            life and encountered Metacognitive Training (MCT)
+            along the way. I attended a course during that time.
+          </p>
+
+          <p>
+            The sessions were structured. The examples were
+            clear. And then I went home, and nothing changed,
+            because understanding a concept in a group setting
+            and catching your own brain doing it at 11pm on a
+            Wednesday are completely different things.
+          </p>
+
+          <p>
+            The patterns explained in those sessions were
+            exactly the patterns I had been living inside
+            for years. Negative core beliefs can compound
+            quietly. They shape expectations, attention,
+            conclusions and eventually the narrative
+            through which experiences are interpreted.
+          </p>
+
+          <p>
+            Knowing that intellectually hadn't shifted it.
+            Working through simple examples in a group
+            hadn't shifted it either.
+          </p>
+
+          <div class="pullquote">
+            Psychoeducation gives you the map.
+            It doesn't necessarily give you practice
+            navigating the territory.
+          </div>
+
+          <p>
+            What seemed to create movement was practice
+            with real thoughts in real moments, repeated
+            over time — until something began to feel
+            different, not just make sense intellectually.
+          </p>
+
+          <p>
+            That was the experience the app was intended
+            to make room for.
+          </p>
+        </div>
+      </section>
+
+      <!-- THE IDEA -->
+
+      <section class="case-section">
+        <div>
+          <h2 class="section-title">The idea</h2>
+        </div>
+
+        <div class="case-copy">
+          <p class="lead">
+            A small practice loop, centered on the user's
+            own thoughts rather than abstract examples.
+          </p>
+
+          <p>
+            The core flow was simple: write down a thought,
+            consult a reference table of twelve cognitive
+            distortions with descriptions and examples,
+            identify which pattern or patterns might be
+            present, and try to rewrite the thought
+            in a more balanced way.
+          </p>
+
+          <p>
+            No diagnosis. No ready-made solution.
+            Just noticing, naming and reformulating —
+            actively carried out by the user.
+          </p>
+
+          <p>
+            The UI was functional rather than refined.
+            Within the module, the priority was getting
+            the underlying logic built and working,
+            rather than fully iterating on the visual design.
+          </p>
+        </div>
+      </section>
+
+      <!-- FUTURE SCREENSHOTS -->
+
+      <div class="pp-showcase pp-screens">
+        <div class="pp-showcase-heading">
+          <span class="pp-kicker">APP FLOW</span>
+          <span class="pp-kicker">SCREENSHOTS TO BE ADDED</span>
+        </div>
+
+        <div class="pp-screens-grid">
+          <figure class="pp-screen-item">
+            <div class="pp-screen-placeholder">
+              <span>IMAGE PLACEHOLDER</span>
+              <strong>Thought entry</strong>
+              <span>Actual Android screenshot pending</span>
+            </div>
+            <figcaption>
+              Capturing a thought from a real situation.
+            </figcaption>
+          </figure>
+
+          <figure class="pp-screen-item">
+            <div class="pp-screen-placeholder">
+              <span>IMAGE PLACEHOLDER</span>
+              <strong>Distortion reference</strong>
+              <span>Actual Android screenshot pending</span>
+            </div>
+            <figcaption>
+              Reviewing the reference table and identifying patterns.
+            </figcaption>
+          </figure>
+
+          <figure class="pp-screen-item">
+            <div class="pp-screen-placeholder">
+              <span>IMAGE PLACEHOLDER</span>
+              <strong>Thought reframing</strong>
+              <span>Actual Android screenshot pending</span>
+            </div>
+            <figcaption>
+              Working toward a more balanced interpretation.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- AI ASSISTANCE -->
+
+      <section class="case-section">
+        <div>
+          <h2 class="section-title">AI as a nudge</h2>
+        </div>
+
+        <div class="case-copy">
+          <p class="lead">
+            The AI wasn't supposed to do the reflection.
+            It was there when the user got stuck.
+          </p>
+
+          <p>
+            The OpenAI integration existed as optional
+            support — a single button. If someone couldn't
+            identify which pattern was present in a thought,
+            they could request an additional perspective.
+          </p>
+
+          <p>
+            The response suggested possible distortion
+            types and explanations. It was intended
+            as a starting point for reflection,
+            not a verdict or therapy session.
+          </p>
+
+          <p>
+            The actual work of interpreting and reframing
+            the thought remained with the user.
+          </p>
+        </div>
+      </section>
+
+      <!-- AI VISUAL SHOWCASE -->
+
+      <div class="pp-showcase pp-ai-panel">
+        <div class="pp-ai-copy">
+          <span class="pp-kicker">OPTIONAL ASSISTANCE</span>
+
+          <h3>
+            A second perspective.
+            Not the final answer.
+          </h3>
+
+          <p>
+            Request a suggestion when identifying a
+            distortion feels difficult.
+          </p>
+
+          <p>
+            The user remains responsible for evaluating
+            the suggestion and deciding how to reframe
+            the thought.
+          </p>
+        </div>
+
+        <div class="pp-ai-placeholder">
+          <span class="pp-kicker">IMAGE / INTERACTION PLACEHOLDER</span>
+          <strong>AI-assisted observation</strong>
+          <span>
+            Replace with an actual screenshot or recording
+            of the prototype's AI interaction.
+          </span>
+        </div>
+      </div>
+
+      <!-- THE CODE -->
+
+      <section class="case-section">
+        <div>
+          <h2 class="section-title">The code</h2>
+        </div>
+
+        <div class="case-copy">
+          <p class="lead">
+            Four layers separated the data, application
+            state and user interface.
+          </p>
+
+          <p>
+            The project is structured around data models,
+            a repository, a ViewModel and UI fragments.
+            Each layer has its own responsibility.
+          </p>
+
+          <p>
+            The data models are four Kotlin data classes.
+            <code>Distortion</code> stores a type, description
+            and selection state.
+            <code>Thought</code> contains a title,
+            written content, manual observations and
+            a separate list of AI-generated observations.
+          </p>
+
+          <p>
+            <code>Observation</code> represents an identified
+            distortion and its explanation, alongside
+            a completion state indicating whether the
+            thought has been actively transformed.
+          </p>
+
+          <p>
+            <code>Day</code> groups thoughts by date using
+            <code>LocalDate</code> and tracks the selected day.
+          </p>
+        </div>
+      </section>
+
+      <!-- ARCHITECTURE SHOWCASE -->
+
+      <div class="pp-showcase pp-architecture">
+        <div class="pp-showcase-heading">
+          <span class="pp-kicker">APPLICATION ARCHITECTURE</span>
+          <span class="pp-kicker">CONCEPTUAL OVERVIEW</span>
+        </div>
+
+        <div class="pp-architecture-grid">
+          <div class="pp-layer">
+            <span class="pp-layer-index">01</span>
+            <h3>Data models</h3>
+            <p>
+              Thought, Distortion, Observation
+              and Day.
+            </p>
+          </div>
+
+          <div class="pp-layer">
+            <span class="pp-layer-index">02</span>
+            <h3>Repository</h3>
+            <p>
+              Distortion reference data,
+              calendar generation and prompts.
+            </p>
+          </div>
+
+          <div class="pp-layer">
+            <span class="pp-layer-index">03</span>
+            <h3>MainViewModel</h3>
+            <p>
+              LiveData, selection state
+              and AI response processing.
+            </p>
+          </div>
+
+          <div class="pp-layer">
+            <span class="pp-layer-index">04</span>
+            <h3>UI fragments</h3>
+            <p>
+              Screens, adapters, navigation
+              and interaction.
+            </p>
+          </div>
+        </div>
+
+        <p class="pp-architecture-note">
+          High-level architecture illustration —
+          not a source-code-generated dependency diagram.
+        </p>
+      </div>
+
+      <!-- REPOSITORY AND VIEWMODEL -->
+
+      <section class="case-section">
+        <div>
+          <h2 class="section-title">State & data</h2>
+        </div>
+
+        <div class="case-copy">
+          <p>
+            The <code>Repository</code> holds the hardcoded
+            reference list of twelve cognitive distortion
+            patterns and generates a rolling seven-day
+            calendar from the current date backwards.
+          </p>
+
+          <p>
+            It also includes <code>loadInstructions()</code>,
+            which constructs the prompt passed to the
+            OpenAI API.
+          </p>
+
+          <p>
+            The <code>MainViewModel</code> manages the
+            relevant <code>LiveData</code>: days, selected
+            day, thoughts, selected thought, distortion
+            references, manual observations and AI suggestions.
+          </p>
+
+          <p>
+            When a day or thought changes, observers update
+            the corresponding UI without fragments manually
+            passing state between one another.
+          </p>
+        </div>
+      </section>
+
+      <!-- OPENAI IMPLEMENTATION -->
+
+      <section class="case-section">
+        <div>
+          <h2 class="section-title">Building the AI integration</h2>
+        </div>
+
+        <div class="case-copy">
+          <p class="lead">
+            The challenge wasn't just sending a prompt.
+            It was turning the response into usable app data.
+          </p>
+
+          <p>
+            The OpenAI request ran inside the ViewModel
+            using a Kotlin coroutine launched in
+            <code>viewModelScope</code>.
+            It called <code>gpt-3.5-turbo</code> through
+            the <code>openai-kotlin</code> library.
+          </p>
+
+          <p>
+            The prompt was constructed in the repository.
+            It included the user's thought, instructions
+            establishing a behavioural-therapy perspective,
+            and a strict expected response format.
+          </p>
+
+          <p>
+            The model was asked to return pairs consisting
+            of a distortion type and an explanation,
+            or <code>NO DISTORTION</code> when no pattern
+            was identified.
+          </p>
+
+          <p>
+            The <code>adjust()</code> function parsed
+            the returned plain text, removed empty lines,
+            interpreted pairs of lines and converted them
+            into <code>Observation</code> objects stored
+            in AI suggestion LiveData.
+          </p>
+
+          <p>
+            Using the same observation model for manual
+            and AI-assisted inputs meant the interface
+            didn't need two entirely separate systems.
+          </p>
+
+          <p>
+            The UI itself was implemented using Android
+            fragments including <code>HomeFragment</code>,
+            <code>DetailFragment</code>,
+            <code>DistortionsFragment</code> and
+            <code>EducationalFragment</code>.
+          </p>
+
+          <p>
+            Android's Navigation component with Safe Args
+            handled navigation, while RecyclerView adapters
+            displayed days, thoughts, distortions,
+            observations and AI responses.
+            Swipe-to-delete helpers managed deletion
+            interactions.
+          </p>
+        </div>
+      </section>
+
+      <!-- PERSONAL TECHNICAL REFLECTION -->
+
+      <section class="case-section">
+        <div>
+          <h2 class="section-title">What interested me most</h2>
+        </div>
+
+        <div class="case-copy">
+          <p>
+            This was early 2023, shortly after the
+            ChatGPT API became publicly available.
+            Integrating it wasn't a standard part
+            of the Android module.
+          </p>
+
+          <p>
+            I explored how to structure a prompt so its
+            output could be parsed, how to make an
+            asynchronous API call in an Android app,
+            and how to transform raw model output
+            into structured data the UI could use.
+          </p>
+
+          <p>
+            Looking back, the prompt design and the
+            response parsing loop in
+            <code>adjust()</code> are probably the
+            parts of this project I'm most proud of.
+          </p>
+        </div>
+      </section>
+
+      <!-- LOOKING BACK -->
+
+      <section class="case-section">
+        <div>
+          <h2 class="section-title">Looking back</h2>
+        </div>
+
+        <div class="case-copy">
+          <p class="lead">
+            A first working version of an idea,
+            not a finished product.
+          </p>
+
+          <p>
+            The project was built within a fixed course
+            timeframe. The UI was functional rather
+            than refined, and there wasn't enough time
+            to iterate thoroughly on both design
+            and implementation.
+          </p>
+
+          <p>
+            The OpenAI integration relied on a hardcoded
+            prompt and an older model version and
+            no longer works reliably. It would need
+            a revised API integration, separated
+            prompt logic and secure handling of
+            API credentials outside the client.
+          </p>
+
+          <p>
+            The bigger unresolved question, though,
+            is conceptual.
+          </p>
+
+          <p>
+            The app assumes someone can sit down
+            and write a single, clear thought.
+            But difficult moments rarely work
+            that way. Thinking can be fragmented,
+            repetitive and hard to put into words.
+          </p>
+
+          <p>
+            Getting from that messy internal state
+            to something specific enough to reflect
+            on is a problem in itself.
+          </p>
+
+          <p>
+            A future version would need research
+            and iteration around how to help people
+            structure their thoughts before asking
+            them to identify patterns.
+          </p>
+
+          <p>
+            For the course project, I deliberately
+            worked with a simpler MVP.
+          </p>
+        </div>
+      </section>
+
+      <!-- BACK TO PROJECTS -->
+
+      <div class="case-ending">
+        <h2>Back to selected work.</h2>
+
+        <a class="back-link" href="../index.html#projects">
+          ← All projects
+        </a>
+      </div>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+      <span>© 2026 LINDA KÖTTER</span>
+      <span>iOS · UX · UI</span>
+    </footer>
+
+  </div>
+</body>
+</html>

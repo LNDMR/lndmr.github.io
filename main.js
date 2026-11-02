@@ -1,140 +1,112 @@
+/* Shared interactions: theme, language, and homepage navigation. */
+(() => {
+  'use strict';
 
-(function () {
   const root = document.documentElement;
+  const themeButtons = document.querySelectorAll('[data-theme-toggle]');
+  const languageButtons = document.querySelectorAll('[data-lang]');
 
-  // ----------------------------------------
-  // THEME SWITCHING
-  // ----------------------------------------
+  // Theme selection persists across pages; system preference is the fallback.
+  const storedTheme = localStorage.getItem('lndmr-theme');
+  const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  root.dataset.theme = ['dark', 'light'].includes(storedTheme)
+    ? storedTheme
+    : systemDark ? 'dark' : 'light';
 
-  const pref = localStorage.getItem('lndmr-theme');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-  root.dataset.theme = pref || (prefersDark ? 'dark' : 'light');
-
-  const updateTheme = () => {
-    document.querySelectorAll('[data-theme-toggle]').forEach(b => {
-      b.textContent = root.dataset.theme === 'dark' ? '☼' : '☾';
-
-      b.setAttribute(
-        'aria-label',
-        root.dataset.theme === 'dark' ? 'Use light theme' : 'Use dark theme'
-      );
+  function updateThemeControls() {
+    const isDark = root.dataset.theme === 'dark';
+    themeButtons.forEach(button => {
+      button.textContent = isDark ? '☼' : '☾';
+      button.setAttribute('aria-label', isDark ? 'Use light theme' : 'Use dark theme');
     });
-  };
-
-  document.querySelectorAll('[data-theme-toggle]').forEach(b =>
-    b.addEventListener('click', () => {
-      root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
-
-      localStorage.setItem('lndmr-theme', root.dataset.theme);
-      updateTheme();
-    })
-  );
-
-  updateTheme();
-
-
-  // ----------------------------------------
-  // LANGUAGE SWITCHING
-  // ----------------------------------------
-
-  const lang = localStorage.getItem('lndmr-lang') === 'de' ? 'de' : 'en';
-
-  function applyLanguage(l) {
-    root.lang = l;
-
-    document.querySelectorAll('[data-en][data-de]').forEach(el => {
-      el.textContent = el.dataset[l];
-    });
-
-    document.querySelectorAll('[data-lang]').forEach(b => {
-      b.setAttribute('aria-pressed', String(b.dataset.lang === l));
-    });
-
-    document.title =
-      document.querySelector('meta[name="page-title-' + l + '"]')?.content ||
-      document.title;
-
-    localStorage.setItem('lndmr-lang', l);
   }
 
-  document.querySelectorAll('[data-lang]').forEach(b =>
-    b.addEventListener('click', () => applyLanguage(b.dataset.lang))
-  );
+  themeButtons.forEach(button => button.addEventListener('click', () => {
+    root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('lndmr-theme', root.dataset.theme);
+    updateThemeControls();
+  }));
+  updateThemeControls();
 
-  applyLanguage(lang);
+  // All translated strings are authored locally as data-en/data-de attributes.
+  function applyLanguage(language) {
+    const lang = language === 'de' ? 'de' : 'en';
+    root.lang = lang;
 
+    document.querySelectorAll('[data-en][data-de]').forEach(element => {
+      // Preserve inline emphasis in the About paragraph when switching languages.
+      if (element.hasAttribute('data-translate-emphasis') && lang === 'en') {
+        element.innerHTML = element.dataset.en
+          .replace('what works', '<em>what</em> works')
+          .replace('but why.', 'but <em>why</em>.');
+      } else {
+        element.textContent = element.dataset[lang];
+      }
+    });
 
-  // ----------------------------------------
-  // PROJECT CAROUSEL
-  // ----------------------------------------
+    languageButtons.forEach(button => {
+      button.setAttribute('aria-pressed', String(button.dataset.lang === lang));
+    });
 
-  const track = document.querySelector('[data-carousel]');
-
-  if (track) {
-    const buttons = [...document.querySelectorAll('[data-carousel-dir]')];
-
-    const slide = () =>
-      track.querySelector('.project-card').getBoundingClientRect().width +
-      parseFloat(getComputedStyle(track).gap || 0);
-
-    buttons.forEach(b =>
-      b.addEventListener('click', () =>
-        track.scrollBy({
-          left: Number(b.dataset.carouselDir) * slide(),
-          behavior: 'smooth'
-        })
-      )
-    );
-
-    const update = () => {
-      buttons[0].disabled = track.scrollLeft < 5;
-
-      buttons[1].disabled =
-        track.scrollLeft + track.clientWidth >= track.scrollWidth - 5;
-    };
-
-    track.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-
-    update();
+    const title = document.querySelector(`meta[name="page-title-${lang}"]`);
+    if (title) document.title = title.content;
+    localStorage.setItem('lndmr-lang', lang);
+    document.dispatchEvent(new CustomEvent('portfolio:languagechange', { detail: { language: lang } }));
   }
 
-  // ----------------------------------------
-  // SECTION NAVIGATION VISIBILITY
-  // ----------------------------------------
+  languageButtons.forEach(button => button.addEventListener('click', () => {
+    applyLanguage(button.dataset.lang);
+  }));
+  applyLanguage(localStorage.getItem('lndmr-lang'));
 
-  const sectionHeadings = [
-    {
-      heading: document.querySelector('#projects .section-top h2'),
-      navigation: document.querySelector('#projects .section-links')
-    },
-    {
-      heading: document.querySelector('#about #about-title'),
-      navigation: document.querySelector('#about .section-links')
+  // Homepage-only project carousel. Other pages do not contain this element.
+  const carousel = document.querySelector('[data-carousel]');
+  if (carousel) {
+    const previous = document.querySelector('[data-carousel-dir="-1"]');
+    const next = document.querySelector('[data-carousel-dir="1"]');
+    const firstCard = carousel.querySelector('.project-card');
+
+    function updateCarouselControls() {
+      if (previous) previous.disabled = carousel.scrollLeft < 5;
+      if (next) next.disabled = carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 5;
     }
-  ];
+
+    if (firstCard) {
+      for (const button of [previous, next].filter(Boolean)) {
+        button.addEventListener('click', () => {
+          const gap = parseFloat(getComputedStyle(carousel).gap) || 0;
+          const distance = firstCard.getBoundingClientRect().width + gap;
+          carousel.scrollBy({ left: Number(button.dataset.carouselDir) * distance, behavior: 'smooth' });
+        });
+      }
+      carousel.addEventListener('scroll', updateCarouselControls, { passive: true });
+      window.addEventListener('resize', updateCarouselControls);
+      updateCarouselControls();
+    }
+  }
+
+  // Show each section's local navigation while its heading is fully in view.
+  const navigationPairs = [
+    ['#projects .section-top h2', '#projects .section-links'],
+    ['#about #about-title', '#about .section-links']
+  ].map(([heading, nav]) => ({
+    heading: document.querySelector(heading),
+    nav: document.querySelector(nav)
+  })).filter(({ heading, nav }) => heading && nav);
 
   function updateSectionNavigation() {
-    sectionHeadings.forEach(({ heading, navigation }) => {
-      if (!heading || !navigation) return;
-
-      const rect = heading.getBoundingClientRect();
-
-      const isVisible =
-        rect.top >= 0 &&
-        rect.bottom <= window.innerHeight;
-
-      navigation.classList.toggle('is-visible', isVisible);
-    });
+    for (const { heading, nav } of navigationPairs) {
+      const { top, bottom } = heading.getBoundingClientRect();
+      nav.classList.toggle('is-visible', top >= 0 && bottom <= window.innerHeight);
+    }
   }
 
-  window.addEventListener('scroll', updateSectionNavigation, {
-    passive: true
-  });
+  if (navigationPairs.length) {
+    window.addEventListener('scroll', updateSectionNavigation, { passive: true });
+    window.addEventListener('resize', updateSectionNavigation);
+    updateSectionNavigation();
+  }
 
-  window.addEventListener('resize', updateSectionNavigation);
-
-  updateSectionNavigation();
-
+  const year = document.getElementById('year');
+  if (year) year.textContent = new Date().getFullYear();
 })();

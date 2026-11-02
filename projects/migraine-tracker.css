@@ -1,0 +1,826 @@
+/* Migraine Tracker — page-specific styles.
+   Loaded after ../styles.css; shared page rules remain in that file.
+   Sections below follow the page's visual components and narrative chapters.
+   Static screenshots are pre-cropped assets: CSS handles sizing, not cropping. */
+
+/* ==========================================
+   PAGE TOKENS & SHARED ACCENTS
+   ========================================== */
+
+/* Case-study typography is scoped here; the homepage remains unchanged. */
+.migraine-page {
+  --case-heading-size: 36px;
+  --case-section-space: clamp(72px, 8vw, 120px);
+  --case-lead-size: 28px;
+  --case-body-size: 18px;
+  --mt-sage: #8CAA9B;
+  --mt-soft-mint: #B4D7C8;
+  --mt-iron: #343F3E;
+  --mt-charcoal: #505A5B;
+  --mt-lavender: #8F91A2;
+  --mt-sage-mist: #9BA59E;
+  --mt-celadon: #6A7871;
+  --mt-deep-sage: #4A5552;
+}
+
+/* Shared editorial typography for this case study only. */
+.migraine-page .case-section .section-title {
+  font-size: var(--case-heading-size);
+}
+
+.migraine-page .case-copy p {
+
+  font-size: var(--case-body-size);
+
+}
+
+.migraine-page .case-copy .lead {
+
+  font-size: var(--case-lead-size);
+  text-wrap: pretty;
+
+}
+
+.migraine-page .mt-accent {
+
+  color: var(--mt-sage);
+
+}
+
+.migraine-page .pullquote {
+
+  border-left-color: var(--mt-sage);
+
+}
+
+.migraine-page .back-link:hover {
+
+  color: var(--mt-sage);
+
+}
+
+/* Balance the Migraine Tracker hero description. */
+.migraine-page .case-dek {
+   max-width: 1100px;
+  text-wrap: balance;
+}
+
+/* ==========================================
+   SHARED EDITORIAL DIVIDERS
+   A consistent transition between related content groups.
+   ========================================== */
+.migraine-page .mt-dilemma-copy .mt-dilemma-ending,
+.migraine-page .mt-detail-severity {
+  border-top: 1px solid var(--line);
+  margin-top: 30px;
+  padding-top: 28px;
+}
+
+
+/* ==========================================
+   QUICK LOG — VIDEO HERO
+   Preserve the device frame, video offsets, and screen mask alignment.
+   ========================================== */
+
+.migraine-page .mt-video-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  align-items: start;
+  gap: clamp(32px, 6vw, 90px);
+  padding: 24px 0 40px;
+  margin-bottom: clamp(24px, 3vw, 48px);
+  background: transparent;
+}
+
+.migraine-page .mt-video-intro {
+  max-width: 470px;
+  padding-top: 50px;
+}
+
+.migraine-page .mt-video-intro h2 {
+  max-width: 470px;
+}
+
+.migraine-page .mt-video-eyebrow {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.migraine-page .mt-video-intro h2 {
+  color: var(--ink);
+  font-size: clamp(44px, 5.5vw, 82px);
+  letter-spacing: -0.065em;
+  line-height: 1;
+  margin: 24px 0;
+}
+
+/* Slightly smaller German heading to preserve the two-line layout. */
+@media (min-width: 1100px) {
+  .migraine-page:lang(de) .mt-video-intro h2 {
+    font-size: clamp(44px, 4.5vw, 72px);
+  }
+}
+
+.migraine-page .mt-video-intro p {
+  color: var(--muted);
+  font-size: clamp(16px, 1.5vw, 20px);
+  line-height: 1.6;
+  margin: 0;
+  text-wrap: balance;
+}
+
+/* Allow a single-line description only on wide screens. */
+@media (min-width: 1400px) {
+  .migraine-page .mt-video-intro p {
+    width: max-content;
+    white-space: nowrap;
+  }
+}
+
+/* Shared device geometry: the frame, mask and video offsets must remain aligned. */
+.migraine-page .mt-phone,
+.migraine-page .mt-detail-phone,
+.migraine-page .mt-custom-phone {
+  position: relative;
+  width: min(100%, 270px);
+  aspect-ratio: 450 / 920;
+}
+
+.migraine-page .mt-phone {
+
+  width: min(100%, 320px);
+
+  justify-self: center;
+
+}
+
+.migraine-page .mt-phone-screen,
+.migraine-page .mt-detail-phone-screen,
+.migraine-page .mt-custom-phone-screen {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  -webkit-mask-image: url('../assets/migraine/iPhone17_screen_mask.png');
+  mask-image: url('../assets/migraine/iPhone17_screen_mask.png');
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.migraine-page .mt-phone-screen video,
+.migraine-page .mt-detail-phone-screen video,
+.migraine-page .mt-custom-phone-screen video {
+  position: absolute;
+  display: block;
+  left: 4.7%;
+  top: 2%;
+  width: 90.6%;
+  height: 96%;
+  object-fit: cover;
+}
+
+.migraine-page .mt-phone-frame,
+.migraine-page .mt-detail-phone-frame,
+.migraine-page .mt-custom-phone-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+@media (max-width: 700px) {
+  .migraine-page .mt-video-hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .migraine-page .mt-phone {
+  
+    width: min(75%, 300px);
+  
+  }
+}
+
+/* Small-screen hero composition */
+@media (max-width: 700px) {
+  .migraine-page .mt-video-intro {
+    padding-top: 0;
+  }
+  .migraine-page .mt-video-hero {
+    gap: 24px;
+  }
+}
+
+/* ==========================================
+   SITUATION — INTRODUCTORY STORY
+   ========================================== */
+
+.migraine-page .case-section.mt-situation {
+
+  padding-bottom: var(--case-section-space);
+
+}
+
+.migraine-page .mt-situation .pullquote {
+  font-size: clamp(28px, 3.1vw, 46px);
+  line-height: 1.16;
+}
+
+/* =========================================================
+   HISTORY — FULL-WIDTH SHOWCASE
+   Full-bleed dark chapter, with pre-cropped calendar images.
+   Keep all three images at their natural aspect ratios.
+   ========================================================= */
+
+.migraine-page .mt-history-section {
+  display: block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--mt-iron);
+  color: #f7f7f5;
+}
+
+.migraine-page .mt-history-chapter {
+  width: 100%;
+  padding: var(--case-section-space) 0;
+}
+
+.migraine-page .mt-history-content {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  align-items: start;
+  gap: clamp(32px, 6vw, 90px);
+  width: min(calc(100% - 2 * var(--page-gutter)), var(--page-max-width));
+  margin: 0 auto;
+}
+
+.migraine-page .mt-history-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-self: center;
+  min-width: 0;
+  max-width: 800px;
+  padding-top: 20px;
+}
+
+.migraine-page .mt-history-statement {
+  max-width: 510px;
+  margin: 0;
+  color: #f7f7f5;
+  font-size: var(--case-heading-size);
+  font-weight: 650;
+  line-height: 1.1;
+  letter-spacing: -0.045em;
+}
+
+.migraine-page .mt-history-text {
+  max-width: 440px;
+  margin-top: 30px;
+}
+
+.migraine-page .mt-history-text p {
+  margin: 0 0 18px;
+  color: #cad4cf;
+  font-size: var(--case-body-size);
+  line-height: 1.7;
+}
+
+
+/* Align calendar with the right edge of the Entry Comparison screenshots. */
+.migraine-page .mt-history-calendar {
+  width: 100%;
+  max-width: 420px;
+  margin: 0;
+  justify-self: end;
+
+  margin-right: max(
+    0px,
+    calc(
+      (min(100vw - 2 * var(--page-gutter), var(--page-max-width))
+      - var(--case-column-gap)) * 0.65 - 790px
+    )
+  );
+}
+
+.migraine-page .mt-history-calendar-crop img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+}
+
+/* Supporting interactions: two equal-width pre-cropped dialog images. */
+.migraine-page .mt-history-actions {
+  width: 100%;
+  max-width: 800px;
+  margin-top: 48px;
+}
+
+.migraine-page .mt-history-actions-label {
+  margin: 0 0 12px;
+  color: #9fb8ac;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.migraine-page .mt-history-copy .mt-history-interactions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(16px, 2vw, 30px);
+  width: 100%;
+  max-width: 800px;
+  margin: 0;
+}
+
+.migraine-page .mt-history-interactions figure {
+  min-width: 0;
+  margin: 0;
+}
+
+.migraine-page .mt-history-interaction-crop img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+
+.migraine-page .mt-history-interactions figcaption {
+  margin-top: 12px;
+  color: #cad4cf;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.5;
+  text-transform: none;
+}
+
+@media (max-width: 700px) {
+
+  .migraine-page .mt-history-content {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .migraine-page .mt-history-copy {
+
+    padding-top: 0;
+
+  }
+
+  .migraine-page .mt-history-calendar {
+
+    max-width: 340px;
+    margin-right: 0;
+
+  }
+
+  .migraine-page .mt-history-calendar-crop img {
+
+    border-radius: 20px;
+
+  }
+
+  .migraine-page .mt-history-actions {
+
+    max-width: 100%;
+
+  }
+
+  .migraine-page .mt-history-copy .mt-history-interactions {
+
+    gap: 12px;
+
+  }
+
+}
+
+@media (min-width: 701px) and (max-width: 1000px) {
+  .migraine-page .mt-history-content {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: 32px;
+  }
+}
+
+
+/* ==========================================
+   THE COMPLEXITY DILEMMA
+   The Settings image follows the explanation;
+   the final paragraph describes the remaining trade-off.
+   ========================================== */
+.migraine-page .mt-dilemma-visual {
+  width: min(100%, 400px);
+  margin: 30px 0 0;
+}
+
+.migraine-page .mt-dilemma-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 18px;
+}
+
+.migraine-page .mt-dilemma-copy .mt-dilemma-ending {
+
+  margin-bottom: 0;
+
+}
+
+
+/* ==========================================
+   MORE DETAIL — COMPACT EDITORIAL COMPOSITION
+   Scoped to this section. Other sections stay unchanged.
+   ========================================== */
+.migraine-page .case-section.mt-detail-section {
+  grid-template-areas:
+    "heading copy"
+    "device copy";
+
+  align-items: start;
+  row-gap: 52px;
+}
+.migraine-page .mt-detail-heading {
+  grid-area: heading;
+  min-width: 0;
+}
+.migraine-page .mt-detail-heading .section-title {
+  margin: 0;
+}
+.migraine-page .mt-detail-device {
+  grid-area: device;
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-right: clamp(60px, 7vw, 110px);
+  box-sizing: border-box;
+}
+.migraine-page .mt-detail-copy {
+  grid-area: copy;
+  min-width: 0;
+  max-width: 720px;
+  padding-top: 0;
+}
+.migraine-page .mt-detail-copy .lead {
+  margin-top: 0;
+}
+/* A single sentence connects the abstract progression to its meaning. */
+.migraine-page .mt-detail-severity-intro {
+  margin: 0 0 38px;
+  font-size: clamp(16px, 1.3vw, 18px);
+  line-height: 1.55;
+  color: var(--ink);
+}
+.migraine-page .mt-detail-severity-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(8px, 1.5vw, 20px);
+  align-items: start;
+}
+.migraine-page .mt-detail-severity-list figure {
+  min-width: 0;
+  margin: 0;
+  text-align: center;
+}
+.migraine-page .mt-detail-severity-list img {
+  display: block;
+  width: min(100%, 145px);
+  height: auto;
+  aspect-ratio: 420 / 439;
+  object-fit: contain;
+  margin: 0 auto 10px;
+}
+.migraine-page .mt-detail-severity-list figcaption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  line-height: 1.4;
+}
+.migraine-page .mt-detail-severity-list figcaption strong {
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--ink);
+}
+.migraine-page .mt-detail-severity-list figcaption span {
+  max-width: 155px;
+  font-size: 13px;
+  color: var(--muted);
+}
+@media (max-width: 800px) {
+  .migraine-page .case-section.mt-detail-section {
+    grid-template-columns: 1fr;
+    grid-template-areas: "heading" "copy" "device";
+    row-gap: 26px;
+  }
+  .migraine-page .mt-detail-device {
+    padding-right: 0;
+  }
+  .migraine-page .mt-detail-phone {
+    width: min(74%, 270px);
+  }
+
+}
+@media (max-width: 450px) {
+  .migraine-page .mt-detail-severity-list {
+    gap: 8px;
+  }
+  .migraine-page .mt-detail-severity-list figcaption span {
+    font-size: 11px;
+  }
+}
+
+
+/* ==========================================
+   PERSONALIZATION — SHARED VISUAL STAGE
+   Two ways into the same customization controls.
+   ========================================== */
+.migraine-page .mt-personalization > .mt-custom-stage {
+  grid-column: 1 / -1;
+}
+.migraine-page .mt-custom-stage {
+  width: 100%;
+  margin-top: clamp(8px, 1.5vw, 20px);
+}
+.migraine-page .mt-custom-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(38px, 6vw, 100px);
+  align-items: start;
+  max-width: 1130px;
+  margin: 0 auto;
+}
+.migraine-page .mt-custom-example {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  align-items: center;
+}
+.migraine-page .mt-custom-explanation {
+  width: min(100%, 390px);
+  min-height: 112px;
+  margin-bottom: 24px;
+}
+.migraine-page .mt-custom-explanation h3 {
+  margin: 0 0 11px;
+  font-size: clamp(21px, 2vw, 24px);
+  font-weight: 650;
+  line-height: 1.15;
+  letter-spacing: -.04em;
+  color: var(--ink);
+}
+.migraine-page .mt-custom-explanation p {
+  margin: 0;
+  font-size: clamp(15px, 1.3vw, 18px);
+  line-height: 1.55;
+  color: var(--muted);
+}
+.migraine-page .mt-custom-device {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+}
+.migraine-page .mt-custom-reflection {
+  width: min(100%, 760px);
+  max-width: none;
+  margin: clamp(65px, 6vw, 90px) 0 0;
+  padding: 4px 0 4px 24px;
+  border: 0;
+  border-left: 3px solid var(--mt-sage);
+  margin-left: max(0px, calc((100% - 1130px) / 2));
+
+  font-size: calc(var(--case-body-size) - 1px);
+  line-height: 1.65;
+  color: var(--muted);
+}
+@media (max-width: 700px) {
+  .migraine-page .mt-custom-pair {
+    grid-template-columns: 1fr;
+    row-gap: 52px;
+  }
+  .migraine-page .mt-custom-explanation {
+    min-height: 0;
+    margin-bottom: 20px;
+  }
+  .migraine-page .mt-custom-phone {
+    width: min(75vw, 270px);
+  }
+  .migraine-page .mt-custom-reflection {
+    margin-top: 30px;
+    padding-right: 0;
+  }
+}
+
+/* Encourage a balanced two-line heading without changing the shared grid. */
+.migraine-page .mt-personalization .section-title {
+  max-width: 14ch;
+  text-wrap: balance;
+}
+
+
+
+/* ==========================================
+   ONLY SHOW WHAT WAS RECORDED
+   Three entry views with different amounts of information.
+   ========================================== */
+
+/* Keep the label and screenshots within the right content column. */
+.migraine-page .mt-entry-showcase {
+  grid-column: 2;
+  min-width: 0;
+  width: 100%;
+  max-width: 790px;
+}
+
+.migraine-page .mt-entry-label {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+/* Three entries shown at their natural heights. */
+.migraine-page .mt-entry-comparison {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: 10px;
+  width: 100%;
+}
+
+.migraine-page .case-section.mt-entry-section {
+  row-gap: 24px;
+}
+
+.migraine-page .mt-entry-example {
+  min-width: 0;
+  margin: 0;
+}
+
+.migraine-page .mt-entry-example img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* Tablet */
+@media (max-width: 800px) {
+  .migraine-page .mt-entry-showcase {
+    grid-column: 1 / -1;
+  }
+
+  .migraine-page .mt-entry-comparison {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 560px) {
+  .migraine-page .mt-entry-comparison {
+    grid-template-columns: 1fr;
+    max-width: 440px;
+    margin-inline: auto;
+    gap: 24px;
+  }
+}
+
+
+/* ==========================================
+   VIDEO UTILITIES — HERO / DETAIL FLOW / PERSONALIZATION
+   Independent controls below the iPhone bezel; no changes to mask or video offsets.
+   ========================================== */
+.migraine-page .mt-video-unit {
+  width: min(100%, 320px);
+  justify-self: center;
+  min-width: 0;
+}
+.migraine-page .mt-video-unit-hero .mt-phone {
+  width: 100%;
+}
+.migraine-page .mt-detail-device,
+.migraine-page .mt-custom-device {
+  flex-direction: column;
+  align-items: center;
+}
+.migraine-page .mt-detail-device > .mt-video-controls {
+  width: min(100%, 310px);
+}
+.migraine-page .mt-custom-device > .mt-video-controls {
+  width: min(100%, 270px);
+}
+.migraine-page .mt-video-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  width: 100%;
+  margin-top: 15px;
+  padding-left: 0;
+  box-sizing: border-box;
+}
+.migraine-page .mt-video-control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 7px;
+  padding: 6px 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0;
+  cursor: pointer;
+  transition: color .16s ease;
+}
+.migraine-page .mt-video-control:hover {
+  color: var(--mt-sage);
+}
+.migraine-page .mt-video-control:focus-visible {
+  outline: 2px solid var(--mt-sage);
+  outline-offset: 5px;
+  border-radius: 2px;
+}
+.migraine-page .mt-control-icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  fill: currentColor;
+}
+.migraine-page .mt-control-replay {
+  fill: none;
+}
+.migraine-page .mt-control-play {
+  display: none;
+}
+.migraine-page .mt-video-unit:not(.is-playing) .mt-control-play,
+.migraine-page .mt-detail-device:not(.is-playing) > .mt-video-controls .mt-control-play,
+.migraine-page .mt-custom-device:not(.is-playing) > .mt-video-controls .mt-control-play {
+  display: block;
+}
+.migraine-page .mt-video-unit:not(.is-playing) .mt-control-pause,
+.migraine-page .mt-detail-device:not(.is-playing) > .mt-video-controls .mt-control-pause,
+.migraine-page .mt-custom-device:not(.is-playing) > .mt-video-controls .mt-control-pause {
+  display: none;
+}
+@media (max-width: 700px) {
+  .migraine-page .mt-video-unit-hero {
+    width: min(75%, 300px);
+  }
+  .migraine-page .mt-custom-device > .mt-video-controls {
+    width: min(75vw,270px);
+  }
+}
+@media (max-width: 800px) {
+  .migraine-page .mt-detail-device > .mt-video-controls {
+    width: min(74%, 300px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .migraine-page .mt-video-control {
+    transition: none;
+  }
+}
+
+/* Editorial alignment: the title begins near the first lead line's baseline.
+   On narrow screens, headings precede copy in normal reading order. */
+@media (min-width: 841px) {
+  .migraine-page .case-section:not(.mt-history-section):not(.mt-dilemma):not(.mt-detail-section) > div:first-child > .section-title,
+  .migraine-page .mt-dilemma-heading > .section-title,
+  .migraine-page .mt-detail-heading > .section-title {
+    margin-top: calc(var(--case-lead-size) * 1.32);
+  }
+}
+
+/* ==========================================
+   STILL TO FIGURE OUT
+   ========================================== */
+
+.migraine-page .mt-next-steps .lead {
+  text-wrap: pretty;
+}
