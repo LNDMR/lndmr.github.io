@@ -21,23 +21,34 @@
     <header class="topbar">
       <a class="brand" href="./">LINDA KÖTTER</a>
 
-      <nav class="navigation" aria-label="Main navigation">
-        <div class="tools">
-          <div class="langs" aria-label="Language">
-            <button type="button" data-lang="en" aria-pressed="true">EN</button>
-            <span>/</span>
-            <button type="button" data-lang="de" aria-pressed="false">DE</button>
-          </div>
+      
+<nav class="navigation" aria-label="Main navigation">
+  <a href="#projects" data-en="Projects" data-de="Projekte">
+    Projects
+  </a>
 
-          <button
-            type="button"
-            class="theme-button"
-            data-theme-toggle
-            aria-label="Switch theme"
-          >☾</button>
-        </div>
-      </nav>
+  <a href="#about" data-en="About" data-de="Über mich">
+    About
+  </a>
+
+  <div class="tools">
+    <div class="langs" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <span>/</span>
+      <button type="button" data-lang="de" aria-pressed="false">DE</button>
+    </div>
+
+    <button
+      type="button"
+      class="theme-button"
+      data-theme-toggle
+      aria-label="Switch theme"
+    >☾</button>
+  </div>
+</nav>
+
     </header>
+
 
     <main>
 
@@ -53,15 +64,15 @@
           <h1>
             <span data-en="Less noise." data-de="Weniger Reize.">Less noise.</span>
             <br>
-            <span class="accent" data-en="More intent." data-de="Mehr Absicht.">More intent.</span>
+            <span class="accent" data-en="More intent." data-de="Mehr Bedacht.">More intent.</span>
           </h1>
         </div>
 
         <aside>
           <p
-            data-en="I'm Linda, an iOS developer with a background in Cognitive Science and a curiosity for creative work beyond code."
-            data-de="Ich bin Linda, iOS-Entwicklerin mit einem Hintergrund in Cognitive Science und Interesse an kreativer Arbeit über Code hinaus."
-          >I'm Linda, an iOS developer with a background in Cognitive Science and a curiosity for creative work beyond code.</p>
+            data-en="I'm Linda, an iOS developer with a background in Cognitive Science. I enjoy exploring ideas and finding creative ways to approach things, from software and design to art and beyond."
+            data-de="Ich bin Linda, iOS-Entwicklerin und habe Kognitionswissenschaft studiert. Ich entwickle gerne Ideen und entdecke kreative Möglichkeiten, von Software und Design bis hin zur Kunst."
+          >I'm Linda, an iOS developer with a background in Cognitive Science. I enjoy exploring ideas and finding creative ways to approach things, from software and design to art and beyond.</p>
 
                   
         <div class="hero-links">
@@ -86,20 +97,6 @@
       <!-- Selected projects -->
       <section id="projects" class="section">
 
-        <nav class="section-links" aria-label="Page sections">
-          <a href="#home" data-en="Home" data-de="Start">Home</a>
-
-          <a
-            href="#projects"
-            class="is-active"
-            aria-current="location"
-            data-en="Projects"
-            data-de="Projekte"
-          >Work</a>
-
-          <a href="#about" data-en="About" data-de="Über mich">About</a>
-        </nav>
-
         <div class="section-top">
           <div>
             <h2
@@ -118,15 +115,33 @@
 
           <!-- MIGRAINE TRACKER -->
           <a class="project-card" href="projects/migraine-tracker.html">
-            <div class="card-art">
-              <span class="smallcaps art-label">01 / PRODUCT · UX/UI · DEVELOPMENT</span>
+            <div class="card-art migraine-art">
+              
+<span
+  class="smallcaps art-label"
+  data-en="01 / PRODUCT · UX/UI · DEVELOPMENT"
+  data-de="01 / PRODUKT · UX/UI · ENTWICKLUNG"
+>01 / PRODUCT · UX/UI · DEVELOPMENT</span>
 
-              <span class="placeholder">ONE<br>TAP.<br>DONE.</span>
+
+
+<span class="placeholder">
+  ONE<br>
+  TAP.<br>
+  DONE.
+</span>
+
+<img
+  class="migraine-mockup"
+  src="assets/migraine-tracker-mockup.png"
+  alt="Migraine Tracker app showing Quick Log and History screens"
+  loading="lazy"
+>
 
               <span
                 class="smallcaps"
                 data-en="iOS · SWIFTUI · AI-ASSISTED"
-                data-de="BILD- / VIDEO-PLATZHALTER"
+                data-de="iOS · SWIFTUI · KI-UNTERSTÜTZT"
               >iOS · SWIFTUI · AI-ASSISTED</span>
             </div>
 
@@ -136,7 +151,7 @@
 
                 <p
                   data-en="Designing migraine tracking for moments when tracking is hardest."
-                  data-de="Migräne dokumentieren, gerade wenn es am schwersten fällt."
+                  data-de="Migräne erfassen, gerade wenn es am schwersten fällt."
                 >Designing migraine tracking for moments when tracking is hardest.</p>
               </div>
 
@@ -147,8 +162,21 @@
           <!-- SKYJO -->
           <a class="project-card" href="projects/skyjo.html">
             <div class="card-art slate">
-              <span class="smallcaps art-label">02 / GAME DEVELOPMENT</span>
-              <span class="placeholder">DRAW. <br>SWAP. <br>SCORE.</span>
+              
+<span
+  class="smallcaps art-label"
+  data-en="02 / GAME DEVELOPMENT"
+  data-de="02 / SPIELEENTWICKLUNG"
+>02 / GAME DEVELOPMENT</span>
+
+            
+
+<span class="placeholder">
+  DRAW.<br>
+  SWAP.<br>
+  SCORE.
+</span>
+
 
               <span
                 class="smallcaps"
@@ -173,9 +201,22 @@
    
           <!-- PATTERN PATROL -->
           <a class="project-card" href="projects/pattern-patrol.html">
-            <div class="card-art stone">
-              <span class="smallcaps art-label">03 / PRODUCT · DEVELOPMENT</span>
-              <span class="placeholder">NOTICE. <br>NAME. <br>REFRAME.</span>
+            <div class="card-art stone pattern-art">
+              
+<span
+  class="smallcaps art-label"
+  data-en="03 / PRODUCT · DEVELOPMENT"
+  data-de="03 / PRODUKT · ENTWICKLUNG"
+>03 / PRODUCT · DEVELOPMENT</span>
+
+
+
+<span class="placeholder">
+  NOTICE.<br>
+  NAME.<br>
+  REFRAME.
+</span>
+
 
               <span
                 class="smallcaps"
@@ -204,21 +245,7 @@
 
       <!-- About -->
       <section id="about" class="about-editorial" aria-labelledby="about-title">
-        <nav class="section-links section-links-dark" aria-label="Page sections">
-          <a href="#home" data-en="Home" data-de="Start">Home</a>
-
-          <a href="#projects" data-en="Projects" data-de="Projekte">Projects</a>
-
-          <a
-            href="#about"
-            class="is-active"
-            aria-current="location"
-            data-en="About"
-            data-de="Über mich"
-          >About</a>
-        </nav>
         <div class="about-inner">
-
           <!-- ABOUT TEXT -->
           <div class="about-copy">
             <h2 id="about-title">
@@ -229,19 +256,19 @@
 
             <div class="about-paragraphs">
               <p
-                data-en="I've always been curious about people, ideas, and what makes things work the way they do. My interests range from psychology and visual art to design and well-crafted products and experiences."
-                data-de="Menschen, Ideen und die Frage, warum Dinge so funktionieren, wie sie funktionieren, haben mich schon immer interessiert. Meine Interessen reichen von Psychologie und bildender Kunst bis zu Design und durchdachten Produkten und Erlebnissen."
-              >I've always been curious about people, ideas, and what makes things work the way they do. My interests range from psychology and visual art to design and well-crafted products and experiences.</p>
+                data-en="I've always been curious about people, ideas, and what makes things work the way they do. My interests range from psychology and art to design and well-crafted products and experiences."
+                data-de="Mich haben schon immer Menschen, Ideen und die Frage interessiert, warum Dinge so funktionieren, wie sie es tun. Meine Interessen reichen von Psychologie und Kunst bis zu Design und durchdachten Produkten und Erlebnissen."
+              >I've always been curious about people, ideas, and what makes things work the way they do. My interests range from psychology and art to design and well-crafted products and experiences.</p>
 
               <p
                 data-translate-emphasis
                 data-en="I enjoy understanding things in depth, questioning assumptions, and considering different approaches. Details, inconsistencies, and edge cases often catch my attention, especially when they can change the bigger picture. I value quality over quantity and want to understand not just what works, but why."
-                data-de="Ich möchte Dinge gründlich verstehen, Annahmen hinterfragen und verschiedene Ansätze durchdenken. Details, Unstimmigkeiten und Grenzfälle fallen mir besonders auf, wenn sie das Gesamtbild verändern können. Qualität ist mir wichtiger als Quantität – und ich möchte nicht nur wissen, was funktioniert, sondern auch warum."
+                data-de="Ich gehe Dingen gerne auf den Grund, hinterfrage Annahmen und denke verschiedene Ansätze durch. Dabei fallen mir oft Details, Unstimmigkeiten und Sonderfälle auf, die das Gesamtbild verändern können. Qualität ist mir wichtiger als Quantität und ich möchte nicht nur verstehen, was funktioniert, sondern auch warum."
               >I enjoy understanding things in depth, questioning assumptions, and considering different approaches. Details, inconsistencies, and edge cases often catch my attention, especially when they can change the bigger picture. I value quality over quantity and want to understand not just <em>what</em> works, but <em>why</em>.</p>
 
               <p
                 data-en="I thrive in environments where people share their knowledge, explain their reasoning, and challenge ideas constructively. Learning from others while contributing my own ideas and perspectives is what makes collaboration particularly rewarding to me."
-                data-de="Ich fühle mich in Teams wohl, in denen Wissen geteilt, Entscheidungen erklärt und Ideen konstruktiv hinterfragt werden. Von anderen zu lernen und eigene Ideen und Perspektiven einzubringen, macht Zusammenarbeit für mich besonders wertvoll."
+                data-de="Ich arbeite gerne in Teams, in denen Wissen geteilt, Überlegungen erklärt und Ideen konstruktiv hinterfragt werden. Besonders schätze ich es, von anderen zu lernen und eigene Ideen und Perspektiven einzubringen."
               >I thrive in environments where people share their knowledge, explain their reasoning, and challenge ideas constructively. Learning from others while contributing my own ideas and perspectives is what makes collaboration particularly rewarding to me.</p>
             </div>
           </div>
@@ -266,11 +293,11 @@
           </div>
 
           <!-- BACKGROUND & INTERESTS -->
-          <aside class="about-side" aria-label="Background and interests">
+          <aside class="about-side" aria-label="At a glance">
             <h3
-              data-en="Background &amp; Interests"
-              data-de="Hintergrund &amp; Interessen"
-            >Background &amp; Interests</h3>
+              data-en="At a glance"
+              data-de="Auf einen Blick"
+            >At a glance</h3>
 
             <ul>
               <li
@@ -294,13 +321,23 @@
               >Psychology</li>
 
               <li
-                data-en="Visual Art"
-                data-de="Bildende Kunst"
-              >Visual Art</li>
+                data-en="Arts &amp; Making"
+                data-de="Kunst &amp; Gestalten"
+              >Arts &amp; Making</li>
             </ul>
           </aside>
 
         </div>
+
+<div class="about-bottom-nav">
+  <a
+    href="#home"
+    data-en="↑ Back to top"
+    data-de="↑ Zurück nach oben"
+  >↑ Back to top</a>
+
+</div>
+
       </section>
 
     </main>

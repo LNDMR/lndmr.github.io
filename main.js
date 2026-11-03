@@ -1,4 +1,4 @@
-/* Shared interactions: theme, language, and homepage navigation. */
+/* Shared interactions: theme, language, and project carousel. */
 (() => {
   'use strict';
 
@@ -83,30 +83,11 @@
       window.addEventListener('resize', updateCarouselControls);
       updateCarouselControls();
     }
-  }
+  } // Ende Carousel
 
-  // Show each section's local navigation while its heading is fully in view.
-  const navigationPairs = [
-    ['#projects .section-top h2', '#projects .section-links'],
-    ['#about #about-title', '#about .section-links']
-  ].map(([heading, nav]) => ({
-    heading: document.querySelector(heading),
-    nav: document.querySelector(nav)
-  })).filter(({ heading, nav }) => heading && nav);
 
-  function updateSectionNavigation() {
-    for (const { heading, nav } of navigationPairs) {
-      const { top, bottom } = heading.getBoundingClientRect();
-      nav.classList.toggle('is-visible', top >= 0 && bottom <= window.innerHeight);
-    }
-  }
-
-  if (navigationPairs.length) {
-    window.addEventListener('scroll', updateSectionNavigation, { passive: true });
-    window.addEventListener('resize', updateSectionNavigation);
-    updateSectionNavigation();
-  }
-
+  // Footer year
   const year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
+
 })();
