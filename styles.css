@@ -995,3 +995,67 @@ a:focus-visible,button:focus-visible {
   }
 }
 
+/* =========================================
+   HOMEPAGE — Skyjo project tile
+   ========================================= */
+
+/* Stable headline. The cards sit closer to its visual center with clear right-side breathing room. */
+.skyjo-art .placeholder {
+  position: relative;
+  z-index: 2;
+  max-width: 57%;
+  transform: translateX(var(--skyjo-content-shift, 0px));
+  will-change: transform;
+  font-size: clamp(44px, 5.15vw, 82px);
+  line-height: .91;
+  overflow-wrap: normal;
+}
+.skyjo-art .art-label,
+.skyjo-art > .smallcaps:last-child {
+  position: relative;
+  z-index: 3;
+  transform: translateX(var(--skyjo-content-shift, 0px));
+}
+.skyjo-card-pair {
+  position: absolute;
+  z-index: 1;
+  /* The visible viewport determines this image's size and horizontal placement. */
+  width: var(--skyjo-art-width, 34%);
+  left: var(--skyjo-art-left, 54%);
+  right: auto;
+  height: auto;
+  max-height: 52%;
+  object-fit: contain;
+  top: 47%;
+  transform: translateY(-50%);
+  opacity: var(--skyjo-art-opacity, 1);
+  pointer-events: none;
+}
+
+/* Match the Skyjo caption with the existing headline shift only while
+   the tile is clipped from the left. The normal V14 layout stays untouched. */
+.skyjo-project .card-info > div {
+  transform: translateX(var(--skyjo-info-shift, 0px));
+}
+
+/* Each project retains its visual identity across both themes. */
+.skyjo-art { background: #24242c !important; color: #f4f2ef !important; }
+:root[data-theme="dark"] .skyjo-art { background: #292a35 !important; }
+:root[data-theme="dark"] .migraine-art { background: #3c304c; color: #f4f2ef; }
+:root[data-theme="dark"] .pattern-art { background: #50494e; color: #f4f2ef; }
+
+/* On mobile, use the typography-only composition. */
+@media (max-width: 700px) {
+  .skyjo-art .placeholder {
+    max-width: 85%;
+    font-size: clamp(52px, 11vw, 78px);
+  }
+  .skyjo-card-pair { display: none; }
+  .skyjo-art { --skyjo-content-shift: 0px; }
+}
+
+/* With reduced motion, hold the illustration at the full-tile placement. */
+@media (prefers-reduced-motion: reduce) {
+  .skyjo-card-pair { width: 34%; left: 54%; opacity: 1; }
+  .skyjo-art { --skyjo-content-shift: 0px; }
+}

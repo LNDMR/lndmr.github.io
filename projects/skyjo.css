@@ -1,0 +1,930 @@
+/* Skyjo-specific styling. Shared navigation, type and editorial grid live in ../styles.css. */
+/* 01 — Palette and shared hero accents */
+.skyjo-page {
+  --sky-blue: #4b9acb;
+  --sky-green: #75b88a;
+  --sky-yellow: #e5c65e;
+}
+
+:root[data-theme="dark"] .skyjo-page {
+  --sky-blue: #79b8e5;
+  --sky-green: #8dcca1;
+  --sky-yellow: #f2d47f;
+}
+
+.skyjo-page .sky-accent {
+  color: var(--sky-blue);
+}
+
+/* 02 — Terminal-inspired introduction showcase */
+.sky-showcase {
+  --showcase-bg: #191e25;
+  --showcase-ink: #f3f1eb;
+  --showcase-muted: #bac0c7;
+  --showcase-line: #46515c;
+  --showcase-blue: #91c9ed;
+  --showcase-green: #a3d8a9;
+  background: var(--showcase-bg);
+  color: var(--showcase-ink);
+  padding: clamp(32px, 4.5vw, 66px) clamp(22px, 5vw, 80px);
+}
+
+/* One consistent dark section in both themes; only the surrounding portfolio changes. */
+.sky-b-layout {
+  display: grid;
+  grid-template-columns: .92fr 1.08fr;
+  gap: clamp(30px, 5vw, 80px);
+  align-items: center;
+}
+
+.sky-b-type {
+  min-width: 0
+}
+
+.sky-b-stamps {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: .055em;
+  font-size: 11px;
+}
+
+.sky-b-type h2 {
+  margin: 23px 0 26px;
+  font-size: clamp(54px, 7.1vw, 118px);
+  font-weight: 800;
+  line-height: .92;
+  letter-spacing: -.085em;
+}
+
+.sky-b-type h2 span {
+  display: block;
+  white-space: nowrap
+}
+
+.sky-b-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.25px var(--showcase-ink)
+}
+
+.sky-b-blue {
+  color: var(--showcase-blue)
+}
+
+.sky-b-type p {
+  max-width: 425px;
+  color: var(--showcase-muted);
+  line-height: 1.5;
+  font-size: clamp(16px, 1.5vw, 21px);
+}
+
+.sky-b-stamps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 30px
+}
+
+.sky-b-stamps span {
+  padding: 9px 11px;
+  border: 1px solid var(--showcase-line);
+  color: var(--showcase-green)
+}
+
+.sky-b-screens {
+  min-width: 0
+}
+
+.sky-b-screens {
+  min-width: 0;
+  width: 100%;
+  max-width: 900px;
+  justify-self: end;
+}
+.sky-b-terminal { margin: 0; }
+.sky-hero-window {
+  background: #1e1f22;
+  border: 1px solid #4b5661;
+  overflow: hidden;
+  box-shadow: 0 16px 44px rgba(0, 0, 0, .16);
+}
+.sky-hero-window .sky-window-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 46px;
+  padding: 0 16px;
+  color: #9eacb7;
+  background: #15191e;
+  border-bottom: 1px solid #35414b;
+}
+.sky-hero-media {
+  background: #1e1f22;
+  padding: clamp(14px, 1.8vw, 24px);
+}
+.sky-hero-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #1e1f22;
+}
+
+@media (max-width: 1000px) {
+  .sky-b-layout {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .sky-b-type h2 {
+    font-size: clamp(60px, 10vw, 110px);
+  }
+
+  .sky-b-type p {
+    max-width: 660px;
+  }
+
+  .sky-b-screens {
+    max-width: 850px;
+  }
+}
+
+@media (max-width: 600px) {
+  .sky-showcase {
+    padding: 35px 20px;
+  }
+
+  .sky-b-type h2 {
+    font-size: clamp(48px, 11.2vw, 76px);
+  }
+
+  .sky-b-type h2 span {
+    white-space: normal;
+  }
+
+  .sky-hero-media {
+    padding: 12px;
+  }
+}
+
+/* On wide desktops, keep the Skyjo intro on one line. */
+@media (min-width: 1250px) {
+  .skyjo-page .case-dek {
+    max-width: none;
+    text-wrap: nowrap;
+  }
+}
+
+/* 03 — Narrative, physical field, gameplay walkthrough and architecture */
+/* SKYJO / Visual storytelling extension
+   Shared site typography, navigation and 35/65 case grid remain in styles.css.
+   This file is deliberately scoped to Skyjo's new narrative components. */
+.skyjo-page {
+  --sky-story-blue: #6dadd3;
+  --sky-story-green: #a4d2ae;
+  --sky-story-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace
+}
+
+.sky-original-caption {
+  display: block;
+  font: 10px/1.5 var(--sky-story-mono);
+  letter-spacing: .1em;
+  color: #a7b2bd;
+  padding-top: 13px
+}
+
+/* Major transitions: the site uses only two editorial divider lines.
+   Dark panels mark their own beginnings and endings without an extra rule.
+   The reflection divider gets equal optical breathing room on both sides. */
+.skyjo-page {
+  --sky-reflection-boundary-space: clamp(56px, 6vw, 84px);
+}
+.skyjo-page .sky-chapter.sky-story { border-top: 0; } /* Dark hero showcase -> light copy */
+
+.skyjo-page .sky-chapter {
+  border-top: 1px solid var(--line);
+  padding: var(--case-section-space) 0;
+  display: grid;
+  grid-template-columns: minmax(0, var(--case-left-column)) minmax(0, var(--case-right-column));
+  gap: var(--case-column-gap)
+}
+
+.skyjo-page .sky-chapter h2 {
+  font-size: 36px;
+  letter-spacing: -.045em;
+  line-height: 1.08;
+  margin: 12px 0 0;
+  max-width: 370px;
+}
+
+.skyjo-page .sky-chapter-right {
+  min-width: 0;
+  max-width: 790px
+}
+
+.skyjo-page .sky-chapter .sky-pull {
+  font-size: 28px;
+  line-height: 1.32;
+  letter-spacing: -.035em;
+  margin: 0 0 27px;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+.skyjo-page .sky-chapter-right>p:not(.sky-pull) {
+  color: var(--muted);
+  font-size: clamp(16px, 1.45vw, 19px);
+  line-height: 1.68;
+  max-width: 100%;
+  margin: 0 0 23px
+}
+
+.sky-course-note {
+  margin-top: 30px;
+  border-top: 1px solid var(--line);
+  padding: 15px 0;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  flex-wrap: wrap
+}
+
+.sky-course-note span:first-child,
+.sky-annotate-head,
+.sky-physical-panel .sky-annotation-num {
+  font: 11px/1.5 var(--sky-story-mono);
+  letter-spacing: .065em
+}
+
+.sky-course-note span:first-child {
+  color: var(--sky-blue)
+}
+
+.sky-course-note span:last-child {
+  font-size: 13px;
+  color: var(--muted)
+}
+
+/* Keep the introduction close to the game illustration. */
+.sky-physical .sky-chapter-right > p:last-child {
+  margin-bottom: 0;
+}
+
+/* A compact, centered composition independent of the editorial heading grid. */
+.sky-physical-panel {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(24px, 3.5vw, 48px);
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 8px 0 0;
+}
+
+/* Transparent cards */
+.sky-physical-visual {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 0;
+  padding-right: 4px;
+  transform: translateX(-45px);
+}
+
+.sky-physical-visual img {
+  display: block;
+  width: min(100%, 400px);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 8px rgba(25, 25, 35, 0.08));
+}
+
+.sky-physical-annotations {
+  min-width: 0;
+  max-width: 460px;
+}
+
+.sky-annotate-head {
+  color: var(--sky-blue);
+  margin: 0 0 20px
+}
+
+.sky-physical-annotations > div:not(.sky-physical-catch) {
+  display: grid;
+  grid-template-columns: 35px 1fr;
+  gap: 14px;
+  padding: 13px 0;
+  border-top: 1px solid var(--line)
+}
+
+.sky-physical-panel .sky-annotation-num {
+  color: var(--sky-blue)
+}
+
+.sky-physical-annotations strong {
+  font-size: clamp(16px, 1.55vw, 20px);
+  font-weight: 650;
+  letter-spacing: -.03em
+}
+
+.sky-physical-annotations div p {
+  font-size: clamp(15px, 1.2vw, 16px);
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 6px 0 0
+}
+
+/* Strategy takeaway belongs to the gameplay steps, not below the illustration. */
+.sky-physical-annotations .sky-physical-catch {
+  display: block;
+  margin-top: 16px;
+  padding: 24px 0 0;
+  border-top: 1px solid var(--line);
+}
+
+.sky-strategy-label {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--sky-blue);
+  font: 11px/1.5 var(--sky-story-mono);
+  letter-spacing: .065em;
+}
+
+.sky-physical-annotations .sky-physical-catch p {
+  margin: 0;
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: normal;
+}
+
+/* Full-width terminal walkthrough: one dark surface, nested deeper terminal window. */
+/* Terminal walkthrough: compact, consistently framed original media. */
+.sky-terminal-story {
+  background: #1a2028;
+  color: #f2f0e9;
+  margin: 0; /* The adjacent editorial chapters supply the whitespace. */
+  padding: clamp(24px, 4vw, 58px) clamp(18px, 4.5vw, 66px);
+  --terminal-line: #46515c;
+  --terminal-blue: #95c6e7;
+  --terminal-green: #a7d7ae;
+}
+.sky-terminal-intro {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: clamp(20px, 5vw, 80px);
+  align-items: end;
+  padding-bottom: clamp(26px, 3.4vw, 44px);
+}
+.sky-terminal-kicker, .sky-small-index, .sky-window-bar, .sky-terminal-tabs button {
+  font-family: var(--sky-story-mono);
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: .055em;
+}
+.sky-terminal-kicker, .sky-small-index { color: var(--terminal-green); }
+.sky-terminal-intro h2 {
+  font-size: clamp(40px, 4.5vw, 64px);
+  line-height: 1;
+  letter-spacing: -.065em;
+  max-width: 760px;
+  margin: 18px 0 0;
+}
+.sky-terminal-intro > p {
+  color: #c1c9d0;
+  line-height: 1.6;
+  font-size: clamp(15px, 1.6vw, 19px);
+  margin: 0;
+  max-width: 420px;
+}
+.sky-terminal-tabs {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border-top: 1px solid var(--terminal-line);
+  border-bottom: 1px solid var(--terminal-line);
+}
+.sky-terminal-tabs button {
+  border: 0;
+  background: transparent;
+  color: #b2bac5;
+  padding: 16px 10px 16px 12px;
+  display: flex;
+  gap: 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: background .16s ease;
+  color-scheme: dark;
+}
+.sky-terminal-tabs button:not(:last-child) { border-right: 1px solid var(--terminal-line); }
+.sky-terminal-tabs button span:first-child { color: var(--terminal-green); }
+.sky-terminal-tabs button.is-active, .sky-terminal-tabs button:hover { background: #303a45; color: #fff; }
+.sky-terminal-tabs button:focus-visible { outline: 2px solid var(--terminal-blue); outline-offset: -3px; }
+.sky-terminal-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(260px, .72fr);
+  gap: clamp(28px, 4vw, 58px);
+  align-items: center;
+  padding: clamp(24px, 3vw, 40px) 0;
+}
+.sky-terminal-panel[hidden] { display: none; }
+.sky-terminal-visual { min-width: 0; width: 100%; max-width: 720px; }
+.sky-terminal-window {
+  background: #1e1f22;
+  border: 1px solid #4b5661;
+  min-width: 0;
+  overflow: hidden;
+  box-shadow: 0 16px 44px rgba(0, 0, 0, .16);
+}
+/* The title bar occupies the same height whether playback controls are present or not. */
+.sky-window-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  height: 46px;
+  min-height: 46px;
+  background: #15191e;
+  color: #9eacb7;
+  border-bottom: 1px solid #35414b;
+  padding: 0 16px;
+  gap: 14px;
+}
+
+/* Stable viewport across all five tabs. The stills are 780 x 642; videos
+   have nearly identical proportions, so cover trims only a few pixels. */
+.sky-terminal-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 780 / 642;
+  overflow: hidden;
+  background: #1e1f22; /* screenshot pixels: RGB(30,31,34) */
+}
+/* Same visible surface across screenshots, posters, and videos. */
+.sky-terminal-media:has(video),
+.sky-terminal-window:has(video) { background: #1e1f22; }
+.sky-terminal-media a,
+.sky-terminal-media video,
+.sky-terminal-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #1e1f22;
+}
+/* Absolutely position the media so its intrinsic dimensions cannot resize the viewport. */
+.sky-terminal-media > video,
+.sky-terminal-media > a {
+  position: absolute;
+  inset: 0;
+}
+.sky-terminal-media a { cursor: zoom-in; line-height: 0; }
+.sky-terminal-media video,
+.sky-terminal-media img { object-fit: cover; }
+
+.sky-terminal-explain h3 {
+  font-size: clamp(30px, 3.2vw, 50px);
+  line-height: 1.03;
+  letter-spacing: -.057em;
+  margin: 0 0 18px;
+}
+.sky-terminal-explain p {
+  font-size: clamp(15px, 1.5vw, 19px);
+  line-height: 1.66;
+  color: #c4cbd2;
+  max-width: 390px;
+  margin: 0;
+}
+.sky-video-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.sky-video-actions button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 29px;
+  padding: 0;
+  border: 1px solid #35414b;
+  border-radius: 3px;
+  background: transparent;
+  color: #d4e0e9;
+  font: 18px/1 var(--sky-story-mono);
+  cursor: pointer;
+}
+.sky-video-actions button:hover { background: #2b3440; }
+.sky-video-actions button:focus-visible { outline: 2px solid var(--terminal-blue); outline-offset: 2px; }
+.sky-video-replay span { font-size: 24px; }
+
+/* Four-step development process */
+.sky-process {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 20px;
+  margin-top: 28px;
+  border-top: 1px solid var(--line)
+}
+
+.sky-process>div {
+  display: grid;
+  grid-template-columns: 35px minmax(0, 1fr);
+  gap: 4px 13px;
+  align-content: start;
+  padding: 17px 0;
+  border-bottom: 1px solid var(--line)
+}
+
+.sky-process span {
+  grid-row: 1/3;
+  color: var(--sky-blue);
+  font: 12px var(--sky-story-mono)
+}
+
+.sky-process strong {
+  font-size: 16px;
+  letter-spacing: -.025em
+}
+
+.sky-process small {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5
+}
+
+/* The reflection follows a dense code example: a single divider marks
+   the shift from implementation to hindsight. Balanced on both sides. */
+.skyjo-page .sky-chapter.sky-reflection {
+  margin-top: 0;
+  padding-top: var(--sky-reflection-boundary-space);
+}
+
+.sky-end-link {
+  display: inline-block;
+  margin-top: 20px
+}
+
+@media(max-width:900px) {
+  .sky-physical-visual {
+    transform: none;
+  }
+
+  .sky-physical-panel {
+    grid-template-columns: 1fr 1fr;
+    gap: 25px
+  }
+
+  .sky-terminal-panel {
+    grid-template-columns: 1fr;
+    gap: 10px
+  }
+
+  .sky-terminal-explain {
+    max-width: 720px
+  }
+
+  .sky-terminal-explain p {
+    max-width: 700px
+  }
+
+  .sky-terminal-intro {
+    grid-template-columns: 1fr
+  }
+
+}
+
+@media(max-width:750px) {
+  .skyjo-page .sky-chapter {
+    grid-template-columns: 1fr;
+    gap: 24px
+  }
+
+  .skyjo-page .sky-chapter h2 {
+    max-width: none
+  }
+
+  .sky-physical-panel {
+    grid-column: 1;
+    grid-template-columns: 1fr;
+    padding: 14px 0 0;
+    gap: 28px;
+  }
+
+  .sky-physical-visual {
+    justify-content: center;
+    padding-right: 0;
+  }
+
+  .sky-physical-visual img {
+    max-height: 490px
+  }
+
+  .sky-physical-annotations {
+    max-width: 100%
+  }
+
+  .sky-terminal-intro h2 {
+    font-size: clamp(39px, 8vw, 64px)
+  }
+
+}
+
+@media(max-width:550px) {
+  .sky-terminal-tabs button {
+    flex-direction: column;
+    gap: 5px;
+    padding: 12px 8px;
+    font-size: 10px
+  }
+
+
+  .sky-process {
+    grid-template-columns: 1fr
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .sky-terminal-tabs button {
+    transition: none
+  }
+}
+
+/* Walkthrough-specific responsive layout */
+@media (max-width: 980px) {
+  .sky-terminal-intro { grid-template-columns: 1fr; gap: 18px; }
+  .sky-terminal-panel { grid-template-columns: 1fr; gap: 24px; }
+  .sky-terminal-visual { max-width: 720px; margin-inline: auto; }
+  .sky-terminal-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sky-terminal-tabs button:nth-child(2n) { border-right: 0; }
+  .sky-terminal-tabs button { border-bottom: 1px solid var(--terminal-line); }
+}
+@media (max-width: 640px) {
+  .sky-terminal-tabs { grid-template-columns: 1fr; }
+  .sky-terminal-tabs button { border-right: 0 !important; }
+  .sky-terminal-tabs button:not(:last-child) { border-bottom: 1px solid var(--terminal-line); }
+  .sky-terminal-media { aspect-ratio: 780 / 642; }
+}
+
+
+
+/* A native video poster displays the actual first frame before playback. */
+.sky-terminal-media video { cursor: pointer; }
+.sky-video-error {
+  margin: 0;
+  padding: 8px 12px;
+  background: #3d2529;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.sky-video-error[hidden] { display: none; }
+
+
+/* 04 — Behind the game: a single editorial section with supporting details.
+   Align all copy with the site's existing case study grid. */
+.skyjo-page .sky-chapter.sky-code {
+  border-top: 0; /* The dark walkthrough already marks the chapter transition. */
+  padding-bottom: var(--sky-reflection-boundary-space);
+  row-gap: clamp(30px, 4vw, 56px);
+}
+.sky-code .sky-chapter-right > p:last-child { margin-bottom: 0; }
+.sky-code .sky-implementation {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: clamp(34px, 4vw, 58px);
+}
+/* This matches .sky-chapter exactly, rather than introducing another 2/3 grid. */
+.sky-implementation-lead,
+.sky-model-bridge-lead,
+.sky-player-lead {
+  display: grid;
+  grid-template-columns: minmax(0, var(--case-left-column)) minmax(0, var(--case-right-column));
+  gap: var(--case-column-gap);
+  align-items: start;
+  margin: 0 0 clamp(15px, 2.3vw, 24px);
+}
+.sky-technical-label {
+  display: block;
+  color: var(--sky-blue);
+  font: 12px/1.5 var(--sky-story-mono);
+  letter-spacing: .075em;
+  margin: 0 0 10px;
+}
+.sky-implementation-lead h3,
+.sky-model-bridge-lead h3,
+.sky-player-lead h3 {
+  font-size: clamp(22px, 2vw, 27px);
+  line-height: 1.2;
+  letter-spacing: -.037em;
+  font-weight: 650;
+  max-width: 460px;
+  margin: 0;
+}
+.sky-implementation-lead p,
+.sky-model-bridge-lead p,
+.sky-player-lead p {
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(15px, 1.3vw, 17px);
+  line-height: 1.65;
+  max-width: 790px;
+}
+/* Feature illustration: a single gray visual with the source code next to it. */
+.sky-model-feature {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+.sky-model-visual {
+  background: var(--panel);
+  padding: clamp(26px, 3.3vw, 46px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sky-card-comparison {
+  width: 100%;
+  display: flex;
+  gap: clamp(12px, 2.5vw, 32px);
+  align-items: center;
+  justify-content: center;
+}
+.sky-model-card {
+  width: clamp(75px, 8.7vw, 119px);
+  aspect-ratio: .77;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.sky-model-card > span {
+  font: 600 clamp(30px, 3.5vw, 48px)/1 var(--sky-story-mono);
+  color: var(--muted);
+}
+.sky-model-card > small {
+  font: 10px/1.3 var(--sky-story-mono);
+  letter-spacing: .03em;
+  color: var(--muted);
+}
+.sky-model-card-open { border-color: var(--sky-blue); }
+.sky-model-card-open > span,
+.sky-model-arrow { color: var(--sky-blue); }
+.sky-model-arrow { font: 22px/1 var(--sky-story-mono); }
+.sky-model-code,
+.sky-player-code-panel { min-width: 0; background: #1e1f22; color: #c5d6e5; }
+.sky-code-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 22px;
+  color: #f0efec;
+  border-bottom: 1px solid #3b4651;
+  font: 11px/1.5 var(--sky-story-mono);
+  letter-spacing: .055em;
+}
+.sky-code-header > span:last-child { color: #a7d7ae; }
+.sky-model-code pre,
+.sky-player-code pre {
+  margin: 0;
+  padding: clamp(18px, 2.3vw, 30px);
+  overflow-x: auto;
+  font: clamp(11px, 1.08vw, 13px)/1.8 var(--sky-story-mono);
+  tab-size: 4;
+}
+.sky-model-code code,
+.sky-player-code code { font: inherit; white-space: pre; }
+.sk-kw { color: #9ed1ee; }
+.sk-type { color: #b7d6a8; }
+.sk-str { color: #e4c081; }
+.sk-fn { color: #c7b9eb; }
+/* Compact bridge: a real mapping, no extra illustration or framed card. */
+.sky-model-bridge { min-width: 0; }
+.sky-model-bridge-example {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(12px, 2vw, 26px);
+  padding: clamp(15px, 1.8vw, 22px) 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  min-width: 0;
+}
+.sky-model-bridge-example > div {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.sky-bridge-caption {
+  color: var(--sky-blue);
+  font: 10px/1.5 var(--sky-story-mono);
+  letter-spacing: .04em;
+}
+.sky-model-bridge-example strong { font: 600 19px/1.3 var(--sky-story-mono); }
+.sky-model-bridge-example code {
+  font: clamp(12px, 1.2vw, 16px)/1.5 var(--sky-story-mono);
+  overflow-wrap: anywhere;
+}
+.sky-bridge-arrow { flex-shrink: 0; font: 19px/1 var(--sky-story-mono); color: var(--sky-blue); }
+/* Two implementations; one restrained, self-contained code comparison. */
+.sky-player-code {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: #3b4651;
+  border: 1px solid #3b4651;
+}
+@media (max-width: 900px) {
+  .sky-implementation-lead,
+  .sky-model-bridge-lead,
+  .sky-player-lead { grid-template-columns: 1fr; gap: 10px; }
+  .sky-model-feature { grid-template-columns: 1fr; }
+}
+@media (max-width: 650px) {
+  .sky-player-code { grid-template-columns: 1fr; }
+  .sky-model-bridge-example { gap: 12px; flex-wrap: wrap; justify-content: flex-start; }
+  .sky-model-bridge-example > div { flex: 1 1 112px; }
+  .sky-model-visual { padding: 25px 18px; }
+  .sky-code-header { font-size: 10px; padding: 13px 17px; }
+  .sky-model-code pre,
+  .sky-player-code pre { font-size: 11px; padding: 17px; }
+}
+
+/* V8: blue labels alone establish the hierarchy beneath Behind the game. */
+.sky-code .sky-implementation-lead,
+.sky-code .sky-model-bridge-lead,
+.sky-code .sky-player-lead { margin-bottom: clamp(16px, 2vw, 23px); }
+.sky-code .sky-technical-label {
+  font-size: 13px; line-height: 1.45; letter-spacing: .055em;
+  font-weight: 600; margin: 2px 0 0;
+}
+.sky-code .sky-model-bridge-lead { margin-bottom: 0; }
+.sky-code .sky-bridge-copy .sky-index-explanation { margin-top: 16px; }
+.sky-code .sky-inline-map {
+  color: var(--sky-blue); font: 600 .95em/1.55 var(--sky-story-mono);
+  white-space: nowrap;
+}
+/* Keep the two deck paragraphs together in the established right grid column. */
+.sky-code .sky-bridge-copy { min-width: 0; max-width: 790px; }
+.sky-code .sky-bridge-copy p { margin: 0; color: var(--muted); }
+/* Technical paragraphs use the same right-hand column and typography throughout. */
+.sky-code .sky-implementation-lead p,
+.sky-code .sky-model-bridge-lead p,
+.sky-code .sky-player-lead p { font-size: clamp(16px, 1.45vw, 19px); line-height: 1.68; }
+@media (max-width: 900px) {
+  .sky-code .sky-technical-label { margin-bottom: 4px; }
+  .sky-code .sky-bridge-copy .sky-index-explanation { margin-top: 12px; }
+}
+
+
+/* V9 — technical prose and controlled spacing.
+   Inline code is neutral so blue remains reserved for the technical labels. */
+.sky-code .sky-inline-code {
+  display: inline;
+  font: 0.88em/1.35 var(--sky-story-mono);
+  color: var(--ink);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.055em 0.24em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  white-space: nowrap;
+}
+/* The three explanations belong to one chapter, without oversized gaps. */
+.sky-code .sky-implementation {
+  gap: clamp(30px, 3.2vw, 46px);
+}
+.sky-code .sky-implementation-lead,
+.sky-code .sky-model-bridge-lead,
+.sky-code .sky-player-lead {
+  margin-bottom: clamp(16px, 1.7vw, 22px);
+}
+/* Visuals stay full-width within the content container, not the viewport. */
+.sky-code .sky-model-visual {
+  padding: clamp(22px, 2.5vw, 36px);
+}
+.sky-code .sky-card-comparison {
+  gap: clamp(12px, 2vw, 26px);
+}
+@media (max-width: 900px) {
+  .sky-code .sky-implementation { gap: 30px; }
+}
+
+/* V10 — give explanatory copy room before its supporting visual/code.
+   The deck paragraph has no standalone visual, so its spacing is unchanged. */
+.sky-code .sky-implementation-lead,
+.sky-code .sky-player-lead {
+  margin-bottom: clamp(28px, 2.8vw, 38px);
+}
+@media (max-width: 900px) {
+  .sky-code .sky-implementation-lead,
+  .sky-code .sky-player-lead { margin-bottom: 26px; }
+}
+
+/* Narrow screens: preserve the same transition logic with smaller whitespace. */
+@media (max-width: 750px) {
+  .skyjo-page { --sky-reflection-boundary-space: 48px; }
+}
