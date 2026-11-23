@@ -326,6 +326,23 @@ a:focus-visible,button:focus-visible {
   margin:0 0 7px
 }
 
+/* Years lead the project titles at the same size, with quieter emphasis. */
+.card-info h3 {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  column-gap: .6em;
+  row-gap: 0;
+}
+
+.card-info .project-year {
+  font: inherit;
+  font-weight: 400;
+  color: var(--muted);
+  letter-spacing: inherit;
+  white-space: nowrap;
+}
+
 .card-info p {
   color:var(--muted);
   font-size:13px;
@@ -708,7 +725,8 @@ a:focus-visible,button:focus-visible {
   width:min(calc(100% - 2 * var(--page-gutter)),var(--page-max-width));
   margin:0 auto;
   min-height:600px;
-  padding: clamp(64px, 8vw, 115px) 0;
+  /* Portrait reaches the bottom edge; only the top keeps editorial padding. */
+  padding: clamp(64px, 5vw, 86px) 0 0;
   display:grid;
   grid-template-columns:minmax(0,1.45fr) minmax(220px,.90fr) minmax(115px,.38fr);
   gap:clamp(24px,3.7vw,72px);
@@ -752,52 +770,36 @@ a:focus-visible,button:focus-visible {
   font-style:italic
 }
 
+/* Layered transparent artwork. Natural image height sets the section height,
+   so the feet and purple cutout finish exactly at the section's bottom edge. */
 .portrait-composition {
-  position:relative;
-  min-height:480px;
-  display:flex;
-  align-items:center;
-  justify-content:flex-start;
-  align-self:center
+  position: relative;
+  grid-column: 2;
+  width: clamp(420px, 35vw, 560px);
+  max-width: none;
+  min-width: 0;
+  align-self: end;
+  justify-self: center;
+  isolation: isolate;
 }
 
-.lilac-plane {
-  display:block;
-  position:absolute;
-  top:0;
-  right:1%;
-  width:70%;
-  height:75%;
-  background:#bca8df;
-  transform:translate(3%,-4%)
+.portrait-silhouette {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: auto;
+  right: -10%;
+  bottom: 0;
+  pointer-events: none;
 }
 
-.portrait-frame {
-  position:relative;
-  margin-top:75px;
-  width:83%;
-  height:400px;
-  overflow:hidden;
-  background:#c8c8c8;
-  filter:grayscale(1)
+.portrait-photo {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
 }
-
-.portrait-frame img {
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:cover
-}
-
-.portrait-caption {
-  position:absolute;
-  bottom:0;
-  left:0;
-  font-size:9px;
-  letter-spacing:.16em;
-  color:#aaa2af
-}
-
 
 /* ABOUT — BACKGROUND & INTERESTS */
 
@@ -850,10 +852,7 @@ a:focus-visible,button:focus-visible {
     align-self:start
   }
   .portrait-composition {
-    min-height:395px
-  }
-  .portrait-frame {
-    height:350px
+    width: min(100%, 420px);
   }
   .about-copy h2 {
     font-size:65px
@@ -863,7 +862,7 @@ a:focus-visible,button:focus-visible {
 @media(max-width:650px) {
   .about-inner {
     grid-template-columns:1fr;
-    padding:60px 0 54px;
+    padding:60px 0 0;
     gap:30px
   }
   .about-copy h2 {
@@ -873,22 +872,19 @@ a:focus-visible,button:focus-visible {
     font-size:15px;
     line-height:1.65
   }
+  /* On phones, put interests before the art so the figure still meets the edge. */
   .portrait-composition {
-    width:min(100%,340px);
-    min-height:355px;
-    margin:5px auto 0
+    grid-column: 1;
+    grid-row: 3;
+    width: min(100%, 360px);
+    margin: 5px auto 0;
   }
-  .portrait-frame {
-    height:315px;
-    margin-top:35px;
-    width:78%
-  }
-  .lilac-plane {
-    width:65%;
-    height:79%
+  .portrait-silhouette {
+    right: -7%;
   }
   .about-side {
-    grid-column:auto;
+    grid-column:1;
+    grid-row:2;
     justify-content:flex-start;
     gap:11px 20px;
     font-size:11px
@@ -918,11 +914,12 @@ a:focus-visible,button:focus-visible {
    ========================================= */
 
 .about-bottom-nav {
-  width: min(
-    calc(100% - 2 * var(--page-gutter)),
-    var(--page-max-width)
-  );
-  margin: 0 auto;
+  position: absolute;
+  z-index: 3;
+  right: max(var(--page-gutter), calc((100vw - var(--page-max-width)) / 2));
+  bottom: 0;
+  width: auto;
+  margin: 0;
   padding: 0 0 24px;
 
   display: flex;

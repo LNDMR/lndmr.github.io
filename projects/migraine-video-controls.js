@@ -18,7 +18,8 @@
       controls: unit.querySelector('.mt-video-controls'),
       inView: false,
       manuallyPaused: false,
-      manuallyStarted: false
+      manuallyStarted: false,
+      clickToPlay: unit.classList.contains('mt-custom-device')
     }))
     .filter(entry => entry.video && entry.playButton && entry.replayButton && entry.controls);
 
@@ -43,6 +44,11 @@
 
   function play(entry) {
     // The media's actual play/pause events determine the visible button state.
+    if (entry.clickToPlay) {
+      for (const other of entries) {
+        if (other !== entry && other.clickToPlay && !other.video.paused) other.video.pause();
+      }
+    }
     const attempt = entry.video.play();
     if (attempt?.catch) attempt.catch(() => refresh(entry));
   }
@@ -55,6 +61,11 @@
     video.removeAttribute('autoplay');
     video.pause();
     for (const event of ['play', 'pause', 'ended']) video.addEventListener(event, () => refresh(entry));
+    video.addEventListener('play', () => {
+      if (entry.clickToPlay) for (const other of entries) {
+        if (other !== entry && other.clickToPlay && !other.video.paused) other.video.pause();
+      }
+    });
 
     playButton.addEventListener('click', () => {
       if (video.paused || video.ended) {
@@ -94,7 +105,7 @@
           entry.manuallyStarted = false;
         } else {
           entry.video.currentTime = 0;
-          if (!document.hidden && !reducedMotion.matches) play(entry);
+          if (!entry.clickToPlay && !document.hidden && !reducedMotion.matches) play(entry);
           else refresh(entry);
         }
       }
@@ -107,14 +118,14 @@
   document.addEventListener('visibilitychange', () => {
     for (const entry of entries) {
       if (document.hidden) entry.video.pause();
-      else if (entry.inView && !entry.manuallyPaused && (!reducedMotion.matches || entry.manuallyStarted)) play(entry);
+      else if (entry.inView && !entry.manuallyPaused && (!reducedMotion.matches || entry.manuallyStarted) && (!entry.clickToPlay || entry.manuallyStarted)) play(entry);
     }
   });
 
   function onMotionChange() {
     for (const entry of entries) {
       if (reducedMotion.matches && !entry.manuallyStarted) entry.video.pause();
-      else if (!reducedMotion.matches && entry.inView && !entry.manuallyPaused && !document.hidden) play(entry);
+      else if (!reducedMotion.matches && entry.inView && !entry.manuallyPaused && !document.hidden && (!entry.clickToPlay || entry.manuallyStarted)) play(entry);
     }
   }
   if (reducedMotion.addEventListener) reducedMotion.addEventListener('change', onMotionChange);

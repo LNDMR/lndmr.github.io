@@ -1,0 +1,128 @@
+/* Pattern Patrol 2026 case-study review — standalone project styling. */
+.pattern-page {--pp-night:#101c25;--pp-sage:#9ebbb5;--pp-accent:#577e74;}
+.pattern-page .pp-dot {color:var(--pp-accent)}
+.pattern-page .case-hero {padding-bottom:clamp(54px,6vw,90px)}
+.pattern-page .case-hero h1 {font-size:clamp(62px,9vw,132px)}
+.pattern-page .case-dek {max-width:920px}
+/* One distinctive visual interlude, not a repeated UI treatment. */
+.pp-hero-art {position:relative;min-height:clamp(425px,43vw,590px);background:var(--pp-night);color:#f4f3ef;overflow:hidden;isolation:isolate}
+.pp-art-image {position:absolute;inset:-8% -8% -8% 29%;background:linear-gradient(90deg,#101c25 1%,rgba(16,28,37,.7) 22%,rgba(16,28,37,.04) 58%),url('../assets/pattern-patrol/neural-engraving.webp') 50% center/cover;z-index:0}
+.pp-art-content {position:relative;z-index:1;display:flex;align-items:center;min-height:inherit;padding:clamp(30px,5vw,72px);max-width:66%}
+.pp-art-message h2 {font-size:clamp(58px,7.3vw,105px);line-height:.94;letter-spacing:-.075em;margin:0;font-weight:800}
+.pp-art-message h2 span,.pp-art-message h2 em {display:block;font-style:normal}
+.pp-art-message h2 em {color:var(--pp-sage)}
+/* Shared layout from styles.css provides the editorial text columns. */
+.pattern-page .pp-story .case-copy {max-width:780px}
+.pattern-page .pp-story .case-copy p {line-height:1.68}
+.pattern-page #the-idea {padding-bottom:clamp(28px,3.2vw,42px)}
+/* The two recordings form one continuous editorial composition. */
+.pp-demo {padding:clamp(12px,1.8vw,24px) 0 clamp(44px,5vw,72px);margin:0; border-bottom:1px solid var(--line)}
+.pp-demo-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,5vw,88px);max-width:1110px;margin:0 auto}
+.pp-demo-card {display:grid;grid-template-rows:minmax(112px,auto) auto auto;align-content:start;justify-items:center;min-width:0;gap:0}
+.pp-demo-copy {width:100%;max-width:350px;margin:0 auto 20px;align-self:start}
+.pp-demo-copy h3 {font-size:clamp(21px,2vw,27px);line-height:1.15;letter-spacing:-.045em;margin:0 0 10px;font-weight:700;color:var(--ink)}
+.pp-demo-copy p {font-size:clamp(15px,1.2vw,17px);line-height:1.58;color:var(--muted);margin:0}
+.pp-device-shell {position:relative;width:min(100%,289px);aspect-ratio:380/800;isolation:isolate;filter:drop-shadow(0 16px 17px rgba(9,13,18,.11))}
+.pp-real-screen {position:absolute;left:4.47%;top:2.125%;width:91.06%;height:95.75%;border-radius:7%/3.2%;overflow:hidden;z-index:0;background:#090a0c}
+.pp-real-screen video {display:block;width:100%;height:100%;object-fit:fill;background:#090a0c}
+.pp-real-frame {position:absolute;inset:0;width:100%;height:100%;object-fit:fill;z-index:1;pointer-events:none}
+.pp-video-controls {display:flex;justify-content:center;align-items:center;gap:26px;width:100%;margin:14px auto 0;color:var(--ink)}
+.pp-video-control {display:inline-flex;gap:8px;align-items:center;border:0;background:none;color:inherit;font:inherit;font-size:13px;font-weight:700;cursor:pointer;padding:6px 2px}
+.pp-video-control:hover {opacity:.63}
+.pp-video-control:focus-visible {outline:2px solid var(--focus);outline-offset:4px}
+.pp-control-icon {height:17px;width:17px;fill:currentColor}
+.pp-control-replay {fill:none}
+.pp-control-play {display:none}
+.pp-demo-card:not(.is-playing) .pp-control-play {display:block}
+.pp-demo-card:not(.is-playing) .pp-control-pause {display:none}
+
+@media(max-width:900px){.pp-art-content{max-width:80%}.pp-art-image{inset:0 -14% 0 22%}}
+@media(max-width:700px){.pp-hero-art{min-height:460px}.pp-art-content{max-width:100%;min-height:460px}.pp-art-image{inset:0;opacity:.5}.pp-art-message h2{font-size:clamp(55px,11vw,80px)}.pp-demo-grid{grid-template-columns:1fr;gap:52px;max-width:430px}.pp-demo-card{grid-template-rows:auto auto auto}.pp-demo-copy{margin-bottom:18px;max-width:340px}.pp-device-shell{width:min(100%,289px)}}
+/* One quiet, reusable source viewer for both technical sections. */
+.pattern-page #implementation{padding-bottom:0}
+.pattern-page #ai-integration{padding-bottom:0}
+.pp-shared-source{max-width:1160px;margin:clamp(36px,3.6vw,48px) auto 0;padding:0 0 clamp(68px,7vw,100px)}
+.pp-source-heading{margin:0 0 17px}
+.pp-source-heading h3{font-size:clamp(20px,1.8vw,26px);font-weight:650;letter-spacing:-.035em;line-height:1.25;margin:0}
+.pp-source-tabs{display:flex;flex-wrap:wrap;gap:clamp(14px,2vw,27px);border-bottom:1px solid var(--line)}
+.pp-source-tabs button{appearance:none;border:0;border-bottom:2px solid transparent;margin:0 0 -1px;padding:12px 0 13px;background:transparent;color:var(--muted);font:inherit;font-size:clamp(15px,1.1vw,17px);font-weight:500;cursor:pointer;transition:color .16s ease}
+.pp-source-tabs button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--pp-accent);font-weight:650}
+.pp-source-tabs button:hover{color:var(--ink)}
+.pp-source-tabs button:focus-visible,.pp-source-expand:focus-visible{outline:2px solid var(--pp-accent);outline-offset:4px}
+.pp-source-panel{padding:clamp(20px,2.8vw,32px) 0 0;min-width:0}
+.pp-source-description{max-width:760px;margin:0 0 20px;color:var(--muted);font-size:clamp(16px,1.2vw,18px);line-height:1.7}
+.pp-source-code{background:#111e27;color:#e7eceb;min-width:0}
+.pp-source-file{padding:15px clamp(18px,2vw,26px);color:#b6c5c9;border-bottom:1px solid #35454e;font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace}
+.pp-source-code pre{padding:clamp(18px,2.3vw,28px);margin:0;white-space:pre;overflow-x:auto;font:clamp(12px,1vw,14px)/1.72 ui-monospace,SFMono-Regular,Menlo,monospace;tab-size:4}
+.pp-source-code code{font:inherit}
+.pp-prompt-preview:not(.is-expanded) pre{max-height:220px;overflow:hidden;position:relative}
+.pp-prompt-preview:not(.is-expanded){position:relative}
+.pp-prompt-preview:not(.is-expanded):after{content:'';position:absolute;bottom:0;left:0;right:0;height:90px;background:linear-gradient(transparent,#111e27);pointer-events:none}
+.pp-prompt-preview.is-expanded pre{white-space:pre-wrap;overflow-wrap:break-word}
+.pp-source-expand{background:none;border:0;color:var(--ink);font:inherit;font-size:15px;font-weight:650;cursor:pointer;padding:14px 0 0}
+.pp-source-expand:hover{text-decoration:underline}
+@media(max-width:560px){.pp-shared-source{margin-top:34px}.pp-source-tabs{gap:14px}.pp-source-tabs button{font-size:14px}.pp-source-code pre{font-size:11px;padding:16px}.pp-source-description{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.pp-source-tabs button{transition:none}}
+
+
+/* Editorial refinement: one consistent reading hierarchy for both technical explorations.
+   Explanations should be as readable as regular text; code stays a deliberate optional layer. */
+.pattern-page .pp-shared-source {
+  max-width:1160px;
+  margin-top:clamp(34px,3.5vw,46px);
+  padding-bottom:clamp(62px,6.5vw,88px);
+}
+.pattern-page .pp-source-heading {margin-bottom:12px}
+.pattern-page .pp-source-heading h3 {font-size:clamp(19px,1.7vw,24px);font-weight:650}
+.pattern-page .pp-source-tabs {gap:clamp(16px,2.4vw,35px)}
+.pattern-page .pp-source-tabs button {font-size:clamp(16px,1.2vw,18px);padding:13px 0 14px}
+.pattern-page .pp-source-panel {
+  display:grid;
+  grid-template-columns:minmax(0,.67fr) minmax(0,1.33fr);
+  column-gap:clamp(26px,4vw,68px);
+  align-items:start;
+  padding-top:clamp(23px,2.9vw,38px);
+}
+.pattern-page .pp-source-description {
+  font-size:clamp(17px,1.3vw,19px);
+  color:var(--ink);
+  line-height:1.64;
+  margin:0;
+  max-width:345px;
+}
+.pattern-page .pp-source-code {min-width:0;border-radius:2px}
+.pattern-page .pp-source-file {font-size:12px;padding:13px clamp(16px,1.7vw,23px)}
+.pattern-page .pp-source-code pre {font-size:14px;line-height:1.6;padding:clamp(18px,2vw,25px)}
+.pattern-page .pp-source-expand {grid-column:2;justify-self:start;padding-top:13px}
+.pattern-page .pp-prompt-preview:not(.is-expanded) pre {max-height:195px}
+@media(max-width:760px){
+  .pattern-page .pp-source-panel {grid-template-columns:1fr;gap:18px;padding-top:22px}
+  .pattern-page .pp-source-description {max-width:690px;font-size:17px}
+  .pattern-page .pp-source-expand {grid-column:1;padding-top:0}
+}
+@media(max-width:560px){
+  .pattern-page .pp-source-tabs button {font-size:15px}
+  .pattern-page .pp-source-code pre {font-size:13px;line-height:1.6}
+}
+
+/* Inline identifiers use the same understated code treatment as the Skyjo case study. */
+.pp-inline-code {
+  display: inline;
+  font: 0.88em/1.35 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: var(--ink);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.055em 0.24em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  white-space: nowrap;
+}
+
+/* Kotlin syntax colors shared in spirit with Skyjo; no change to layout. */
+.pattern-page .pp-source-code .pp-syntax-kw { color: #9ed1ee; }
+.pattern-page .pp-source-code .pp-syntax-type { color: #b7d6a8; }
+.pattern-page .pp-source-code .pp-syntax-str { color: #e4c081; }
+.pattern-page .pp-source-code .pp-syntax-fn { color: #c7b9eb; }
+.pattern-page .pp-source-code .pp-syntax-comment { color: #92a2ad; }
+.pattern-page .pp-source-code .pp-syntax-num { color: #e4c081; }
