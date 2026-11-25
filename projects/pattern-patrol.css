@@ -5,15 +5,17 @@
 .pattern-page .case-hero h1 {font-size:clamp(62px,9vw,132px)}
 .pattern-page .case-dek {max-width:920px}
 /* One distinctive visual interlude, not a repeated UI treatment. */
-.pp-hero-art {position:relative;min-height:clamp(425px,43vw,590px);background:var(--pp-night);color:#f4f3ef;overflow:hidden;isolation:isolate}
-.pp-art-image {position:absolute;inset:-8% -8% -8% 29%;background:linear-gradient(90deg,#101c25 1%,rgba(16,28,37,.7) 22%,rgba(16,28,37,.04) 58%),url('../assets/pattern-patrol/neural-engraving.webp') 50% center/cover;z-index:0}
+.pp-hero-art {position:relative;min-height:clamp(460px,50vw,680px);background:var(--pp-night);color:#f4f3ef;overflow:hidden;isolation:isolate}
+/* One artwork layer, with a gradual fade over the actual left edge. */
+.pp-art-image {position:absolute;inset:0;z-index:0;background:var(--pp-night)}
+.pp-art-image::before {content:"";position:absolute;inset:0 0 0 32%;background:url('../assets/pattern-patrol/neural-hero-refined.webp') right center / cover no-repeat;mask-image:linear-gradient(90deg,transparent 0%,#000 35%);-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 35%);pointer-events:none}
 .pp-art-content {position:relative;z-index:1;display:flex;align-items:center;min-height:inherit;padding:clamp(30px,5vw,72px);max-width:66%}
 .pp-art-message h2 {font-size:clamp(58px,7.3vw,105px);line-height:.94;letter-spacing:-.075em;margin:0;font-weight:800}
 .pp-art-message h2 span,.pp-art-message h2 em {display:block;font-style:normal}
 .pp-art-message h2 em {color:var(--pp-sage)}
 /* Shared layout from styles.css provides the editorial text columns. */
 .pattern-page .pp-story .case-copy {max-width:780px}
-.pattern-page .pp-story .case-copy p {line-height:1.68}
+.pattern-page .pp-story .case-copy p:not(.lead) {font-size:18px;line-height:1.68}
 .pattern-page #the-idea {padding-bottom:clamp(28px,3.2vw,42px)}
 /* The two recordings form one continuous editorial composition. */
 .pp-demo {padding:clamp(12px,1.8vw,24px) 0 clamp(44px,5vw,72px);margin:0; border-bottom:1px solid var(--line)}
@@ -21,7 +23,7 @@
 .pp-demo-card {display:grid;grid-template-rows:minmax(112px,auto) auto auto;align-content:start;justify-items:center;min-width:0;gap:0}
 .pp-demo-copy {width:100%;max-width:350px;margin:0 auto 20px;align-self:start}
 .pp-demo-copy h3 {font-size:clamp(21px,2vw,27px);line-height:1.15;letter-spacing:-.045em;margin:0 0 10px;font-weight:700;color:var(--ink)}
-.pp-demo-copy p {font-size:clamp(15px,1.2vw,17px);line-height:1.58;color:var(--muted);margin:0}
+.pp-demo-copy p {font-size:16px;line-height:1.58;color:var(--muted);margin:0}
 .pp-device-shell {position:relative;width:min(100%,289px);aspect-ratio:380/800;isolation:isolate;filter:drop-shadow(0 16px 17px rgba(9,13,18,.11))}
 .pp-real-screen {position:absolute;left:4.47%;top:2.125%;width:91.06%;height:95.75%;border-radius:7%/3.2%;overflow:hidden;z-index:0;background:#090a0c}
 .pp-real-screen video {display:block;width:100%;height:100%;object-fit:fill;background:#090a0c}
@@ -36,8 +38,9 @@
 .pp-demo-card:not(.is-playing) .pp-control-play {display:block}
 .pp-demo-card:not(.is-playing) .pp-control-pause {display:none}
 
-@media(max-width:900px){.pp-art-content{max-width:80%}.pp-art-image{inset:0 -14% 0 22%}}
-@media(max-width:700px){.pp-hero-art{min-height:460px}.pp-art-content{max-width:100%;min-height:460px}.pp-art-image{inset:0;opacity:.5}.pp-art-message h2{font-size:clamp(55px,11vw,80px)}.pp-demo-grid{grid-template-columns:1fr;gap:52px;max-width:430px}.pp-demo-card{grid-template-rows:auto auto auto}.pp-demo-copy{margin-bottom:18px;max-width:340px}.pp-device-shell{width:min(100%,289px)}}
+/* Keep the text readable while allowing the network to extend into the center. */
+@media(max-width:900px){.pp-art-content{max-width:80%}.pp-art-image::before{inset:0 0 0 18%;background-position:73% center;opacity:.85;mask-image:linear-gradient(90deg,transparent,#000 55%);-webkit-mask-image:linear-gradient(90deg,transparent,#000 55%)}}
+@media(max-width:700px){.pp-hero-art{min-height:460px}.pp-art-content{max-width:100%;min-height:460px}.pp-art-image::before{inset:0;background-position:67% center;opacity:.48;mask-image:linear-gradient(90deg,transparent,#000 75%);-webkit-mask-image:linear-gradient(90deg,transparent,#000 75%)}.pp-art-message h2{font-size:clamp(55px,11vw,80px)}.pp-demo-grid{grid-template-columns:1fr;gap:52px;max-width:430px}.pp-demo-card{grid-template-rows:auto auto auto}.pp-demo-copy{margin-bottom:18px;max-width:340px}.pp-device-shell{width:min(100%,289px)}}
 /* One quiet, reusable source viewer for both technical sections. */
 .pattern-page #implementation{padding-bottom:0}
 .pattern-page #ai-integration{padding-bottom:0}
@@ -84,7 +87,7 @@
   padding-top:clamp(23px,2.9vw,38px);
 }
 .pattern-page .pp-source-description {
-  font-size:clamp(17px,1.3vw,19px);
+  font-size:18px;
   color:var(--ink);
   line-height:1.64;
   margin:0;
@@ -97,7 +100,7 @@
 .pattern-page .pp-prompt-preview:not(.is-expanded) pre {max-height:195px}
 @media(max-width:760px){
   .pattern-page .pp-source-panel {grid-template-columns:1fr;gap:18px;padding-top:22px}
-  .pattern-page .pp-source-description {max-width:690px;font-size:17px}
+  .pattern-page .pp-source-description {max-width:690px;font-size:18px}
   .pattern-page .pp-source-expand {grid-column:1;padding-top:0}
 }
 @media(max-width:560px){
@@ -126,3 +129,53 @@
 .pattern-page .pp-source-code .pp-syntax-fn { color: #c7b9eb; }
 .pattern-page .pp-source-code .pp-syntax-comment { color: #92a2ad; }
 .pattern-page .pp-source-code .pp-syntax-num { color: #e4c081; }
+
+/* Mobile Kotlin readability, consistent with Skyjo. Desktop unchanged. */
+@media (max-width: 600px) {
+  .pattern-page .pp-source-code pre {
+    font-size: 13px;
+    line-height: 1.65;
+    overflow-x: auto;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Mobile case-study typography: align Pattern Patrol's editorial hierarchy
+   with the other project pages. Desktop styles are deliberately untouched. */
+@media (max-width: 600px) {
+  .pattern-page .pp-story .section-title {
+    font-size: 36px;
+    line-height: 1.12;
+  }
+
+  .pattern-page .case-dek {
+    font-size: 26px;
+    line-height: 1.24;
+  }
+
+  .pattern-page .pp-story .case-copy .lead {
+    font-size: 26px;
+    line-height: 1.32;
+  }
+}
+
+/* Shared case-study editorial typography, scoped to Pattern Patrol chapters. */
+.pattern-page .pp-story .section-title { font-size: 36px; }
+
+/* Final mobile hero composition: offset the artwork and headline. */
+@media (max-width: 700px) {
+  .pp-art-content {
+    align-items: flex-end;
+    box-sizing: border-box;
+    padding-bottom: 76px;
+  }
+  .pp-art-image::before {
+    inset: 0 0 0 0;
+    background-size: auto 82%;
+    background-position: 76% top;
+    opacity: .88;
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 27%, rgba(0,0,0,.65) 48%, transparent 82%);
+    mask-image: linear-gradient(180deg, #000 0%, #000 27%, rgba(0,0,0,.65) 48%, transparent 82%);
+  }
+}

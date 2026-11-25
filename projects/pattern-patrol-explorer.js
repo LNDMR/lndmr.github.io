@@ -97,12 +97,14 @@ viewModel.aiSuggestion.observe(viewLifecycleOwner) {
    const expander=root.querySelector('[data-prompt-expand]');
    const promptPreview=root.querySelector('[data-prompt-preview]');
    let active=0;let expanded=false;
+   const pre=code.closest('pre');
    function render(index){
      active=index;const item=items[index];
      description.textContent=item.description[getLang()];
      file.textContent=item.file;
      if(root.dataset.sourceGroup==='ai'&&index===0)code.textContent=item.code;
      else highlightKotlin(code,item.code);
+     if(pre)pre.scrollLeft=0;
      tabs.forEach((tab,i)=>{tab.setAttribute('aria-selected',String(i===index));tab.tabIndex=i===index?0:-1});
      panel.setAttribute('aria-labelledby',tabs[index].id);
      if(expander){

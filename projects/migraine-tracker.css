@@ -586,7 +586,7 @@
 }
 .migraine-page .mt-custom-explanation p {
   margin: 0;
-  font-size: clamp(15px, 1.3vw, 18px);
+  font-size: 16px;
   line-height: 1.55;
   color: var(--muted);
 }
@@ -823,4 +823,17 @@
 
 .migraine-page .mt-next-steps .lead {
   text-wrap: pretty;
+}
+/* Mobile only: use the original spacing before the complexity conclusion,
+   but retain a little more space before the severity examples.
+   The full-width dividers between major sections remain unchanged. */
+@media (max-width: 600px) {
+  .migraine-page .mt-dilemma-copy .mt-dilemma-ending {
+    border-top: 0;
+    padding-top: 28px;
+  }
+  .migraine-page .mt-detail-severity {
+    border-top: 0;
+    padding-top: 48px;
+  }
 }

@@ -165,11 +165,98 @@
       reducedMotion.addEventListener('change', scheduleSkyjoArtworkUpdate);
       mobileSkyjo.addEventListener('change', scheduleSkyjoArtworkUpdate);
       scheduleSkyjoArtworkUpdate();
+      // Pattern Patrol: follow visible carousel space, including partially shown cards.
+      // On mobile, the fixed separated composition is intentionally used instead.
+      const ppTile = carousel.querySelector('.pattern-art');
+      const ppLabel = ppTile?.querySelector('.placeholder');
+      const ppMobile = window.matchMedia('(max-width: 600px)');
+      let ppPending = false;
+      function updatePatternArtwork() {
+        ppPending = false;
+        if (!ppTile || !ppLabel) return;
+        const properties = ['--pp-text-shift', '--pp-art-width', '--pp-art-left', '--pp-art-opacity'];
+        if (ppMobile.matches || reducedMotion.matches) {
+          properties.forEach(prop => ppTile.style.removeProperty(prop));
+          return;
+        }
+        const viewport = carousel.getBoundingClientRect();
+        const tile = ppTile.getBoundingClientRect();
+        const width = tile.width;
+        const left = Math.max(0, viewport.left - tile.left);
+        const right = Math.min(width, viewport.right - tile.left);
+        const padding = Math.min(36, width * 0.05);
+        const naturalTextLeft = parseFloat(getComputedStyle(ppTile).paddingLeft) || 0;
+        const textWidth = ppLabel.getBoundingClientRect().width;
+        const shift = Math.max(0, left + padding - naturalTextLeft);
+        ppTile.style.setProperty('--pp-text-shift', `${shift.toFixed(2)}px`);
+        const textRight = naturalTextLeft + shift + textWidth;
+        const start = Math.max(textRight + 24, left + padding);
+        const end = right - padding;
+        const available = Math.max(0, end - start);
+        // Grow the illustration only when sufficient card width is visible.
+        const idealArtWidth = width * (.37 + .08 * Math.min(1, (right - left) / width));
+        const artWidth = Math.min(idealArtWidth, available);
+        const artLeft = start + Math.max(0, (available - artWidth) * .46);
+        const opacity = Math.max(0, Math.min(1, (artWidth - width * .09) / (width * .09)));
+        ppTile.style.setProperty('--pp-art-width', `${artWidth.toFixed(2)}px`);
+        ppTile.style.setProperty('--pp-art-left', `${artLeft.toFixed(2)}px`);
+        ppTile.style.setProperty('--pp-art-opacity', opacity.toFixed(3));
+      }
+      function schedulePatternArtwork() {
+        if (ppPending) return;
+        ppPending = true;
+        requestAnimationFrame(updatePatternArtwork);
+      }
+      carousel.addEventListener('scroll', schedulePatternArtwork, { passive: true });
+      window.addEventListener('resize', schedulePatternArtwork);
+      ppMobile.addEventListener('change', schedulePatternArtwork);
+      reducedMotion.addEventListener('change', schedulePatternArtwork);
+      schedulePatternArtwork();
       carousel.addEventListener('scroll', updateCarouselControls, { passive: true });
       window.addEventListener('resize', updateCarouselControls);
       updateCarouselControls();
     }
   } // Ende Carousel
+
+  // Homepage-only: replace iOS emoji-style arrows with consistent SVGs on
+  // phone-width layouts. Larger viewports keep their original DOM appearance.
+  const mobileArrowViewport = window.matchMedia('(max-width: 600px)');
+  const arrowSvgNS = 'http://www.w3.org/2000/svg';
+
+  function makeEditorialArrow(direction) {
+    const svg = document.createElementNS(arrowSvgNS, 'svg');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('class', 'mobile-editorial-arrow');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+    const path = document.createElementNS(arrowSvgNS, 'path');
+    path.setAttribute('d', direction === 'down' ? 'M6 6l12 12M8 18h10V8' : 'M5 19L19 5M8 5h11v11');
+    svg.appendChild(path);
+    return svg;
+  }
+
+  function syncMobileEditorialArrows() {
+    const mobile = mobileArrowViewport.matches;
+    const language = root.lang === 'de' ? 'de' : 'en';
+    document.querySelectorAll('.hero-links .arrow-link').forEach(link => {
+      const original = link.dataset[language];
+      if (!original) return;
+      if (mobile) {
+        // Keep the translation text and replace only its terminal arrow glyph.
+        link.replaceChildren(document.createTextNode(original.replace(/\s*↘\s*$/, '')), makeEditorialArrow('down'));
+      } else {
+        link.textContent = original;
+      }
+    });
+    document.querySelectorAll('#projects .card-info > .arrow').forEach(el => {
+      if (mobile) el.replaceChildren(makeEditorialArrow('up'));
+      else el.textContent = '↗';
+    });
+  }
+
+  mobileArrowViewport.addEventListener('change', syncMobileEditorialArrows);
+  document.addEventListener('portfolio:languagechange', syncMobileEditorialArrows);
+  syncMobileEditorialArrows();
 
   // Footer year
   const year = document.getElementById('year');

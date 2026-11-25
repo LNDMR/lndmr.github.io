@@ -755,7 +755,7 @@ a:focus-visible,button:focus-visible {
 }
 
 .about-paragraphs p {
-  font-size:clamp(14px,1.07vw,16px);
+  font-size:18px;
   line-height:1.66;
   letter-spacing:-.01em;
   margin:0 0 18px;
@@ -869,7 +869,7 @@ a:focus-visible,button:focus-visible {
     font-size:64px
   }
   .about-paragraphs p {
-    font-size:15px;
+    font-size:18px;
     line-height:1.65
   }
   /* On phones, put interests before the art so the figure still meets the edge. */
@@ -1055,4 +1055,157 @@ a:focus-visible,button:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .skyjo-card-pair { width: 34%; left: 54%; opacity: 1; }
   .skyjo-art { --skyjo-content-shift: 0px; }
+}
+
+
+/* ==============================================================
+   HOMEPAGE MOBILE ONLY – desktop declarations are untouched.
+   ============================================================= */
+@media (max-width: 600px) {
+  /* A full card is visible at once; no clipped next-card teaser. */
+  #projects .carousel {
+    gap: 16px;
+    scroll-padding-inline: 0;
+    scroll-snap-type: x mandatory;
+  }
+  #projects .project-card {
+    flex: 0 0 100%;
+    width: 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  #projects .card-art {
+    height: clamp(305px, 92vw, 390px);
+    padding: 22px;
+  }
+  #projects .card-info {
+    gap: 12px;
+    padding-top: 15px;
+  }
+  #projects .card-info h3 {
+    font-size: clamp(21px, 6vw, 27px);
+    row-gap: 3px;
+    column-gap: .55em;
+  }
+  #projects .card-info p { font-size: 13px; }
+
+  /* Same editorial headline scale; keep the actual project-specific artwork. */
+  #projects .migraine-art .placeholder {
+    width: 49%;
+    max-width: 49%;
+    font-size: clamp(37px, 10vw, 52px);
+    line-height: .94;
+  }
+  #projects .migraine-mockup {
+    right: -6%;
+    width: 67%;
+  }
+  #projects .skyjo-art .placeholder {
+    max-width: 58%;
+    font-size: clamp(39px, 10vw, 52px);
+    line-height: .94;
+  }
+  /* Previously hidden on mobile; restore the existing playing-card image. */
+  #projects .skyjo-card-pair {
+    display: block;
+    width: 38%;
+    left: 55%;
+    top: 49%;
+    max-height: 42%;
+    opacity: 1;
+  }
+  #projects .pattern-art .placeholder {
+    max-width: 100%;
+    font-size: clamp(39px, 10vw, 52px);
+    line-height: .94;
+  }
+
+  /* On phones, let the About copy lead directly into the portrait.
+     Keep the At a glance content and desktop presentation intact. */
+  #about .about-inner { gap: 0; }
+  #about .about-side { display: none; }
+  #about .portrait-composition {
+    grid-column: 1;
+    grid-row: 2;
+    margin: 48px auto 0;
+  }
+
+  /* SVG arrows, inserted only on mobile by main.js. */
+  .mobile-editorial-arrow {
+    display: inline-block;
+    width: 1.05em;
+    height: 1.05em;
+    flex: 0 0 auto;
+    vertical-align: middle;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.65;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .hero-links .arrow-link { gap: 8px; }
+  /* Project cards are one large link; their diagonal link arrow is unnecessary on phones.
+     Keep the carousel's top navigation arrows and all desktop link arrows. */
+  #projects .card-info > .arrow { display: none; }
+}
+
+
+/* Pattern Patrol card: one composition, with positioning variables updated by
+   the same carousel-visible-space approach used for Skyjo. */
+#projects .pattern-art .placeholder,
+#projects .pattern-art > .smallcaps { position: relative; z-index: 2; }
+#projects .pattern-art .placeholder {
+  max-width: none;
+  width: max-content;
+  font-size: clamp(36px, 4vw, 64px);
+  letter-spacing: -.08em;
+  line-height: .94;
+  overflow-wrap: normal;
+  white-space: nowrap;
+  transform: translateX(var(--pp-text-shift, 0px));
+}
+#projects .pattern-art .pattern-line { display: block; white-space: nowrap; }
+#projects .pattern-art > .smallcaps {
+  transform: translateX(var(--pp-text-shift, 0px));
+}
+#projects .pattern-card-neuron {
+  position: absolute;
+  z-index: 1;
+  width: var(--pp-art-width, 45%);
+  left: var(--pp-art-left, 58%);
+  top: 51%;
+  right: auto;
+  transform: translateY(-50%);
+  opacity: var(--pp-art-opacity, 1);
+  height: auto;
+  max-height: 82%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+@media (max-width: 600px) {
+  /* Phone: no carousel-driven layout transforms; use a compact, separated
+     right-side illustration and a three-line slogan with intact punctuation. */
+  #projects .pattern-art .placeholder {
+    font-size: clamp(28px, 8.2vw, 34px);
+    letter-spacing: -.065em;
+    line-height: .98;
+    width: max-content;
+    max-width: none;
+    transform: none;
+  }
+  #projects .pattern-art > .smallcaps { transform: none; }
+  #projects .pattern-card-neuron {
+    width: 35%;
+    left: auto;
+    right: 10%;
+    top: 53%;
+    max-height: 55%;
+    opacity: 1;
+  }
+}
+
+@media (max-width: 350px) {
+  /* Keep the neuron away from the longer REFRAME. line on small phones. */
+  #projects .pattern-card-neuron { width: 32%; right: 9%; }
 }

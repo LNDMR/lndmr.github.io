@@ -230,8 +230,8 @@
 }
 
 .skyjo-page .sky-chapter-right>p:not(.sky-pull) {
-  color: var(--muted);
-  font-size: clamp(16px, 1.45vw, 19px);
+  color: var(--ink);
+  font-size: 18px;
   line-height: 1.68;
   max-width: 100%;
   margin: 0 0 23px
@@ -328,10 +328,16 @@
 }
 
 .sky-physical-annotations div p {
-  font-size: clamp(15px, 1.2vw, 16px);
+  font-size: 18px;
   line-height: 1.6;
-  color: var(--muted);
+  color: var(--ink);
   margin: 6px 0 0
+}
+
+/* Compact game-step descriptions; the main narrative and catch remain 18px. */
+.sky-physical-annotations > div:not(.sky-physical-catch) p {
+  font-size: 16px;
+  color: var(--muted);
 }
 
 /* Strategy takeaway belongs to the gameplay steps, not below the illustration. */
@@ -488,7 +494,7 @@
   margin: 0 0 18px;
 }
 .sky-terminal-explain p {
-  font-size: clamp(15px, 1.5vw, 19px);
+  font-size: 16px;
   line-height: 1.66;
   color: #c4cbd2;
   max-width: 390px;
@@ -722,7 +728,7 @@
 .sky-model-bridge-lead p,
 .sky-player-lead p {
   margin: 0;
-  color: var(--muted);
+  color: var(--ink);
   font-size: clamp(15px, 1.3vw, 17px);
   line-height: 1.65;
   max-width: 790px;
@@ -868,11 +874,11 @@
 }
 /* Keep the two deck paragraphs together in the established right grid column. */
 .sky-code .sky-bridge-copy { min-width: 0; max-width: 790px; }
-.sky-code .sky-bridge-copy p { margin: 0; color: var(--muted); }
+.sky-code .sky-bridge-copy p { margin: 0; color: var(--ink); }
 /* Technical paragraphs use the same right-hand column and typography throughout. */
 .sky-code .sky-implementation-lead p,
 .sky-code .sky-model-bridge-lead p,
-.sky-code .sky-player-lead p { font-size: clamp(16px, 1.45vw, 19px); line-height: 1.68; }
+.sky-code .sky-player-lead p { font-size: 18px; line-height: 1.68; }
 @media (max-width: 900px) {
   .sky-code .sky-technical-label { margin-bottom: 4px; }
   .sky-code .sky-bridge-copy .sky-index-explanation { margin-top: 12px; }
@@ -927,4 +933,18 @@
 /* Narrow screens: preserve the same transition logic with smaller whitespace. */
 @media (max-width: 750px) {
   .skyjo-page { --sky-reflection-boundary-space: 48px; }
+}
+
+/* Mobile readability pass — Skyjo Kotlin examples only.
+   Desktop presentation is intentionally unchanged. */
+@media (max-width: 600px) {
+  /* Keep Kotlin indentation, but never shrink source to fit the viewport. */
+  .sky-code .sky-model-code pre,
+  .sky-code .sky-player-code pre {
+    font-size: 13px;
+    line-height: 1.65;
+    overflow-x: auto;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
 }
